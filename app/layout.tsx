@@ -27,6 +27,21 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Sean Blonien" }],
   creator: "Sean Blonien",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" }
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
+    ],
+    other: [
+      { url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" }
+    ]
+  },
+  manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -37,25 +52,24 @@ export const metadata: Metadata = {
     siteName: "Sean Blonien Portfolio",
     images: [
       {
-        url: "/images/og-image.png", // This would need to be created
-        width: 1200,
-        height: 630,
+        url: "/android-chrome-512x512.png", // Using the favicon as OG image for now
+        width: 512,
+        height: 512,
         alt: "Sean Blonien Portfolio",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Sean Blonien | Senior Software Engineer",
     description:
       "Portfolio of Sean Blonien, Senior Software Engineer specializing in full-stack development, React, React Native, and cloud architecture.",
-    images: ["/images/og-image.png"], // This would need to be created
+    images: ["/android-chrome-512x512.png"], // Using the favicon as Twitter image for now
   },
   robots: {
     index: true,
     follow: true,
-  },
-    generator: 'v0.dev'
+  }
 }
 
 export default function RootLayout({
