@@ -1,11 +1,30 @@
 "use client"
 
-import { useEffect, useRef } from "react"
-import { useInView } from "framer-motion"
+import { useEffect, useRef, useState } from "react"
 
 export default function VHSTitle() {
   const titleRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(titleRef, { once: true })
+  const [isInView, setIsInView] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+          if (titleRef.current) observer.unobserve(titleRef.current)
+        }
+      },
+      { threshold: 0.1 },
+    )
+
+    if (titleRef.current) {
+      observer.observe(titleRef.current)
+    }
+
+    return () => {
+      if (titleRef.current) observer.unobserve(titleRef.current)
+    }
+  }, [])
 
   useEffect(() => {
     if (!isInView || !titleRef.current) return
