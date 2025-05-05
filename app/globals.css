@@ -40,7 +40,19 @@
   }
 
   .neon-border {
-    @apply border-neon-pink shadow-[0_0_5px_rgba(255,42,255,0.7)];
+    @apply border-neon-pink shadow-[0_0_5px_rgba(255,42,255,0.7)] rounded-md;
+  }
+
+  .neon-border-pink {
+    @apply border-neon-pink shadow-[0_0_5px_rgba(255,42,255,0.7)] rounded-md;
+  }
+
+  .neon-border-blue {
+    @apply border-neon-blue shadow-[0_0_5px_rgba(42,253,255,0.7)] rounded-md;
+  }
+
+  .neon-border-orange {
+    @apply border-neon-orange shadow-[0_0_5px_rgba(255,158,42,0.7)] rounded-md;
   }
 
   .grid-overlay {
@@ -58,7 +70,7 @@
   }
 
   .card {
-    @apply bg-dark-blue/50 backdrop-blur-sm border border-neon-blue/30 rounded-lg p-6 transition-all duration-300 hover:border-neon-pink/70 hover:shadow-[0_0_15px_rgba(255,42,255,0.3)];
+    @apply bg-dark-blue/50 backdrop-blur-sm border border-neon-blue/30 rounded-xl p-6 transition-all duration-300 hover:border-neon-pink/70 hover:shadow-[0_0_15px_rgba(255,42,255,0.3)];
   }
 
   /* VHS Title Animation */

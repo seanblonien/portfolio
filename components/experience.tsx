@@ -112,7 +112,7 @@ export default function Experience() {
         <div className="relative mt-12">
           {/* Center neon line - positioned differently on mobile */}
           <div className="absolute md:left-1/2 left-[20px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-neon-blue via-neon-pink to-neon-blue
-                         shadow-[0_0_8px_rgba(42,253,255,0.7)] z-10"></div>
+                         shadow-[0_0_8px_rgba(42,253,255,0.7)] rounded-full z-10"></div>
 
           {/* Timeline entries */}
           <div className="relative z-10">
@@ -124,20 +124,22 @@ export default function Experience() {
               >
                 {/* Timeline node - different color based on type, positioned differently on mobile */}
                 <div className={`absolute md:left-1/2 left-[20px] top-6 w-4 h-4 rounded-full bg-dark-blue border-2
-                               ${experience.type === 'work' ? 'border-neon-blue shadow-[0_0_8px_rgba(42,253,255,0.7)]' : 'border-neon-pink shadow-[0_0_8px_rgba(255,42,255,0.7)]'}
+                               ${experience.type === 'work'
+                                 ? 'border-neon-blue shadow-[0_0_8px_rgba(42,253,255,0.7)]'
+                                 : 'border-neon-pink shadow-[0_0_8px_rgba(255,42,255,0.7)]'}
                                transform md:-translate-x-1/2 z-20`}></div>
 
-                {/* Content container - alternating left/right on desktop, all on right for mobile */}
-                <div className={`flex ${index % 2 === 0 ? 'md:justify-start' : 'md:justify-end'} justify-end relative z-30`}>
+                {/* Content container - alternating sides of timeline on desktop, all on right for mobile */}
+                <div className="flex md:justify-end justify-end relative z-30">
                   <Popover>
                     <PopoverTrigger asChild>
                       <div
-                        className={`w-full md:w-[calc(50%-2rem)] cursor-pointer ${index % 2 === 0 ? 'md:mr-auto' : 'md:ml-auto'} ml-auto`}
+                        className={`w-full md:w-[calc(50%-2rem)] cursor-pointer ${index % 2 === 0 ? 'md:mr-[calc(50%+2rem)]' : 'md:ml-auto'} ml-auto`}
                       >
                         <Card className={`card ${experience.type === 'work'
                           ? 'border-neon-blue/30 hover:border-neon-blue/70 hover:shadow-[0_0_15px_rgba(42,253,255,0.5)]'
                           : 'border-neon-pink/30 hover:border-neon-pink/70 hover:shadow-[0_0_15px_rgba(255,42,255,0.5)]'}
-                          transition-all duration-300`}>
+                          transition-all duration-300 rounded-xl overflow-hidden`}>
                           <CardHeader>
                             <div className="flex flex-col gap-1">
                               <CardTitle className={`text-xl font-vt323 ${experience.type === 'work' ? 'neon-text-blue' : 'neon-text-pink'}`}>
@@ -157,8 +159,8 @@ export default function Experience() {
                       className={`w-80 bg-dark-blue/95 backdrop-blur-sm border ${experience.type === 'work'
                         ? 'border-neon-blue/50 shadow-[0_0_15px_rgba(42,253,255,0.3)]'
                         : 'border-neon-pink/50 shadow-[0_0_15px_rgba(255,42,255,0.3)]'}
-                        text-white p-4 z-[9999]`}
-                      side={index % 2 === 0 ? "right" : "left"}
+                        text-white p-4 z-[9999] rounded-xl overflow-hidden`}
+                      side="left"
                       align="start"
                       sideOffset={20}
                     >

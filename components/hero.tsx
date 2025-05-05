@@ -29,7 +29,7 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 mb-12">
           <Button
             asChild
-            className="bg-transparent border border-neon-pink text-neon-pink hover:bg-neon-pink/10 hover:shadow-[0_0_15px_rgba(255,42,255,0.5)]"
+            className="bg-transparent border border-neon-pink text-neon-pink hover:bg-neon-pink/10 hover:shadow-[0_0_15px_rgba(255,42,255,0.5)] rounded-xl"
           >
             <a href="#about" className="flex items-center gap-2">
               EXPLORE <ArrowDown size={16} />
@@ -38,7 +38,7 @@ export default function Hero() {
 
           <Button
             asChild
-            className="bg-transparent border border-neon-blue text-neon-blue hover:bg-neon-blue/10 hover:shadow-[0_0_15px_rgba(42,253,255,0.5)]"
+            className="bg-transparent border border-neon-blue text-neon-blue hover:bg-neon-blue/10 hover:shadow-[0_0_15px_rgba(42,253,255,0.5)] rounded-xl"
           >
             <a
               href="/resume.pdf"
