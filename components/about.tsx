@@ -69,6 +69,70 @@ export default function About() {
                       <span className="text-white/90">VR Explorer</span>
                     </div>
                   </div>
+
+                  <Separator className="my-4 bg-neon-blue/30" />
+
+                  <div className="space-y-2">
+                    <h3 className="text-white/70 text-sm mb-2">SKILLS</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {/* Frontend Skills */}
+                      <Badge className="bg-dark-blue/70 border border-neon-blue/30 text-white hover:border-neon-pink/50 hover:bg-dark-blue/90 transition-all duration-300">
+                        TypeScript
+                      </Badge>
+                      <Badge className="bg-dark-blue/70 border border-neon-blue/30 text-white hover:border-neon-pink/50 hover:bg-dark-blue/90 transition-all duration-300">
+                        JavaScript
+                      </Badge>
+                      <Badge className="bg-dark-blue/70 border border-neon-blue/30 text-white hover:border-neon-pink/50 hover:bg-dark-blue/90 transition-all duration-300">
+                        React
+                      </Badge>
+                      <Badge className="bg-dark-blue/70 border border-neon-blue/30 text-white hover:border-neon-pink/50 hover:bg-dark-blue/90 transition-all duration-300">
+                        React Native
+                      </Badge>
+                      <Badge className="bg-dark-blue/70 border border-neon-blue/30 text-white hover:border-neon-pink/50 hover:bg-dark-blue/90 transition-all duration-300">
+                        Expo
+                      </Badge>
+                      <Badge className="bg-dark-blue/70 border border-neon-blue/30 text-white hover:border-neon-pink/50 hover:bg-dark-blue/90 transition-all duration-300">
+                        CSS
+                      </Badge>
+                      <Badge className="bg-dark-blue/70 border border-neon-blue/30 text-white hover:border-neon-pink/50 hover:bg-dark-blue/90 transition-all duration-300">
+                        Tailwind
+                      </Badge>
+                      <Badge className="bg-dark-blue/70 border border-neon-blue/30 text-white hover:border-neon-pink/50 hover:bg-dark-blue/90 transition-all duration-300">
+                        Next.js
+                      </Badge>
+
+                      {/* Backend Skills */}
+                      <Badge className="bg-dark-blue/70 border border-neon-blue/30 text-white hover:border-neon-pink/50 hover:bg-dark-blue/90 transition-all duration-300">
+                        NodeJs
+                      </Badge>
+                      <Badge className="bg-dark-blue/70 border border-neon-blue/30 text-white hover:border-neon-pink/50 hover:bg-dark-blue/90 transition-all duration-300">
+                        Java
+                      </Badge>
+                      <Badge className="bg-dark-blue/70 border border-neon-blue/30 text-white hover:border-neon-pink/50 hover:bg-dark-blue/90 transition-all duration-300">
+                        Python
+                      </Badge>
+                      <Badge className="bg-dark-blue/70 border border-neon-blue/30 text-white hover:border-neon-pink/50 hover:bg-dark-blue/90 transition-all duration-300">
+                        Firebase
+                      </Badge>
+                      <Badge className="bg-dark-blue/70 border border-neon-blue/30 text-white hover:border-neon-pink/50 hover:bg-dark-blue/90 transition-all duration-300">
+                        NoSQL
+                      </Badge>
+
+                      {/* Cloud & DevOps Skills */}
+                      <Badge className="bg-dark-blue/70 border border-neon-blue/30 text-white hover:border-neon-pink/50 hover:bg-dark-blue/90 transition-all duration-300">
+                        GCP
+                      </Badge>
+                      <Badge className="bg-dark-blue/70 border border-neon-blue/30 text-white hover:border-neon-pink/50 hover:bg-dark-blue/90 transition-all duration-300">
+                        AWS
+                      </Badge>
+                      <Badge className="bg-dark-blue/70 border border-neon-blue/30 text-white hover:border-neon-pink/50 hover:bg-dark-blue/90 transition-all duration-300">
+                        DevOps
+                      </Badge>
+                      <Badge className="bg-dark-blue/70 border border-neon-blue/30 text-white hover:border-neon-pink/50 hover:bg-dark-blue/90 transition-all duration-300">
+                        Cloud Architecture
+                      </Badge>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -84,7 +148,7 @@ export default function About() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-white/90">
-                    Welcome to my stretch of the digital highway! As a Senior Software Engineer navigating the dynamic world of technology, I see my work through the lens of neon-lit horizons and precisely engineered systems. My journey is one of continuous acceleration, building robust applications and crafting elegant user experiences that empower businesses and their customers. My passion lies in architecting solutions that aren't just functional, but feel intuitive, responsive, and ultimately drive meaningful impact.
+                    Welcome to my stretch of the digital highway! As a Senior Software Engineer navigating the dynamic worlds of technology and AI, I've dedicated my journey to intentional software design that prioritizes product innovation and a seamless user experience. I thrive on building robust, elegant solutions that solve real-world challenges and empower users. Whether I'm diving deep into code or mentoring a team, I'm passionate about crafting intuitive, responsive systems that drive meaningful impact.
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     <Badge className="bg-neon-pink/20 text-neon-pink">Passionate</Badge>
@@ -103,7 +167,9 @@ export default function About() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-white/90">
-                    Throughout my career, from consulting across various digital landscapes to directing engineering at Fly Bodies, I've honed my skills as both a navigator and an architect. I chart courses through complex technical challenges while simultaneously designing the underlying infrastructure and interfaces. This involves everything from optimizing data pipelines and backend systems for performance and scale, to meticulously building front-end components that deliver a smooth, zero-refresh user experience - essentially building the high-speed lanes and beautiful rest stops of the digital realm.
+                    So far in my career, I started out in consulting at Pariveda all the way  to directing engineering at Fly Bodies, I've honed my skills as both a strong individual contributor and architect. I chart courses through complex technical challenges while simultaneously designing the underlying infrastructure and interfaces. This involves everything from optimizing data pipelines and backend systems for performance and scale, to meticulously building front-end components that deliver a smooth, zero-refresh user experience - essentially building the high-speed lanes and beautiful rest stops of the digital realm.
+
+                    On this digital highway, my journey from navigating diverse client landscapes in consulting to architecting the core at Fly Bodies has been about more than just writing code. I thrive on the challenge of solving complex technical puzzles, finding the optimal routes to build robust, scalable backends and craft intuitive, seamless user experiences. But the drive isn't solo; I genuinely enjoy bringing a team together, coaching fellow engineers, and ensuring we're cruising forward as a cohesive unit. Sharing our vision and progress with clarity – whether presenting plans or just syncing up daily – is essential for building those high-speed digital lanes together. It's this blend of deep technical work, leading the charge, and collaborating effectively that truly powers the engine.
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     <Badge className="bg-darker-blue text-neon-blue border border-neon-blue/50">React Native</Badge>

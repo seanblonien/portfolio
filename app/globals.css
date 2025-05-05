@@ -156,4 +156,47 @@
       opacity: 0;
     }
   }
+
+  /* Audio Player Styles */
+  .audio-player-range {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(42, 253, 255, 0.2);
+    outline: none;
+    overflow: hidden;
+  }
+
+  .audio-player-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--neon-pink);
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(255, 42, 255, 0.7);
+    border: 2px solid rgba(255, 42, 255, 0.9);
+  }
+
+  .audio-player-range::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--neon-pink);
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(255, 42, 255, 0.7);
+    border: 2px solid rgba(255, 42, 255, 0.9);
+  }
+
+  .audio-player-range::-webkit-slider-runnable-track {
+    height: 4px;
+    background: linear-gradient(to right, var(--neon-pink), var(--neon-blue));
+  }
+
+  .audio-player-range::-moz-range-track {
+    height: 4px;
+    background: linear-gradient(to right, var(--neon-pink), var(--neon-blue));
+  }
 }
