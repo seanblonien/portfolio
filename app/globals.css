@@ -24,6 +24,19 @@
   h6 {
     @apply font-vt323;
   }
+
+  /* Neon text selection styling - Pink by default */
+  ::selection {
+    background-color: rgba(255, 42, 255, 0.3); /* Neon pink with transparency */
+    color: white;
+    text-shadow: 0 0 8px rgba(255, 42, 255, 0.8);
+  }
+
+  ::-moz-selection {
+    background-color: rgba(255, 42, 255, 0.3); /* Neon pink with transparency */
+    color: white;
+    text-shadow: 0 0 8px rgba(255, 42, 255, 0.8);
+  }
 }
 
 @layer components {
