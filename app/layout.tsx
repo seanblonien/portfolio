@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter, VT323 } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const vt323 = VT323({
@@ -83,6 +84,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${vt323.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
