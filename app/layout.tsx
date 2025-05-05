@@ -42,6 +42,7 @@ export const metadata: Metadata = {
     ]
   },
   manifest: "/site.webmanifest",
+  metadataBase: new URL("https://seanblonien.com"),
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -69,7 +70,7 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-  }
+  },
 }
 
 export default function RootLayout({

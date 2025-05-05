@@ -7,18 +7,13 @@ export default function About() {
         <h2 className="section-title">ABOUT ME</h2>
         <div className="card">
           <p className="text-lg mb-4">
-            I'm a Senior Software Engineer with expertise in full-stack development, specializing in TypeScript, React,
-            and cloud architecture. Currently serving as the Director of Engineering at Fly Bodies, I've led the
-            development of cross-platform mobile applications and architected scalable, event-driven backends.
+            Welcome to my stretch of the digital highway! As a Senior Software Engineer navigating the dynamic world of health and wellness tech, I see my work through the lens of neon-lit horizons and precisely engineered systems. My journey is one of continuous acceleration, building robust applications and crafting elegant user experiences that help people on their own paths to well-being. My passion lies in architecting solutions that aren't just functional, but feel intuitive, responsive, and ultimately, empower users to achieve their goals, like a perfectly tuned engine on an open road.
           </p>
           <p className="text-lg mb-4">
-            With a background in Computer Science from Baylor University and experience at Pariveda Solutions, I've
-            delivered impactful solutions for major clients including UnitedHealthcare, Southwest Airlines, and Toyota
-            Financial Services.
+            Throughout my career, from consulting across various digital landscapes to directing engineering at Fly Bodies, I've honed my skills as both a navigator and an architect. I chart courses through complex technical challenges (using tools like React Native, Node.js, and Cloud platforms like GCP/AWS) while simultaneously designing the underlying infrastructure and interfaces. This involves everything from optimizing data pipelines and backend systems for performance and scale, to meticulously building front-end components that deliver a smooth, zero-refresh user experience - essentially building the high-speed lanes and beautiful rest stops of the digital realm.
           </p>
           <p className="text-lg">
-            I'm passionate about building performant, user-friendly applications that solve real-world problems and
-            deliver exceptional experiences.
+            Off the grid, the drive continues. Whether I'm tackling the endurance challenge of a marathon, exploring new simulated realities in VR games, or finding rhythm and flow through EDM and meditation, these pursuits mirror the principles of software development I value: endurance, exploration, finding harmony in complexity, and a relentless drive for optimization and improvement. It's all part of navigating the larger journey, building experiences, and constantly seeking the next innovation on the horizon.
           </p>
         </div>
       </AnimatedSection>

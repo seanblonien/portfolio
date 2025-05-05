@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowDown, FileText } from "lucide-react"
@@ -20,8 +22,10 @@ export default function Hero() {
         <VHSTitle />
         <h2 className="text-3xl md:text-5xl font-vt323 mb-8 neon-text-orange">SENIOR SOFTWARE ENGINEER</h2>
         <p className="text-xl max-w-2xl mb-8 text-white/90">
-          Building modern, scalable applications with a focus on user experience and performance.
+          Building modern reactive web & mobile apps with a focus on product development.
+          Specializing in React, TypeScript, and serverless cloud architecture.
         </p>
+
         <div className="flex flex-col sm:flex-row gap-4 mb-12">
           <Button
             asChild
@@ -31,11 +35,15 @@ export default function Hero() {
               EXPLORE <ArrowDown size={16} />
             </a>
           </Button>
+
           <Button
             asChild
             className="bg-transparent border border-neon-blue text-neon-blue hover:bg-neon-blue/10 hover:shadow-[0_0_15px_rgba(42,253,255,0.5)]"
           >
-            <a href="#" download className="flex items-center gap-2">
+            <a
+              href="/resume.pdf"
+              className="flex items-center gap-2"
+            >
               RESUME <FileText size={16} />
             </a>
           </Button>
