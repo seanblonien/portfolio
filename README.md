@@ -34,3 +34,7 @@ pnpm build
 ## Notes
 
 The site uses a custom VHS-style glitch effect for the hero section and intersection observer for scroll animations. The design is inspired by 80s/90s vaporwave and outrun aesthetics.
+
+
+email me button, 
+on hover

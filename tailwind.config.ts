@@ -61,11 +61,48 @@ const config: Config = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        "dark-blue": "#0a0a20",
-        "darker-blue": "#050518",
-        "neon-pink": "#ff2aff",
-        "neon-blue": "#2afdff",
-        "neon-orange": "#ff9e2a",
+        // Base colors
+        "dark-blue": "var(--dark-blue)",
+        "darker-blue": "var(--darker-blue)",
+        "neon-pink": "var(--neon-pink)",
+        "neon-blue": "var(--neon-blue)",
+        "neon-orange": "var(--neon-orange)",
+
+        // Opacity variants for neon-pink
+        "neon-pink-10": "var(--neon-pink-10)",
+        "neon-pink-20": "var(--neon-pink-20)",
+        "neon-pink-30": "var(--neon-pink-30)",
+        "neon-pink-50": "var(--neon-pink-50)",
+        "neon-pink-70": "var(--neon-pink-70)",
+        "neon-pink-90": "var(--neon-pink-90)",
+
+        // Opacity variants for neon-blue
+        "neon-blue-10": "var(--neon-blue-10)",
+        "neon-blue-20": "var(--neon-blue-20)",
+        "neon-blue-30": "var(--neon-blue-30)",
+        "neon-blue-50": "var(--neon-blue-50)",
+        "neon-blue-70": "var(--neon-blue-70)",
+        "neon-blue-90": "var(--neon-blue-90)",
+
+        // Opacity variants for neon-orange
+        "neon-orange-10": "var(--neon-orange-10)",
+        "neon-orange-20": "var(--neon-orange-20)",
+        "neon-orange-30": "var(--neon-orange-30)",
+        "neon-orange-50": "var(--neon-orange-50)",
+        "neon-orange-70": "var(--neon-orange-70)",
+        "neon-orange-90": "var(--neon-orange-90)",
+
+        // Dark blue opacity variants
+        "dark-blue-50": "var(--dark-blue-50)",
+        "dark-blue-80": "var(--dark-blue-80)",
+        "dark-blue-95": "var(--dark-blue-95)",
+
+        // Text opacity variants
+        "text-white-40": "var(--text-white-40)",
+        "text-white-60": "var(--text-white-60)",
+        "text-white-70": "var(--text-white-70)",
+        "text-white-80": "var(--text-white-80)",
+        "text-white-90": "var(--text-white-90)",
       },
       borderRadius: {
         lg: "var(--radius)",

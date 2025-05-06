@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X, GithubIcon, LinkedinIcon } from "lucide-react"
+import { Menu, X, ExternalLink } from "lucide-react"
 import { debounce } from "@/lib/utils"
 
 const navLinks = [
@@ -12,8 +12,8 @@ const navLinks = [
 ]
 
 const socialLinks = [
-  { name: "GitHub", href: "https://github.com/seanblonien", icon: GithubIcon },
-  { name: "LinkedIn", href: "https://linkedin.com/in/seanblonien", icon: LinkedinIcon },
+  { name: "GitHub", href: "https://github.com/seanblonien", icon: ExternalLink },
+  { name: "LinkedIn", href: "https://linkedin.com/in/seanblonien", icon: ExternalLink },
 ]
 
 export default function Navbar() {
@@ -63,9 +63,10 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         hasScrolled
-          ? "bg-dark-blue/80 backdrop-blur-md shadow-lg py-2"
+          ? "backdrop-blur-md shadow-lg py-2"
           : "bg-transparent py-4"
       }`}
+      style={hasScrolled ? { backgroundColor: 'var(--dark-blue-80, rgba(10, 10, 32, 0.8))' } : undefined}
     >
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center">
@@ -131,9 +132,10 @@ export default function Navbar() {
 
       {/* Mobile menu with animation */}
       <div
-        className={`md:hidden absolute w-full bg-dark-blue/95 backdrop-blur-md shadow-lg transition-all duration-300 overflow-hidden ${
+        className={`md:hidden absolute w-full backdrop-blur-md shadow-lg transition-all duration-300 overflow-hidden ${
           menuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
         }`}
+        style={{ backgroundColor: 'var(--dark-blue-95, rgba(10, 10, 32, 0.95))' }}
       >
         <div className="px-4 py-2 space-y-3">
           {navLinks.map((item) => (

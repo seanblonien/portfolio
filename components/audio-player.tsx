@@ -202,22 +202,8 @@ export default function AudioPlayer() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-2">
-      {/* Controls button */}
-      <button
-        onClick={() => setShowControls(true)}
-        className="w-8 h-8 rounded-full bg-darker-blue border border-neon-blue flex items-center justify-center hover:border-neon-pink hover:shadow-[0_0_10px_rgba(255,42,255,0.3)] transition-all duration-300"
-        aria-label="Open music controls"
-        title="Open music controls (or right-click the main button)"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-neon-blue">
-          <circle cx="12" cy="12" r="1"></circle>
-          <circle cx="19" cy="12" r="1"></circle>
-          <circle cx="5" cy="12" r="1"></circle>
-        </svg>
-      </button>
-
-      {/* Main audio button */}
+    <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end">
+      {/* Combined audio button - toggles mute and opens menu */}
       <Popover open={showControls} onOpenChange={setShowControls}>
         <PopoverTrigger asChild>
           <div
@@ -230,9 +216,12 @@ export default function AudioPlayer() {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <button
-                    onClick={toggleMute}
-                    className="w-12 h-12 rounded-full bg-darker-blue border-2 border-neon-blue flex items-center justify-center transition-all duration-300 hover:border-neon-pink hover:shadow-[0_0_15px_rgba(255,42,255,0.5)] group"
-                    aria-label={isMuted ? "Unmute music" : "Mute music"}
+                    onClick={() => {
+                      toggleMute();
+                      setShowControls(!showControls);
+                    }}
+                    className="w-12 h-12 rounded-full bg-darker-blue border-2 border-neon-blue flex items-center justify-center transition-all duration-300 hover:border-neon-pink hover:shadow-neon-pink-lg group"
+                    aria-label={isMuted ? "Unmute music and open controls" : "Mute music and open controls"}
                   >
                     {getVolumeIcon()}
 
@@ -245,27 +234,28 @@ export default function AudioPlayer() {
                     )}
                   </button>
                 </TooltipTrigger>
-                <TooltipContent side="left" className="bg-darker-blue border border-neon-blue text-white rounded-xl shadow-[0_0_8px_rgba(42,253,255,0.3)]">
+                <TooltipContent side="left" className="bg-darker-blue border border-neon-blue text-white rounded-xl shadow-neon-blue">
                   <p>{isMuted ? "Unmute music" : "Mute music"}</p>
-                  <p className="text-xs text-white/70">{hasInteracted ? "Music is playing but muted" : "Click to start music (muted)"}</p>
-                  <p className="text-xs text-white/70">Right-click for more controls</p>
+                  <p className="text-xs text-text-white-70">{hasInteracted ? "Music is playing but muted" : "Click to start music (muted)"}</p>
+                  <p className="text-xs text-text-white-70">Click to toggle sound and open controls</p>
+                  <p className="text-xs text-text-white-70">Right-click also opens controls</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
           </div>
         </PopoverTrigger>
-        <PopoverContent className="w-72 p-4 bg-darker-blue border border-neon-blue shadow-[0_0_15px_rgba(42,253,255,0.3)] rounded-xl overflow-hidden">
+        <PopoverContent className="w-72 p-4 bg-darker-blue border border-neon-blue shadow-neon-blue-lg rounded-xl overflow-hidden">
           <div className="space-y-4">
             <h4 className="text-lg font-vt323 neon-text-pink text-center">MUSIC CONTROLS</h4>
 
             {/* Track info */}
-            <div className="text-center border border-neon-blue/30 rounded-xl p-2 bg-darker-blue/50 shadow-[0_0_5px_rgba(42,253,255,0.2)]">
+            <div className="text-center border border-neon-blue-30 rounded-xl p-2 shadow-neon-blue" style={{ backgroundColor: 'rgba(5, 5, 24, 0.5)' }}>
               <p className="text-sm font-vt323 neon-text-blue">{hasInteracted ? "NOW PLAYING" : "READY TO PLAY"}</p>
-              <p className="text-xs text-white/80 font-medium">
+              <p className="text-xs font-medium" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
                 Allude by Voyage
               </p>
-              <p className="text-xs text-white/60">
-                {!hasInteracted ? "(Click to start)" : isMuted ? "(Muted)" : ""}
+              <p className="text-xs" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
+                {!hasInteracted ? "(Click speaker to start)" : isMuted ? "(Muted)" : ""}
               </p>
 
               {/* Progress bar */}
@@ -280,14 +270,14 @@ export default function AudioPlayer() {
                 ></div>
               </div>
 
-              <p className="text-xs text-white/60">{formatTime(currentTime)} / {formatTime(duration)}</p>
+              <p className="text-xs text-text-white-60">{formatTime(currentTime)} / {formatTime(duration)}</p>
             </div>
 
             {/* Playback controls */}
             <div className="flex justify-center items-center gap-4">
               <button
                 onClick={skipBackward}
-                className="p-2 rounded-full bg-darker-blue border border-neon-blue hover:border-neon-pink hover:shadow-[0_0_10px_rgba(255,42,255,0.5)] transition-all duration-300"
+                className="p-2 rounded-full bg-darker-blue border border-neon-blue hover:border-neon-pink hover:shadow-neon-pink-lg transition-all duration-300"
                 aria-label="Skip backward 15 seconds"
               >
                 <Rewind className="w-5 h-5 text-neon-blue" />
@@ -295,26 +285,27 @@ export default function AudioPlayer() {
 
               <button
                 onClick={toggleMute}
-                className="p-3 rounded-full bg-darker-blue border-2 border-neon-pink hover:shadow-[0_0_15px_rgba(255,42,255,0.5)] transition-all duration-300"
+                className="p-3 rounded-full bg-darker-blue border-2 border-neon-pink hover:shadow-neon-pink-lg transition-all duration-300"
                 aria-label={isMuted ? "Unmute" : "Mute"}
+                title="Toggle mute/unmute"
               >
                 {isMuted ? (
-                  <Volume2 className="w-6 h-6 text-neon-pink" />
-                ) : (
                   <VolumeX className="w-6 h-6 text-neon-pink" />
+                ) : (
+                  <Volume2 className="w-6 h-6 text-neon-pink" />
                 )}
               </button>
 
               <button
                 onClick={skipForward}
-                className="p-2 rounded-full bg-darker-blue border border-neon-blue hover:border-neon-pink hover:shadow-[0_0_10px_rgba(255,42,255,0.5)] transition-all duration-300"
+                className="p-2 rounded-full bg-darker-blue border border-neon-blue hover:border-neon-pink hover:shadow-neon-pink-lg transition-all duration-300"
                 aria-label="Skip forward 15 seconds"
               >
                 <FastForward className="w-5 h-5 text-neon-blue" />
               </button>
             </div>
 
-            <Separator className="bg-neon-blue/20" />
+            <Separator className="bg-neon-blue-20" />
 
             {/* Volume controls */}
             <div className="space-y-2">
@@ -331,33 +322,6 @@ export default function AudioPlayer() {
                 onChange={(e) => setVolume(parseFloat(e.target.value))}
                 className="w-full audio-player-range"
               />
-            </div>
-
-            {/* Seek controls */}
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                onClick={skipBackward}
-                className="py-2 bg-transparent border border-neon-blue text-neon-blue hover:bg-neon-blue/10 hover:shadow-[0_0_15px_rgba(42,253,255,0.5)] transition-all duration-300 rounded-xl font-vt323 flex items-center justify-center gap-1"
-              >
-                <Rewind className="w-4 h-4" /> -15s
-              </button>
-
-              <button
-                onClick={skipForward}
-                className="py-2 bg-transparent border border-neon-blue text-neon-blue hover:bg-neon-blue/10 hover:shadow-[0_0_15px_rgba(42,253,255,0.5)] transition-all duration-300 rounded-xl font-vt323 flex items-center justify-center gap-1"
-              >
-                +15s <FastForward className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Keyboard shortcuts */}
-            <div className="text-center text-xs text-white/60 border-t border-neon-blue/20 pt-2 mt-2">
-              <p>Keyboard shortcuts (when panel is open):</p>
-              <div className="grid grid-cols-3 gap-1 mt-1">
-                <div><span className="text-neon-blue">Space</span> - Mute/Unmute</div>
-                <div><span className="text-neon-blue">←</span> - Back 15s</div>
-                <div><span className="text-neon-blue">→</span> - Forward 15s</div>
-              </div>
             </div>
           </div>
         </PopoverContent>

@@ -3,17 +3,54 @@
 @tailwind utilities;
 
 :root {
+  /* Base colors */
   --dark-blue: #0a0a20;
   --darker-blue: #050518;
   --neon-pink: #ff2aff;
   --neon-blue: #2afdff;
   --neon-orange: #ff9e2a;
+
+  /* Color with opacity variants */
+  --neon-pink-10: rgba(255, 42, 255, 0.1);
+  --neon-pink-20: rgba(255, 42, 255, 0.2);
+  --neon-pink-30: rgba(255, 42, 255, 0.3);
+  --neon-pink-50: rgba(255, 42, 255, 0.5);
+  --neon-pink-70: rgba(255, 42, 255, 0.7);
+  --neon-pink-90: rgba(255, 42, 255, 0.9);
+
+  --neon-blue-10: rgba(42, 253, 255, 0.1);
+  --neon-blue-20: rgba(42, 253, 255, 0.2);
+  --neon-blue-30: rgba(42, 253, 255, 0.3);
+  --neon-blue-50: rgba(42, 253, 255, 0.5);
+  --neon-blue-70: rgba(42, 253, 255, 0.7);
+  --neon-blue-90: rgba(42, 253, 255, 0.9);
+
+  --neon-orange-10: rgba(255, 158, 42, 0.1);
+  --neon-orange-20: rgba(255, 158, 42, 0.2);
+  --neon-orange-30: rgba(255, 158, 42, 0.3);
+  --neon-orange-50: rgba(255, 158, 42, 0.5);
+  --neon-orange-70: rgba(255, 158, 42, 0.7);
+  --neon-orange-90: rgba(255, 158, 42, 0.9);
+
+  /* Dark blue opacity variants */
+  --dark-blue-50: rgba(10, 10, 32, 0.5);
+  --dark-blue-80: rgba(10, 10, 32, 0.8);
+  --dark-blue-95: rgba(10, 10, 32, 0.95);
+
+  /* Text opacity variants */
+  --text-white-40: rgba(255, 255, 255, 0.4);
+  --text-white-60: rgba(255, 255, 255, 0.6);
+  --text-white-70: rgba(255, 255, 255, 0.7);
+  --text-white-80: rgba(255, 255, 255, 0.8);
+  --text-white-90: rgba(255, 255, 255, 0.9);
+
   --scanline-count: 50;
 }
 
 @layer base {
   body {
-    @apply bg-dark-blue text-white;
+    background-color: var(--dark-blue);
+    color: white;
   }
 
   h1,
@@ -22,68 +59,134 @@
   h4,
   h5,
   h6 {
-    @apply font-vt323;
+    font-family: var(--font-vt323);
   }
 
   /* Neon text selection styling - Pink by default */
   ::selection {
-    background-color: rgba(255, 42, 255, 0.3); /* Neon pink with transparency */
+    background-color: var(--neon-pink-30);
     color: white;
-    text-shadow: 0 0 8px rgba(255, 42, 255, 0.8);
+    text-shadow: 0 0 8px var(--neon-pink-90);
   }
 
   ::-moz-selection {
-    background-color: rgba(255, 42, 255, 0.3); /* Neon pink with transparency */
+    background-color: var(--neon-pink-30);
     color: white;
-    text-shadow: 0 0 8px rgba(255, 42, 255, 0.8);
+    text-shadow: 0 0 8px var(--neon-pink-90);
   }
 }
 
 @layer components {
+  /* Shadow utilities */
+  .shadow-neon-pink {
+    box-shadow: 0 0 5px var(--neon-pink-70);
+  }
+
+  .shadow-neon-pink-lg {
+    box-shadow: 0 0 15px var(--neon-pink-50);
+  }
+
+  .shadow-neon-blue {
+    box-shadow: 0 0 5px var(--neon-blue-70);
+  }
+
+  .shadow-neon-blue-lg {
+    box-shadow: 0 0 15px var(--neon-blue-50);
+  }
+
+  .shadow-neon-orange {
+    box-shadow: 0 0 5px var(--neon-orange-70);
+  }
+
+  .shadow-neon-orange-lg {
+    box-shadow: 0 0 15px var(--neon-orange-50);
+  }
+
+  /* Neon text classes */
   .neon-text-pink {
-    @apply text-neon-pink drop-shadow-[0_0_5px_rgba(255,42,255,0.7)];
+    color: var(--neon-pink);
+    text-shadow: 0 0 5px var(--neon-pink-70);
   }
 
   .neon-text-blue {
-    @apply text-neon-blue drop-shadow-[0_0_5px_rgba(42,253,255,0.7)];
+    color: var(--neon-blue);
+    text-shadow: 0 0 5px var(--neon-blue-70);
   }
 
   .neon-text-orange {
-    @apply text-neon-orange drop-shadow-[0_0_5px_rgba(255,158,42,0.7)];
+    color: var(--neon-orange);
+    text-shadow: 0 0 5px var(--neon-orange-70);
   }
 
+  /* Neon border classes */
   .neon-border {
-    @apply border-neon-pink shadow-[0_0_5px_rgba(255,42,255,0.7)] rounded-md;
+    border-color: var(--neon-pink);
+    border-radius: 0.375rem; /* rounded-md */
+    box-shadow: 0 0 5px var(--neon-pink-70);
   }
 
   .neon-border-pink {
-    @apply border-neon-pink shadow-[0_0_5px_rgba(255,42,255,0.7)] rounded-md;
+    border-color: var(--neon-pink);
+    border-radius: 0.375rem; /* rounded-md */
+    box-shadow: 0 0 5px var(--neon-pink-70);
   }
 
   .neon-border-blue {
-    @apply border-neon-blue shadow-[0_0_5px_rgba(42,253,255,0.7)] rounded-md;
+    border-color: var(--neon-blue);
+    border-radius: 0.375rem; /* rounded-md */
+    box-shadow: 0 0 5px var(--neon-blue-70);
   }
 
   .neon-border-orange {
-    @apply border-neon-orange shadow-[0_0_5px_rgba(255,158,42,0.7)] rounded-md;
+    border-color: var(--neon-orange);
+    border-radius: 0.375rem; /* rounded-md */
+    box-shadow: 0 0 5px var(--neon-orange-70);
   }
 
   .grid-overlay {
-    background-image: linear-gradient(to right, rgba(42, 253, 255, 0.1) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(42, 253, 255, 0.1) 1px, transparent 1px);
+    background-image: linear-gradient(to right, var(--neon-blue-10) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--neon-blue-10) 1px, transparent 1px);
     background-size: 40px 40px;
   }
 
   .section-container {
-    @apply max-w-4xl mx-auto px-4 py-12 relative z-10;
+    max-width: 56rem; /* max-w-4xl */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    position: relative;
+    z-index: 10;
   }
 
   .section-title {
-    @apply text-4xl md:text-5xl font-vt323 mb-8 neon-text-pink;
+    font-size: 2.25rem; /* text-4xl */
+    margin-bottom: 2rem;
+    font-family: var(--font-vt323);
+    color: var(--neon-pink);
+    text-shadow: 0 0 5px var(--neon-pink-70);
+  }
+
+  @media (min-width: 768px) {
+    .section-title {
+      font-size: 3rem; /* md:text-5xl */
+    }
   }
 
   .card {
-    @apply bg-dark-blue/50 backdrop-blur-sm border border-neon-blue/30 rounded-xl p-6 transition-all duration-300 hover:border-neon-pink/70 hover:shadow-[0_0_15px_rgba(255,42,255,0.3)];
+    background-color: var(--dark-blue-50);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--neon-blue-30);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
+    border-color: var(--neon-pink-70);
+    box-shadow: 0 0 15px var(--neon-pink-30);
   }
 
   /* VHS Title Animation */
@@ -188,7 +291,7 @@
     appearance: none;
     height: 4px;
     border-radius: 2px;
-    background: rgba(42, 253, 255, 0.2);
+    background: var(--neon-blue-20);
     outline: none;
     overflow: hidden;
   }
@@ -201,8 +304,8 @@
     border-radius: 50%;
     background: var(--neon-pink);
     cursor: pointer;
-    box-shadow: 0 0 8px rgba(255, 42, 255, 0.7);
-    border: 2px solid rgba(255, 42, 255, 0.9);
+    box-shadow: 0 0 8px var(--neon-pink-70);
+    border: 2px solid var(--neon-pink-90);
   }
 
   .audio-player-range::-moz-range-thumb {
@@ -211,8 +314,8 @@
     border-radius: 50%;
     background: var(--neon-pink);
     cursor: pointer;
-    box-shadow: 0 0 8px rgba(255, 42, 255, 0.7);
-    border: 2px solid rgba(255, 42, 255, 0.9);
+    box-shadow: 0 0 8px var(--neon-pink-70);
+    border: 2px solid var(--neon-pink-90);
   }
 
   .audio-player-range::-webkit-slider-runnable-track {
