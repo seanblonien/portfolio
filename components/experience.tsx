@@ -1,19 +1,85 @@
 "use client"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ExternalLink } from "lucide-react"
+import { ExternalLink, X } from "lucide-react"
 import AnimatedSection from "./animated-section"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import type { Experience } from "@/types/experience"
 
-// Add a global style to ensure popovers appear on top
+// Custom hook to detect non-desktop screens (anything smaller than lg breakpoint)
+function useIsSmallScreen() {
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    // Set breakpoint to 1024px (Tailwind's lg breakpoint) to catch all screens smaller than desktop
+    const DESKTOP_BREAKPOINT = 1024;
+
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < DESKTOP_BREAKPOINT);
+    };
+
+    // Check on mount
+    checkScreenSize();
+
+    // Add event listener for resize
+    window.addEventListener('resize', checkScreenSize);
+
+    // Clean up
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  return isSmallScreen;
+}
+
+// Add a global style to ensure popovers appear on top and work well on mobile
 const PopoverStyles = () => {
   useEffect(() => {
-    // Add a style tag to ensure popovers appear on top
+    // Add a style tag to ensure popovers appear on top and are properly sized on mobile
     const styleTag = document.createElement('style');
     styleTag.innerHTML = `
+      /* Base styles for all popovers */
       [data-radix-popper-content-wrapper] {
         z-index: 9999 !important;
+      }
+
+      /* Match the DESKTOP_BREAKPOINT (1024px) in our useIsSmallScreen hook */
+      @media (max-width: 1023px) {
+        /* Force full-screen modal for all screens below desktop */
+        [data-radix-popper-content-wrapper] {
+          width: 100vw !important;
+          height: 100vh !important;
+          max-height: 100vh !important;
+          max-width: 100vw !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          bottom: 0 !important;
+          transform: none !important;
+          position: fixed !important;
+          border-radius: 0 !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+
+        /* Make the popover content fill the screen */
+        [data-radix-popper-content-wrapper] > div {
+          width: 100% !important;
+          height: 100% !important;
+          max-height: 100vh !important;
+          max-width: 100vw !important;
+          border-radius: 0 !important;
+          display: flex !important;
+          flex-direction: column !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+
+        /* Make the content area scrollable */
+        [data-radix-popper-content-wrapper] > div > div {
+          flex: 1 !important;
+          overflow-y: auto !important;
+          width: 100% !important;
+        }
       }
     `;
     document.head.appendChild(styleTag);
@@ -128,6 +194,25 @@ const experiences: Experience[] = [
 ]
 
 export default function Experience() {
+  const isSmallScreen = useIsSmallScreen();
+  const [openPopoverIndex, setOpenPopoverIndex] = useState<number | null>(null);
+  const [touchStartY, setTouchStartY] = useState<number | null>(null);
+
+  // Handle touch events for swipe to close on mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (isSmallScreen) {
+      setTouchStartY(e.touches[0].clientY);
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (isSmallScreen && touchStartY && e.changedTouches[0].clientY - touchStartY > 70) {
+      // Swipe down detected, close the popover
+      setOpenPopoverIndex(null);
+    }
+    setTouchStartY(null);
+  };
+
   return (
     <section id="experience" className="section-container">
       <PopoverStyles />
@@ -169,7 +254,12 @@ export default function Experience() {
 
                 {/* Content container - alternating sides of timeline on desktop, all on right for mobile */}
                 <div className="flex md:justify-end justify-end relative z-30">
-                  <Popover>
+                  <Popover
+                    open={openPopoverIndex === index}
+                    onOpenChange={(open) => {
+                      setOpenPopoverIndex(open ? index : null);
+                    }}
+                  >
                     <PopoverTrigger asChild>
                       <div
                         className={`w-full md:w-[calc(50%-2rem)] cursor-pointer ${index % 2 === 0 ? 'md:mr-[calc(50%+2rem)]' : 'md:ml-auto'} ml-auto`}
@@ -177,7 +267,7 @@ export default function Experience() {
                         <Card className={`card ${experience.type === 'work'
                           ? 'border-neon-blue-30 hover:border-neon-blue-70 hover:shadow-neon-blue-lg'
                           : 'border-neon-pink-30 hover:border-neon-pink-70 hover:shadow-neon-pink-lg'}
-                          transition-all duration-300 rounded-xl overflow-hidden`}>
+                          transition-all duration-300 rounded-xl overflow-hidden relative`}>
                           <CardHeader>
                             <div className="flex flex-col gap-1">
                               <CardTitle className={`text-xl font-vt323 ${experience.type === 'work' ? 'neon-text-blue' : 'neon-text-pink'}`}>
@@ -189,71 +279,122 @@ export default function Experience() {
                               <div className="text-sm text-text-white-70 mt-1">{experience.period}</div>
                             </div>
                           </CardHeader>
+                          {/* Mobile tap indicator */}
+                          <div className={`absolute bottom-2 right-2 ${!isSmallScreen ? 'hidden' : ''} rounded-full w-5 h-5 flex items-center justify-center
+                            ${experience.type === 'work'
+                              ? 'bg-neon-blue/20 text-neon-blue border border-neon-blue/50'
+                              : 'bg-neon-pink/20 text-neon-pink border border-neon-pink/50'}`}>
+                            <span className="text-xs">+</span>
+                          </div>
                         </Card>
                       </div>
                     </PopoverTrigger>
 
                     <PopoverContent
-                      className={`w-80 backdrop-blur-sm border ${experience.type === 'work'
+                      className={`${isSmallScreen
+                        ? 'w-screen h-screen fixed inset-0'
+                        : 'w-[500px] max-h-[600px]'}
+                        backdrop-blur-sm border ${experience.type === 'work'
                         ? 'border-neon-blue-50 shadow-neon-blue-lg'
                         : 'border-neon-pink-50 shadow-neon-pink-lg'}
-                        text-white p-4 z-[9999] rounded-xl overflow-hidden`}
-                      style={{ backgroundColor: 'rgba(10, 10, 32, 0.95)' }}
-                      side="left"
-                      align="start"
-                      sideOffset={20}
+                        text-white p-4 z-[9999] ${isSmallScreen ? '' : 'rounded-xl'} overflow-y-auto`}
+                      style={{
+                        backgroundColor: 'rgba(10, 10, 32, 0.95)',
+                        ...(isSmallScreen ? { position: 'fixed', inset: 0, width: '100vw', height: '100vh' } : {})
+                      }}
+                      side={isSmallScreen ? "bottom" : "left"}
+                      align={isSmallScreen ? "center" : "start"}
+                      sideOffset={isSmallScreen ? 0 : 20}
+                      alignOffset={isSmallScreen ? 0 : undefined}
+                      onTouchStart={handleTouchStart}
+                      onTouchEnd={handleTouchEnd}
                     >
-                      <div className="space-y-3">
-                        <div>
-                          <h4 className={`text-lg font-vt323 ${experience.type === 'work' ? 'neon-text-blue' : 'neon-text-pink'}`}>
-                            {experience.title}
-                          </h4>
-                          <p className={`text-sm ${experience.type === 'work' ? 'text-neon-pink' : 'text-neon-blue'}`}>
-                            {experience.company} • {experience.location}
-                          </p>
-                        </div>
-
-                        {/* Challenge */}
-                        <div>
-                          <h5 className="text-xs uppercase text-text-white-60 mb-1">Challenge</h5>
-                          <p className="text-sm text-text-white-90">{experience.challenge}</p>
-                        </div>
-
-                        {/* Solution */}
-                        <div>
-                          <h5 className="text-xs uppercase text-text-white-60 mb-1">Solution</h5>
-                          <p className="text-sm text-text-white-90">{experience.solution}</p>
-                        </div>
-
-                        {/* Impact */}
-                        {experience.impact && experience.impact.length > 0 && (
-                          <div>
-                            <h5 className="text-xs uppercase text-text-white-60 mb-1">Key Impact</h5>
-                            <ul className="list-disc pl-4 text-text-white-80 text-xs space-y-1">
-                              {experience.impact.map((item, i) => (
-                                <li key={i}>{item}</li>
-                              ))}
-                            </ul>
+                      <div className={`${isSmallScreen ? 'h-full flex flex-col' : 'space-y-3'}`}>
+                        {/* Mobile header with close button */}
+                        {isSmallScreen && (
+                          <div className="sticky top-0 left-0 right-0 pb-2 mb-2 border-b border-white/10 bg-[rgba(10,10,32,0.98)] z-10">
+                            <div className="flex justify-between items-center">
+                              <h3 className={`text-xl font-vt323 ${experience.type === 'work' ? 'neon-text-blue' : 'neon-text-pink'}`}>
+                                Details
+                              </h3>
+                              <button
+                                onClick={() => setOpenPopoverIndex(null)}
+                                className="p-2 rounded-full hover:bg-white/10 transition-colors"
+                                aria-label="Close details"
+                              >
+                                <X size={20} className="text-white/70" />
+                              </button>
+                            </div>
                           </div>
                         )}
 
-                        {/* Learnings */}
-                        <div>
-                          <h5 className="text-xs uppercase text-text-white-60 mb-1">Learnings</h5>
-                          <p className="text-sm text-text-white-90">{experience.learnings}</p>
-                        </div>
+                        {/* Scrollable content area */}
+                        <div className={isSmallScreen ? "flex-1 overflow-y-auto pb-6" : ""}>
+                          <div className={`space-y-3 ${isSmallScreen ? 'pb-safe max-w-[540px] mx-auto' : 'max-w-[540px]'}`}>
+                            <div className={`flex justify-between items-start ${isSmallScreen ? '' : 'mb-3'}`}>
+                              <div>
+                                <h4 className={`text-lg font-vt323 ${experience.type === 'work' ? 'neon-text-blue' : 'neon-text-pink'}`}>
+                                  {experience.title}
+                                </h4>
+                                <p className={`text-sm ${experience.type === 'work' ? 'text-neon-pink' : 'text-neon-blue'}`}>
+                                  {experience.company} • {experience.location}
+                                </p>
+                              </div>
+                              {/* Close button - only visible on desktop */}
+                              {!isSmallScreen && (
+                                <button
+                                  onClick={() => setOpenPopoverIndex(null)}
+                                  className="p-1 rounded-full hover:bg-white/10 transition-colors"
+                                  aria-label="Close details"
+                                >
+                                  <X size={16} className="text-white/70" />
+                                </button>
+                              )}
+                            </div>
 
-                        {/* Call to Action */}
-                        <a
-                          href={experience.callToAction.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`inline-flex items-center text-xs ${experience.type === 'work'
-                            ? 'text-neon-blue hover:text-neon-pink'
-                            : 'text-neon-pink hover:text-neon-blue'} transition-colors`}
-                        >
-                          {experience.callToAction.text} <ExternalLink size={12} className="ml-1" />
-                        </a>
+                            {/* Challenge */}
+                            <div>
+                              <h5 className="text-xs uppercase text-text-white-60 mb-1">Challenge</h5>
+                              <p className="text-sm text-text-white-90 break-words">{experience.challenge}</p>
+                            </div>
+
+                            {/* Solution */}
+                            <div>
+                              <h5 className="text-xs uppercase text-text-white-60 mb-1">Solution</h5>
+                              <p className="text-sm text-text-white-90 break-words">{experience.solution}</p>
+                            </div>
+
+                            {/* Impact */}
+                            {experience.impact && experience.impact.length > 0 && (
+                              <div>
+                                <h5 className="text-xs uppercase text-text-white-60 mb-1">Key Impact</h5>
+                                <ul className="list-disc pl-4 text-text-white-80 text-xs space-y-1">
+                                  {experience.impact.map((item, i) => (
+                                    <li key={i} className="break-words">{item}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+
+                            {/* Learnings */}
+                            <div>
+                              <h5 className="text-xs uppercase text-text-white-60 mb-1">Learnings</h5>
+                              <p className="text-sm text-text-white-90 break-words">{experience.learnings}</p>
+                            </div>
+
+                            {/* Call to Action */}
+                            <a
+                              href={experience.callToAction.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`inline-flex items-center text-xs ${experience.type === 'work'
+                                ? 'text-neon-blue hover:text-neon-pink'
+                                : 'text-neon-pink hover:text-neon-blue'} transition-colors`}
+                            >
+                              {experience.callToAction.text} <ExternalLink size={12} className="ml-1" />
+                            </a>
+                          </div>
+                        </div>
                       </div>
                     </PopoverContent>
                   </Popover>
