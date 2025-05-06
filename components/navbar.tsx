@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X, ExternalLink } from "lucide-react"
+import { Menu, X, Github, Linkedin } from "lucide-react"
 import { debounce } from "@/lib/utils"
 
 const navLinks = [
@@ -12,8 +12,8 @@ const navLinks = [
 ]
 
 const socialLinks = [
-  { name: "GitHub", href: "https://github.com/seanblonien", icon: ExternalLink },
-  { name: "LinkedIn", href: "https://linkedin.com/in/seanblonien", icon: ExternalLink },
+  { name: "GitHub", href: "https://github.com/seanblonien", icon: Github },
+  { name: "LinkedIn", href: "https://linkedin.com/in/seanblonien", icon: Linkedin },
 ]
 
 export default function Navbar() {

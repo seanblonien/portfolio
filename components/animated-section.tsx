@@ -62,12 +62,16 @@ export default function AnimatedSection({
       },
     )
 
-    if (ref.current) {
-      observer.observe(ref.current)
+    const element = ref.current
+    if (element) {
+      observer.observe(element)
     }
 
+    // Store the ref value in a variable for the cleanup function
+    const currentElement = ref.current
+
     return () => {
-      if (ref.current) observer.unobserve(ref.current)
+      if (currentElement) observer.unobserve(currentElement)
     }
   }, [delay, hasAnimated])
 

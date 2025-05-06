@@ -23,12 +23,16 @@ export default function VHSTitle() {
       { threshold: 0.1 },
     )
 
-    if (titleRef.current) {
-      observer.observe(titleRef.current)
+    const element = titleRef.current
+    if (element) {
+      observer.observe(element)
     }
 
+    // Store the ref value in a variable for the cleanup function
+    const currentElement = titleRef.current
+
     return () => {
-      if (titleRef.current) observer.unobserve(titleRef.current)
+      if (currentElement) observer.unobserve(currentElement)
     }
   }, [])
 

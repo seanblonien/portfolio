@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
 import { Volume2, VolumeX, Volume1, Volume, Rewind, FastForward } from "lucide-react"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import {
@@ -26,6 +26,8 @@ export default function AudioPlayer() {
   const [showControls, setShowControls] = useState(false)
   const [currentTime, setCurrentTime] = useState(START_TIME) // Start at 1:30
   const [duration, setDuration] = useState(0)
+  // Track if music has been started by user
+  const [hasInteracted, setHasInteracted] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const previousVolumeRef = useRef(volume) // Store previous volume for unmuting
 
@@ -71,10 +73,10 @@ export default function AudioPlayer() {
         audio.src = ""
       }
     }
-  }, [])
+  }, [volume])
 
   // Define the toggle mute function
-  const toggleMute = () => {
+  const toggleMute = useCallback(() => {
     if (!audioRef.current) return
 
     // If this is the first interaction, start playing the audio
@@ -100,7 +102,7 @@ export default function AudioPlayer() {
     }
 
     setIsMuted(!isMuted)
-  }
+  }, [isMuted, hasInteracted, volume])
 
   // Add keyboard shortcuts for when controls are open
   useEffect(() => {
@@ -129,7 +131,7 @@ export default function AudioPlayer() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [showControls, isMuted])
+  }, [showControls, isMuted, toggleMute])
 
   // Update volume when it changes and save to localStorage
   useEffect(() => {
@@ -147,8 +149,7 @@ export default function AudioPlayer() {
     }
   }, [volume, isMuted])
 
-  // Track if music has been started by user
-  const [hasInteracted, setHasInteracted] = useState(false)
+  // hasInteracted state is declared above
 
   // Skip forward 15 seconds
   const skipForward = () => {

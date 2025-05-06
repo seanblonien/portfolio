@@ -223,11 +223,11 @@ export default function Experience() {
         <div className="flex justify-center gap-8 mb-8">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full border-2 border-neon-blue shadow-neon-blue"></div>
-            <span className="text-sm text-text-white-80">Work Experience</span>
+            <span className="text-base text-text-white-80">Work Experience</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full border-2 border-neon-pink shadow-neon-pink"></div>
-            <span className="text-sm text-text-white-80">Projects</span>
+            <span className="text-base text-text-white-80">Projects</span>
           </div>
         </div>
 
@@ -242,7 +242,7 @@ export default function Experience() {
             {experiences.map((experience, index) => (
               <AnimatedSection
                 key={`${experience.company}-${index}`}
-                delay={index * 0.2}
+                delay={0.2}
                 className="mb-16 relative"
               >
                 {/* Timeline node - different color based on type, positioned differently on mobile */}
@@ -276,7 +276,7 @@ export default function Experience() {
                               <CardDescription className={`text-lg ${experience.type === 'work' ? 'text-neon-pink' : 'text-neon-blue'}`}>
                                 {experience.company}
                               </CardDescription>
-                              <div className="text-sm text-text-white-70 mt-1">{experience.period}</div>
+                              <div className="text-base text-text-white-70 mt-1">{experience.period}</div>
                             </div>
                           </CardHeader>
                           {/* Mobile tap indicator */}
@@ -292,15 +292,23 @@ export default function Experience() {
 
                     <PopoverContent
                       className={`${isSmallScreen
-                        ? 'w-screen h-screen fixed inset-0'
+                        ? 'w-screen h-screen fixed inset-0 max-w-[100vw] max-h-[100vh]'
                         : 'w-[500px] max-h-[600px]'}
                         backdrop-blur-sm border ${experience.type === 'work'
                         ? 'border-neon-blue-50 shadow-neon-blue-lg'
                         : 'border-neon-pink-50 shadow-neon-pink-lg'}
-                        text-white p-4 z-[9999] ${isSmallScreen ? '' : 'rounded-xl'} overflow-y-auto`}
+                        text-white p-3 md:p-4 z-[9999] ${isSmallScreen ? '' : 'rounded-xl'} overflow-y-auto`}
                       style={{
                         backgroundColor: 'rgba(10, 10, 32, 0.95)',
-                        ...(isSmallScreen ? { position: 'fixed', inset: 0, width: '100vw', height: '100vh' } : {})
+                        ...(isSmallScreen ? {
+                          position: 'fixed',
+                          inset: 0,
+                          width: '100vw',
+                          height: '100vh',
+                          maxWidth: '100vw',
+                          maxHeight: '100vh',
+                          overflow: 'hidden'
+                        } : {})
                       }}
                       side={isSmallScreen ? "bottom" : "left"}
                       align={isSmallScreen ? "center" : "start"}
@@ -312,31 +320,34 @@ export default function Experience() {
                       <div className={`${isSmallScreen ? 'h-full flex flex-col' : 'space-y-3'}`}>
                         {/* Mobile header with close button */}
                         {isSmallScreen && (
-                          <div className="sticky top-0 left-0 right-0 pb-2 mb-2 border-b border-white/10 bg-[rgba(10,10,32,0.98)] z-10">
-                            <div className="flex justify-between items-center">
-                              <h3 className={`text-xl font-vt323 ${experience.type === 'work' ? 'neon-text-blue' : 'neon-text-pink'}`}>
-                                Details
-                              </h3>
-                              <button
-                                onClick={() => setOpenPopoverIndex(null)}
-                                className="p-2 rounded-full hover:bg-white/10 transition-colors"
-                                aria-label="Close details"
-                              >
-                                <X size={20} className="text-white/70" />
-                              </button>
+                          <div className="sticky top-0 left-0 right-0 pb-2 mb-2 border-b border-white/10 bg-[rgba(10,10,32,0.98)] z-10 pr-[17px]">
+                            <div className="flex justify-center w-full">
+                              <div className="flex justify-between items-center w-full max-w-[540px] px-3 md:px-6">
+                                <h3 className={`text-2xl font-vt323 ${experience.type === 'work' ? 'neon-text-blue' : 'neon-text-pink'} truncate`}>
+                                  Details
+                                </h3>
+                                <button
+                                  onClick={() => setOpenPopoverIndex(null)}
+                                  className="p-2 rounded-full hover:bg-white/10 transition-colors flex-shrink-0"
+                                  aria-label="Close details"
+                                >
+                                  <X size={20} className="text-white/70" />
+                                </button>
+                              </div>
                             </div>
                           </div>
                         )}
 
                         {/* Scrollable content area */}
                         <div className={isSmallScreen ? "flex-1 overflow-y-auto pb-6" : ""}>
-                          <div className={`space-y-3 ${isSmallScreen ? 'pb-safe max-w-[540px] mx-auto' : 'max-w-[540px]'}`}>
+                          <div className="flex justify-center w-full">
+                            <div className="space-y-3 w-full max-w-[540px] px-3 md:px-6 pb-safe">
                             <div className={`flex justify-between items-start ${isSmallScreen ? '' : 'mb-3'}`}>
                               <div>
-                                <h4 className={`text-lg font-vt323 ${experience.type === 'work' ? 'neon-text-blue' : 'neon-text-pink'}`}>
+                                <h4 className={`text-xl font-vt323 ${experience.type === 'work' ? 'neon-text-blue' : 'neon-text-pink'}`}>
                                   {experience.title}
                                 </h4>
-                                <p className={`text-sm ${experience.type === 'work' ? 'text-neon-pink' : 'text-neon-blue'}`}>
+                                <p className={`text-base ${experience.type === 'work' ? 'text-neon-pink' : 'text-neon-blue'}`}>
                                   {experience.company} • {experience.location}
                                 </p>
                               </div>
@@ -354,21 +365,21 @@ export default function Experience() {
 
                             {/* Challenge */}
                             <div>
-                              <h5 className="text-xs uppercase text-text-white-60 mb-1">Challenge</h5>
-                              <p className="text-sm text-text-white-90 break-words">{experience.challenge}</p>
+                              <h5 className="text-lg uppercase text-text-white-60 mb-1">Challenge</h5>
+                              <p className="text-base text-text-white-90 break-words">{experience.challenge}</p>
                             </div>
 
                             {/* Solution */}
                             <div>
-                              <h5 className="text-xs uppercase text-text-white-60 mb-1">Solution</h5>
-                              <p className="text-sm text-text-white-90 break-words">{experience.solution}</p>
+                              <h5 className="text-lg uppercase text-text-white-60 mb-1">Solution</h5>
+                              <p className="text-base text-text-white-90 break-words">{experience.solution}</p>
                             </div>
 
                             {/* Impact */}
                             {experience.impact && experience.impact.length > 0 && (
                               <div>
-                                <h5 className="text-xs uppercase text-text-white-60 mb-1">Key Impact</h5>
-                                <ul className="list-disc pl-4 text-text-white-80 text-xs space-y-1">
+                                <h5 className="text-lg uppercase text-text-white-60 mb-1">Key Impact</h5>
+                                <ul className="list-disc pl-4 text-text-white-80 text-base space-y-2">
                                   {experience.impact.map((item, i) => (
                                     <li key={i} className="break-words">{item}</li>
                                   ))}
@@ -378,8 +389,8 @@ export default function Experience() {
 
                             {/* Learnings */}
                             <div>
-                              <h5 className="text-xs uppercase text-text-white-60 mb-1">Learnings</h5>
-                              <p className="text-sm text-text-white-90 break-words">{experience.learnings}</p>
+                              <h5 className="text-lg uppercase text-text-white-60 mb-1">Learnings</h5>
+                              <p className="text-base text-text-white-90 break-words">{experience.learnings}</p>
                             </div>
 
                             {/* Call to Action */}
@@ -387,12 +398,13 @@ export default function Experience() {
                               href={experience.callToAction.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className={`inline-flex items-center text-xs ${experience.type === 'work'
+                              className={`inline-flex items-center text-base ${experience.type === 'work'
                                 ? 'text-neon-blue hover:text-neon-pink'
                                 : 'text-neon-pink hover:text-neon-blue'} transition-colors`}
                             >
-                              {experience.callToAction.text} <ExternalLink size={12} className="ml-1" />
+                              {experience.callToAction.text} <ExternalLink size={16} className="ml-1" />
                             </a>
+                            </div>
                           </div>
                         </div>
                       </div>

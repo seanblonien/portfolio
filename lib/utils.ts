@@ -11,7 +11,7 @@ export function cn(...inputs: ClassValue[]) {
 /**
  * Debounce function for performance optimization
  */
-export function debounce<T extends (...args: any[]) => any>(
+export function debounce<T extends (...args: Parameters<T>) => ReturnType<T>>(
   func: T,
   wait: number
 ): (...args: Parameters<T>) => void {

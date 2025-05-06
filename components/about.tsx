@@ -10,7 +10,7 @@ export default function About() {
       <AnimatedSection>
         <h2 className="section-title">ABOUT ME</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-4 md:gap-6">
           {/* Digital Profile Card */}
           <AnimatedSection delay={0.1}>
             <Card className="card h-full border-neon-pink-50 flex flex-col rounded-xl overflow-hidden shadow-neon-pink-lg">
@@ -21,7 +21,7 @@ export default function About() {
                 {/* Profile Avatar */}
                 <div className="w-full aspect-square mb-4 bg-darker-blue/70 border-2 border-neon-blue rounded-xl overflow-hidden flex items-center justify-center relative shadow-neon-blue-lg">
                   <div className="absolute inset-0 grid-overlay opacity-30"></div>
-                  <span className="text-6xl font-vt323 neon-text-pink">SB</span>
+                  <span className="font-vt323 neon-text-pink text-responsive-sb">SB</span>
                 </div>
 
                 {/* Profile Stats */}
@@ -139,7 +139,7 @@ export default function About() {
           </AnimatedSection>
 
           {/* Content Container */}
-          <div className="space-y-4">
+          <div className="space-y-3 md:space-y-4">
             {/* Who I Am */}
             <AnimatedSection delay={0.2}>
               <Card className="card border-neon-blue-30 rounded-xl overflow-hidden shadow-neon-blue-lg">
@@ -148,7 +148,7 @@ export default function About() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-text-white-90">
-                    Welcome to my stretch of the digital highway! As a Senior Software Engineer navigating the dynamic worlds of technology and AI, I've dedicated my journey to intentional software design that prioritizes product innovation and a seamless user experience. I thrive on building robust, elegant solutions that solve real-world challenges and empower users. Whether I'm diving deep into code or mentoring a team, I'm passionate about crafting intuitive, responsive systems that drive meaningful impact.
+                  {`Welcome to my stretch of the digital highway! As a Senior Software Engineer navigating the dynamic worlds of technology and AI, I've dedicated my journey to intentional software design that prioritizes product innovation and a seamless user experience. I thrive on building robust, elegant solutions that solve real-world challenges and empower users. Whether I'm diving deep into code or mentoring a team, I'm passionate about crafting intuitive, responsive systems that drive meaningful impact.`}
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     <Badge className="bg-neon-pink-20 text-neon-pink rounded-xl">Passionate</Badge>
@@ -167,11 +167,10 @@ export default function About() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-text-white-90">
-                    Cruising the digital highway at Pariveda gave me a chance to explore diverse tech landscapes early on. Fresh out of college, I led a full-stack migration from Angular to React—a challenge that sharpened my problem-solving skills and sparked my passion for building complete solutions. I also had the opportunity to mentor a team of interns on a process improvement project for the Girl Scouts using Power Automate, which showed me firsthand how rewarding it is to guide others through real-world challenges. My time at Southwest Airlines reinforced just how important scalable infrastructure and thoughtful design are for real-time, data-driven platforms.
-
+                    {`Cruising the digital highway at Pariveda gave me a chance to explore diverse tech landscapes early on. Fresh out of college, I led a full-stack migration from Angular to React—a challenge that sharpened my problem-solving skills and sparked my passion for building complete solutions. I also had the opportunity to mentor a team of interns on a process improvement project for the Girl Scouts using Power Automate, which showed me firsthand how rewarding it is to guide others through real-world challenges. My time at Southwest Airlines reinforced just how important scalable infrastructure and thoughtful design are for real-time, data-driven platforms.`}
                   </p>
                   <p className="mt-3 text-text-white-90">
-                    Shifting gears, I decided to pursue my side project, FlyFit, full time. FlyFit is a B2B mobile fitness app for schools and organizations, offering fitness tracking, social mileage challenges, and other health and wellness features. Over the past year, I've devoted myself to building and scaling FlyFit into a production-grade, real-time full-stack app—ensuring every stat and leaderboard updates seamlessly. I truly enjoy the purpose-driven nature of my work at Fly Bodies, knowing that the software I create helps motivate people to live healthier, more connected lives.
+                    {`Shifting gears, I decided to pursue my side project, FlyFit, full time. FlyFit is a B2B mobile fitness app for schools and organizations, offering fitness tracking, social mileage challenges, and other health and wellness features. Over the past year, I've devoted myself to building and scaling FlyFit into a production-grade, real-time full-stack app—ensuring every stat and leaderboard updates seamlessly. I truly enjoy the purpose-driven nature of my work at Fly Bodies, knowing that the software I create helps motivate people to live healthier, more connected lives.`}
                   </p>
 
                   <div className="mt-3 flex flex-wrap gap-2">
@@ -199,7 +198,7 @@ export default function About() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-text-white-90">
-                  Off the grid, I like to keep the momentum going. Whether I'm taking on a marathon, getting lost in a VR adventure, or soaking up the vibe at an EDM festival, I find these experiences remind me of the core values in my work—persistence, exploration, and always aiming to improve. When I'm not at the keyboard, I mix it up with HIIT workouts, weight training, and even a round of golf, balanced by a little downtime for meditation. I also mentor an after-school coding club at a local school, where I enjoy sharing my passion for tech and helping the next generation explore both the digital and real world.
+                  {`Off the grid, I like to keep the momentum going. Whether I'm taking on a marathon, getting lost in a VR adventure, or soaking up the vibe at an EDM festival, I find these experiences remind me of the core values in my work—persistence, exploration, and always aiming to improve. When I'm not at the keyboard, I mix it up with HIIT workouts, weight training, and even a round of golf, balanced by a little downtime for meditation. I also mentor an after-school coding club at a local school, where I enjoy sharing my passion for tech and helping the next generation explore both the digital and real world.`}
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     <Badge className="bg-neon-orange-20 text-neon-orange rounded-xl shadow-neon-orange">Running</Badge>

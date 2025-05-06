@@ -153,12 +153,21 @@
     max-width: 56rem; /* max-w-4xl */
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     position: relative;
     z-index: 10;
+  }
+
+  @media (min-width: 768px) {
+    .section-container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
   }
 
   .section-title {
@@ -180,8 +189,14 @@
     backdrop-filter: blur(4px);
     border: 1px solid var(--neon-blue-30);
     border-radius: 0.75rem;
-    padding: 1.5rem;
+    padding: 0.5rem;
     transition: all 0.3s ease;
+  }
+
+  @media (min-width: 768px) {
+    .card {
+      padding: 1.5rem;
+    }
   }
 
   .card:hover {
@@ -326,5 +341,24 @@
   .audio-player-range::-moz-range-track {
     height: 4px;
     background: linear-gradient(to right, var(--neon-pink), var(--neon-blue));
+  }
+
+  /* Responsive text for SB initials in profile */
+  .text-responsive-sb {
+    font-size: clamp(3.5rem, 15vw, 6rem); /* Increased minimum size */
+    line-height: 1;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .text-responsive-sb {
+      font-size: clamp(4rem, 18vw, 6rem);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .text-responsive-sb {
+      font-size: clamp(4.5rem, 22vw, 6rem);
+    }
   }
 }
