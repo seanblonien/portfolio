@@ -3,7 +3,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { ExternalLink, X } from "lucide-react"
 import AnimatedSection from "./animated-section"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import type { Experience } from "@/types/experience"
 import { useIsSmallScreen } from "@/hooks/use-mobile"
 
@@ -130,6 +130,49 @@ export default function Experience() {
     setTouchStartY(null);
   };
 
+  // Fix for Radix UI popover positioning on small screens
+  useEffect(() => {
+    if (isSmallScreen && openPopoverIndex !== null) {
+      // Small delay to ensure the popover is rendered
+      setTimeout(() => {
+        // Try to find the popover wrapper using :has() selector (modern browsers)
+        let popperWrapper = document.querySelector('[data-radix-popper-content-wrapper]:has([data-experience-popover="true"])');
+
+        // Fallback for browsers that don't support :has()
+        if (!popperWrapper) {
+          // Find all popper wrappers
+          const wrappers = document.querySelectorAll('[data-radix-popper-content-wrapper]');
+          // Find the one that contains our experience popover
+          wrappers.forEach(wrapper => {
+            if (wrapper.querySelector('[data-experience-popover="true"]')) {
+              popperWrapper = wrapper;
+            }
+          });
+        }
+
+        if (popperWrapper) {
+          // Apply direct styles to override any transforms
+          (popperWrapper as HTMLElement).style.transform = 'none';
+          (popperWrapper as HTMLElement).style.top = '0';
+          (popperWrapper as HTMLElement).style.left = '0';
+          (popperWrapper as HTMLElement).style.width = '100%';
+          (popperWrapper as HTMLElement).style.height = '100%';
+          (popperWrapper as HTMLElement).style.position = 'fixed';
+
+          // Also apply styles to the popover content directly
+          const popoverContent = popperWrapper.querySelector('[data-experience-popover="true"]');
+          if (popoverContent) {
+            (popoverContent as HTMLElement).style.transform = 'none';
+            (popoverContent as HTMLElement).style.maxWidth = '100vw';
+            (popoverContent as HTMLElement).style.width = '100vw';
+            (popoverContent as HTMLElement).style.maxHeight = '100vh';
+            (popoverContent as HTMLElement).style.height = '100vh';
+          }
+        }
+      }, 50); // Small delay to ensure DOM is updated
+    }
+  }, [isSmallScreen, openPopoverIndex]);
+
   return (
     <section id="experience" className="section-container">
       <AnimatedSection>
@@ -166,7 +209,7 @@ export default function Experience() {
                                ${experience.type === 'work'
                                  ? 'border-neon-blue shadow-neon-blue'
                                  : 'border-neon-pink shadow-neon-pink'}
-                               transform md:-translate-x-1/2 z-20`}></div>
+                               md:-translate-x-1/2 z-20`}></div>
 
                 {/* Content container - alternating sides of timeline on desktop, all on right for mobile */}
                 <div className="flex md:justify-end justify-end relative z-30">
@@ -223,7 +266,8 @@ export default function Experience() {
                           height: '100vh',
                           maxWidth: '100vw',
                           maxHeight: '100vh',
-                          overflow: 'hidden'
+                          overflow: 'hidden',
+                          transform: 'none !important'
                         } : {})
                       }}
                       side={isSmallScreen ? "bottom" : "left"}
@@ -232,6 +276,7 @@ export default function Experience() {
                       alignOffset={isSmallScreen ? 0 : undefined}
                       onTouchStart={handleTouchStart}
                       onTouchEnd={handleTouchEnd}
+                      data-experience-popover="true"
                     >
                       <div className={`${isSmallScreen ? 'h-full flex flex-col' : 'space-y-3'}`}>
                         {/* Mobile header with close button */}
