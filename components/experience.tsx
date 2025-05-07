@@ -5,31 +5,7 @@ import AnimatedSection from "./animated-section"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { useEffect, useState } from "react"
 import type { Experience } from "@/types/experience"
-
-// Custom hook to detect non-desktop screens (anything smaller than lg breakpoint)
-function useIsSmallScreen() {
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-
-  useEffect(() => {
-    // Set breakpoint to 1024px (Tailwind's lg breakpoint) to catch all screens smaller than desktop
-    const DESKTOP_BREAKPOINT = 1024;
-
-    const checkScreenSize = () => {
-      setIsSmallScreen(window.innerWidth < DESKTOP_BREAKPOINT);
-    };
-
-    // Check on mount
-    checkScreenSize();
-
-    // Add event listener for resize
-    window.addEventListener('resize', checkScreenSize);
-
-    // Clean up
-    return () => window.removeEventListener('resize', checkScreenSize);
-  }, []);
-
-  return isSmallScreen;
-}
+import { useIsSmallScreen, BREAKPOINTS } from "@/hooks/use-mobile"
 
 // Add a global style to ensure popovers appear on top and work well on mobile
 const PopoverStyles = () => {
@@ -42,8 +18,8 @@ const PopoverStyles = () => {
         z-index: 9999 !important;
       }
 
-      /* Match the DESKTOP_BREAKPOINT (1024px) in our useIsSmallScreen hook */
-      @media (max-width: 1023px) {
+      /* Match the LG breakpoint (${BREAKPOINTS.LG}px) in our useIsSmallScreen hook */
+      @media (max-width: ${BREAKPOINTS.LG - 1}px) {
         /* Force full-screen modal for all screens below desktop */
         [data-radix-popper-content-wrapper] {
           width: 100vw !important;
