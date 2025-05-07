@@ -3,70 +3,11 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { ExternalLink, X } from "lucide-react"
 import AnimatedSection from "./animated-section"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import type { Experience } from "@/types/experience"
-import { useIsSmallScreen, BREAKPOINTS } from "@/hooks/use-mobile"
+import { useIsSmallScreen } from "@/hooks/use-mobile"
 
-// Add a global style to ensure popovers appear on top and work well on mobile
-const PopoverStyles = () => {
-  useEffect(() => {
-    // Add a style tag to ensure popovers appear on top and are properly sized on mobile
-    const styleTag = document.createElement('style');
-    styleTag.innerHTML = `
-      /* Base styles for all popovers in the experience section */
-      [data-radix-popper-content-wrapper] [data-radix-popover-content] {
-        z-index: 9999 !important;
-      }
 
-      /* Match the LG breakpoint (${BREAKPOINTS.LG - 1}px) in our useIsSmallScreen hook */
-      @media (max-width: ${BREAKPOINTS.LG - 1}px) {
-        /* Force full-screen modal for popovers only (not tooltips) */
-        [data-radix-popper-content-wrapper] [data-radix-popover-content] {
-          width: 100vw !important;
-          height: 100vh !important;
-          max-height: 100vh !important;
-          max-width: 100vw !important;
-          top: 0 !important;
-          left: 0 !important;
-          right: 0 !important;
-          bottom: 0 !important;
-          transform: none !important;
-          position: fixed !important;
-          border-radius: 0 !important;
-          margin: 0 !important;
-          padding: 0 !important;
-        }
-
-        /* Make the popover content fill the screen */
-        [data-radix-popper-content-wrapper] [data-radix-popover-content] > div {
-          width: 100% !important;
-          height: 100% !important;
-          max-height: 100vh !important;
-          max-width: 100vw !important;
-          border-radius: 0 !important;
-          display: flex !important;
-          flex-direction: column !important;
-          margin: 0 !important;
-          padding: 0 !important;
-        }
-
-        /* Make the content area scrollable */
-        [data-radix-popper-content-wrapper] [data-radix-popover-content] > div > div {
-          flex: 1 !important;
-          overflow-y: auto !important;
-          width: 100% !important;
-        }
-      }
-    `;
-    document.head.appendChild(styleTag);
-
-    return () => {
-      document.head.removeChild(styleTag);
-    };
-  }, []);
-
-  return null;
-};
 
 // Experience data array - can be edited to add new experiences
 const experiences: Experience[] = [
@@ -191,7 +132,6 @@ export default function Experience() {
 
   return (
     <section id="experience" className="section-container">
-      <PopoverStyles />
       <AnimatedSection>
         <h2 className="section-title">EXPERIENCE</h2>
 
