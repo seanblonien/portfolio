@@ -300,25 +300,6 @@
 
   /* Audio Player Styles */
 
-  /* Audio Player Popover - Override global popover styles */
-  [data-radix-popper-content-wrapper] [data-audio-player-popover="true"] {
-    width: 18rem !important; /* w-72 */
-    height: auto !important;
-    max-height: none !important;
-    max-width: 18rem !important;
-    border-radius: var(--border-radius-lg) !important;
-    overflow: hidden !important;
-  }
-
-  /* Make sure the content inside the audio player popover is properly styled */
-  [data-audio-player-popover="true"] > div {
-    width: 100% !important;
-    height: auto !important;
-    max-height: none !important;
-    border-radius: var(--border-radius-lg) !important;
-    display: block !important;
-  }
-
   /* Style the audio player dialog for mobile */
   [data-audio-player-dialog="true"] {
     width: 90vw !important;
@@ -344,35 +325,23 @@
     background-color: rgba(0, 0, 0, 0.7) !important;
   }
 
-  /* Override the mobile fullscreen styles for audio player */
-  @media (max-width: 1023px) {
-    /* Target the wrapper when it contains our audio player */
-    [data-radix-popper-content-wrapper] [data-audio-player-popover="true"] {
-      width: 18rem !important; /* w-72 */
-      height: auto !important;
-      max-height: none !important;
-      max-width: 18rem !important;
-      border-radius: var(--border-radius-lg) !important;
-      overflow: hidden !important;
-      position: relative !important;
-    }
+  /* Tooltip styles - ensure tooltips display correctly on all devices */
+  [data-radix-popper-content-wrapper] [data-radix-tooltip-content] {
+    width: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    max-width: 300px !important;
+    position: absolute !important;
+    border-radius: var(--border-radius-lg) !important;
+    overflow: visible !important;
+    z-index: 9999 !important;
+  }
 
-    /* Target the wrapper directly - for browsers that support :has() */
-    [data-radix-popper-content-wrapper]:has([data-audio-player-popover="true"]) {
-      width: auto !important;
-      height: auto !important;
-      max-height: none !important;
-      max-width: none !important;
-      position: absolute !important;
-      top: auto !important;
-      left: auto !important;
-      right: auto !important;
-      bottom: auto !important;
-      transform: translate3d(0, 0, 0) !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      border-radius: var(--border-radius-lg) !important;
-    }
+  /* Specific styles for audio player tooltip */
+  [data-radix-popper-content-wrapper] [data-audio-player-tooltip="true"] {
+    width: auto !important;
+    max-width: 250px !important;
+    border-radius: var(--border-radius-lg) !important;
   }
 
   /* Responsive text for SB initials in profile */

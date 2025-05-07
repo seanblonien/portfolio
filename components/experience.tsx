@@ -13,15 +13,15 @@ const PopoverStyles = () => {
     // Add a style tag to ensure popovers appear on top and are properly sized on mobile
     const styleTag = document.createElement('style');
     styleTag.innerHTML = `
-      /* Base styles for all popovers */
-      [data-radix-popper-content-wrapper] {
+      /* Base styles for all popovers in the experience section */
+      [data-radix-popper-content-wrapper] [data-radix-popover-content] {
         z-index: 9999 !important;
       }
 
-      /* Match the LG breakpoint (${BREAKPOINTS.LG}px) in our useIsSmallScreen hook */
+      /* Match the LG breakpoint (${BREAKPOINTS.LG - 1}px) in our useIsSmallScreen hook */
       @media (max-width: ${BREAKPOINTS.LG - 1}px) {
-        /* Force full-screen modal for all screens below desktop */
-        [data-radix-popper-content-wrapper] {
+        /* Force full-screen modal for popovers only (not tooltips) */
+        [data-radix-popper-content-wrapper] [data-radix-popover-content] {
           width: 100vw !important;
           height: 100vh !important;
           max-height: 100vh !important;
@@ -38,7 +38,7 @@ const PopoverStyles = () => {
         }
 
         /* Make the popover content fill the screen */
-        [data-radix-popper-content-wrapper] > div {
+        [data-radix-popper-content-wrapper] [data-radix-popover-content] > div {
           width: 100% !important;
           height: 100% !important;
           max-height: 100vh !important;
@@ -51,7 +51,7 @@ const PopoverStyles = () => {
         }
 
         /* Make the content area scrollable */
-        [data-radix-popper-content-wrapper] > div > div {
+        [data-radix-popper-content-wrapper] [data-radix-popover-content] > div > div {
           flex: 1 !important;
           overflow-y: auto !important;
           width: 100% !important;

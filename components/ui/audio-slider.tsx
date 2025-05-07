@@ -24,7 +24,7 @@ const AudioSlider = React.forwardRef<
       {...props}
     >
       <SliderPrimitive.Track
-        className="relative h-4 w-full grow overflow-hidden rounded-full"
+        className="relative h-2 w-full grow overflow-hidden rounded-full"
         style={{ backgroundColor: 'var(--neon-blue-20)' }}
       >
         <SliderPrimitive.Range
@@ -35,11 +35,11 @@ const AudioSlider = React.forwardRef<
         />
       </SliderPrimitive.Track>
       <SliderPrimitive.Thumb
-        className="block h-8 w-8 rounded-full z-20 cursor-grab active:cursor-grabbing focus:outline-none focus-visible:ring focus-visible:ring-neon-pink focus-visible:ring-opacity-75"
+        className="block h-4 w-4 rounded-full z-20 cursor-grab active:cursor-grabbing focus:outline-none focus-visible:ring focus-visible:ring-neon-pink focus-visible:ring-opacity-75"
         style={{
           backgroundColor: 'var(--neon-pink)',
-          boxShadow: '0 0 15px var(--neon-pink-70)',
-          border: '2px solid var(--neon-pink-90)',
+          boxShadow: '0 0 10px var(--neon-pink-70)',
+          border: '1px solid var(--neon-pink-90)',
           touchAction: 'none', // Prevent scrolling when dragging on touch devices
         }}
       />

@@ -1,5 +1,17 @@
 "use client"
 
+/**
+ * Audio Player Component with Lazy Loading
+ *
+ * This component implements a progressive loading approach for audio:
+ * 1. Initial state: Audio object created with preload="none" (no loading)
+ * 2. First interaction: Changes to preload="metadata" (loads only metadata)
+ * 3. When playing: Changes to preload="auto" (enables browser's native streaming)
+ *
+ * This approach ensures the audio file is only loaded when needed and
+ * leverages the browser's built-in streaming capabilities via HTTP range requests.
+ */
+
 import { useState, useRef, useEffect, useCallback } from "react"
 import { Volume2, VolumeX, Volume1, Volume, Rewind, FastForward, X } from "lucide-react"
 import {
@@ -35,14 +47,22 @@ export default function AudioPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const previousVolumeRef = useRef(volume) // Store previous volume for unmuting
 
-  // Initialize audio element
+  // Initialize audio element - lazy loading approach
   useEffect(() => {
-    audioRef.current = new Audio("/music.mp3")
-    audioRef.current.loop = true
-    audioRef.current.volume = 0 // Always start with volume 0 to comply with browser autoplay policies
+    // Only create the Audio object when the component mounts
+    // This defers loading until the user actually interacts with the player
+    const initializeAudio = () => {
+      // Create audio element with preload="none" to prevent immediate loading
+      audioRef.current = new Audio()
+      audioRef.current.preload = "none" // Options: "none", "metadata", "auto"
+      audioRef.current.src = "/music.mp3"
+      audioRef.current.loop = true
+      audioRef.current.volume = 0 // Always start with volume 0 to comply with browser autoplay policies
 
-    // Set up event listeners
-    const audio = audioRef.current
+      return audioRef.current
+    }
+
+    const audio = initializeAudio()
 
     // Update time display
     const timeUpdateHandler = () => {
@@ -82,8 +102,17 @@ export default function AudioPlayer() {
 
     // If this is the first interaction, start playing the audio
     if (!hasInteracted) {
+      // First interaction - load metadata if needed
+      if (audioRef.current.preload === "none") {
+        // Change preload to "metadata" to start loading essential information
+        audioRef.current.preload = "metadata"
+      }
+
       // Set the current time to START_TIME
       audioRef.current.currentTime = START_TIME
+
+      // When user actually wants to play, switch to auto preload for better streaming
+      audioRef.current.preload = "auto"
 
       // Start playing
       audioRef.current.play().catch(error => {
@@ -208,12 +237,20 @@ export default function AudioPlayer() {
     <div className="space-y-4">
       {/* Track info */}
       <div className="text-center border border-neon-blue-30 rounded-xl p-2 shadow-neon-blue" style={{ backgroundColor: 'rgba(5, 5, 24, 0.5)' }}>
-        <p className="text-sm font-vt323 neon-text-blue">{hasInteracted ? "NOW PLAYING" : "READY TO PLAY"}</p>
+        <p className="text-sm font-vt323 neon-text-blue">
+          {hasInteracted ? (duration === 0 ? "LOADING..." : "NOW PLAYING") : "READY TO PLAY"}
+        </p>
         <p className="text-xs font-medium" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
           Allude by Voyage
         </p>
         <p className="text-xs" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
-          {!hasInteracted ? "(Click speaker to start)" : isMuted ? "(Muted)" : ""}
+          {!hasInteracted
+            ? "(Click speaker to start)"
+            : duration === 0
+              ? "(Loading audio...)"
+              : isMuted
+                ? "(Muted)"
+                : ""}
         </p>
 
         {/* Progress bar */}
@@ -350,7 +387,11 @@ export default function AudioPlayer() {
                 )}
               </button>
             </TooltipTrigger>
-            <TooltipContent side="left" className="bg-darker-blue border border-neon-blue text-white rounded-xl shadow-neon-blue">
+            <TooltipContent
+              side="left"
+              className="bg-darker-blue border border-neon-blue text-white rounded-xl shadow-neon-blue"
+              data-audio-player-tooltip="true"
+            >
               <p>{isMuted ? "Unmute music" : "Mute music"}</p>
               <p className="text-xs text-text-white-70">{hasInteracted ? "Music is playing but muted" : "Click to start music (muted)"}</p>
               <p className="text-xs text-text-white-70">Click to toggle sound and open controls</p>

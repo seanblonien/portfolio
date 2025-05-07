@@ -4,6 +4,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Analytics } from "@vercel/analytics/react"
 import AudioPlayer from "@/components/audio-player"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const vt323 = VT323({
@@ -86,6 +87,7 @@ export default function RootLayout({
           {children}
           <AudioPlayer />
           <Analytics />
+          <SpeedInsights/>
         </ThemeProvider>
       </body>
     </html>
