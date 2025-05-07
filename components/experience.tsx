@@ -221,7 +221,20 @@ export default function Experience() {
                   >
                     <PopoverTrigger asChild>
                       <div
+                        role="button"
+                        aria-haspopup="dialog"
+                        aria-expanded={openPopoverIndex === index}
+                        aria-controls={`experience-popover-${index}`}
+                        tabIndex={0}
+                        aria-label={`View details about ${experience.title} at ${experience.company}`}
                         className={`w-full md:w-[calc(50%-2rem)] cursor-pointer ${index % 2 === 0 ? 'md:mr-[calc(50%+2rem)]' : 'md:ml-auto'} ml-auto`}
+                        onClick={() => setOpenPopoverIndex(openPopoverIndex === index ? null : index)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            setOpenPopoverIndex(openPopoverIndex === index ? null : index);
+                          }
+                        }}
                       >
                         <Card className={`card ${experience.type === 'work'
                           ? 'border-neon-blue-30 hover:border-neon-blue-70 hover:shadow-neon-blue-lg'
@@ -250,6 +263,7 @@ export default function Experience() {
                     </PopoverTrigger>
 
                     <PopoverContent
+                      id={`experience-popover-${index}`}
                       className={`${isSmallScreen
                         ? 'w-screen h-screen fixed inset-0 max-w-[100vw] max-h-[100vh]'
                         : 'w-[500px] max-h-[600px]'}
@@ -291,6 +305,7 @@ export default function Experience() {
                                   onClick={() => setOpenPopoverIndex(null)}
                                   className="p-2 rounded-full hover:bg-white/10 transition-colors flex-shrink-0"
                                   aria-label="Close details"
+                                  aria-controls={`experience-popover-${index}`}
                                 >
                                   <X size={20} className="text-white/70" />
                                 </button>
@@ -318,6 +333,7 @@ export default function Experience() {
                                   onClick={() => setOpenPopoverIndex(null)}
                                   className="p-1 rounded-full hover:bg-white/10 transition-colors"
                                   aria-label="Close details"
+                                  aria-controls={`experience-popover-${index}`}
                                 >
                                   <X size={16} className="text-white/70" />
                                 </button>
