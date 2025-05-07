@@ -10,7 +10,7 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/vaporwave-bg.png"
+          src="/images/vaporwave-bg.webp"
           alt="Vaporwave background"
           fill
           priority

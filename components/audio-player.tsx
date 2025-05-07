@@ -198,8 +198,6 @@ export default function AudioPlayer() {
     return <Volume2 className="w-6 h-6 text-neon-blue group-hover:text-neon-pink transition-colors duration-300" />
   }
 
-
-
   // Toggle controls based on device type - now uses a single shared state
   const toggleControls = useCallback(() => {
     setIsOpen(!isOpen);
