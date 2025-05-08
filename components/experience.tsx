@@ -179,22 +179,25 @@ export default function Experience() {
         <h2 className="section-title">EXPERIENCE</h2>
 
         {/* Legend */}
-        <div className="flex justify-center gap-8 mb-8">
+        <div className="flex justify-center gap-8 mb-8" role="legend" aria-label="Timeline categories">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full border-2 border-neon-blue shadow-neon-blue"></div>
+            <div className="w-3 h-3 rounded-full border-2 border-neon-blue shadow-neon-blue" aria-hidden="true"></div>
             <span className="text-base text-text-white-80">Work Experience</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full border-2 border-neon-pink shadow-neon-pink"></div>
+            <div className="w-3 h-3 rounded-full border-2 border-neon-pink shadow-neon-pink" aria-hidden="true"></div>
             <span className="text-base text-text-white-80">Projects</span>
           </div>
         </div>
 
         {/* Neon Timeline Container */}
-        <div className="relative mt-12">
+        <div className="relative mt-12" role="region" aria-label="Experience Timeline">
           {/* Center neon line - positioned differently on mobile */}
-          <div className="absolute md:left-1/2 left-[20px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-neon-blue via-neon-pink to-neon-blue
-                         shadow-neon-blue rounded-full z-10"></div>
+          <div
+            className="absolute md:left-1/2 left-[20px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-neon-blue via-neon-pink to-neon-blue
+                     shadow-neon-blue rounded-full z-10"
+            aria-hidden="true"
+          ></div>
 
           {/* Timeline entries */}
           <div className="relative z-10">
@@ -204,63 +207,71 @@ export default function Experience() {
                 delay={0.2}
                 className="mb-16 relative"
               >
-                {/* Timeline node - different color based on type, positioned differently on mobile */}
-                <div className={`absolute md:left-1/2 left-[20px] top-6 w-4 h-4 rounded-full bg-dark-blue border-2
+                <article className="experience-entry">
+                  {/* Timeline node - different color based on type, positioned differently on mobile */}
+                  <div
+                    className={`absolute md:left-1/2 left-[20px] top-6 w-4 h-4 rounded-full bg-dark-blue border-2
                                ${experience.type === 'work'
                                  ? 'border-neon-blue shadow-neon-blue'
                                  : 'border-neon-pink shadow-neon-pink'}
-                               md:-translate-x-1/2 z-20`}></div>
+                               md:-translate-x-1/2 z-20`}
+                    aria-hidden="true"
+                  ></div>
 
-                {/* Content container - alternating sides of timeline on desktop, all on right for mobile */}
-                <div className="flex md:justify-end justify-end relative z-30">
-                  <Popover
-                    open={openPopoverIndex === index}
-                    onOpenChange={(open) => {
-                      setOpenPopoverIndex(open ? index : null);
-                    }}
-                  >
-                    <PopoverTrigger asChild>
-                      <div
-                        role="button"
-                        aria-haspopup="dialog"
-                        aria-expanded={openPopoverIndex === index}
-                        aria-controls={`experience-popover-${index}`}
-                        tabIndex={0}
-                        aria-label={`View details about ${experience.title} at ${experience.company}`}
-                        className={`w-full md:w-[calc(50%-2rem)] cursor-pointer ${index % 2 === 0 ? 'md:mr-[calc(50%+2rem)]' : 'md:ml-auto'} ml-auto`}
-                        onClick={() => setOpenPopoverIndex(openPopoverIndex === index ? null : index)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            setOpenPopoverIndex(openPopoverIndex === index ? null : index);
-                          }
-                        }}
-                      >
-                        <Card className={`card ${experience.type === 'work'
-                          ? 'border-neon-blue-30 hover:border-neon-blue-70 hover:shadow-neon-blue-lg'
-                          : 'border-neon-pink-30 hover:border-neon-pink-70 hover:shadow-neon-pink-lg'}
-                          transition-all duration-300 rounded-xl overflow-hidden relative`}>
-                          <CardHeader>
-                            <div className="flex flex-col gap-1">
-                              <CardTitle className={`text-xl font-vt323 ${experience.type === 'work' ? 'neon-text-blue' : 'neon-text-pink'}`}>
-                                {experience.title}
-                              </CardTitle>
-                              <CardDescription className={`text-lg ${experience.type === 'work' ? 'text-neon-pink' : 'text-neon-blue'}`}>
-                                {experience.company}
-                              </CardDescription>
-                              <div className="text-base text-text-white-70 mt-1">{experience.period}</div>
+                  {/* Content container - alternating sides of timeline on desktop, all on right for mobile */}
+                  <div className="flex md:justify-end justify-end relative z-30">
+                    <Popover
+                      open={openPopoverIndex === index}
+                      onOpenChange={(open) => {
+                        setOpenPopoverIndex(open ? index : null);
+                      }}
+                    >
+                      <PopoverTrigger asChild>
+                        <button
+                          type="button"
+                          aria-haspopup="dialog"
+                          aria-expanded={openPopoverIndex === index}
+                          aria-controls={`experience-popover-${index}`}
+                          aria-label={`View details about ${experience.title} at ${experience.company}`}
+                          className={`w-full md:w-[calc(50%-2rem)] text-left ${index % 2 === 0 ? 'md:mr-[calc(50%+2rem)]' : 'md:ml-auto'} ml-auto`}
+                          onClick={() => setOpenPopoverIndex(openPopoverIndex === index ? null : index)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              setOpenPopoverIndex(openPopoverIndex === index ? null : index);
+                            }
+                          }}
+                        >
+                          <Card className={`card ${experience.type === 'work'
+                            ? 'border-neon-blue-30 hover:border-neon-blue-70 hover:shadow-neon-blue-lg'
+                            : 'border-neon-pink-30 hover:border-neon-pink-70 hover:shadow-neon-pink-lg'}
+                            transition-all duration-300 rounded-xl overflow-hidden relative`}>
+                            <CardHeader>
+                              <div className="flex flex-col gap-1">
+                                <CardTitle className={`text-xl font-vt323 ${experience.type === 'work' ? 'neon-text-blue' : 'neon-text-pink'}`}>
+                                  {experience.title}
+                                </CardTitle>
+                                <CardDescription className={`text-lg ${experience.type === 'work' ? 'text-neon-pink' : 'text-neon-blue'}`}>
+                                  {experience.company}
+                                </CardDescription>
+                                <time dateTime={experience.period.replace(/\s/g, '')} className="text-base text-text-white-70 mt-1">
+                                  {experience.period}
+                                </time>
+                              </div>
+                            </CardHeader>
+                            {/* Mobile tap indicator */}
+                            <div
+                              className={`absolute bottom-2 right-2 ${!isSmallScreen ? 'hidden' : ''} rounded-full w-5 h-5 flex items-center justify-center
+                                ${experience.type === 'work'
+                                  ? 'bg-neon-blue/20 text-neon-blue border border-neon-blue/50'
+                                  : 'bg-neon-pink/20 text-neon-pink border border-neon-pink/50'}`}
+                              aria-hidden="true"
+                            >
+                              <span className="text-xs">+</span>
                             </div>
-                          </CardHeader>
-                          {/* Mobile tap indicator */}
-                          <div className={`absolute bottom-2 right-2 ${!isSmallScreen ? 'hidden' : ''} rounded-full w-5 h-5 flex items-center justify-center
-                            ${experience.type === 'work'
-                              ? 'bg-neon-blue/20 text-neon-blue border border-neon-blue/50'
-                              : 'bg-neon-pink/20 text-neon-pink border border-neon-pink/50'}`}>
-                            <span className="text-xs">+</span>
-                          </div>
-                        </Card>
-                      </div>
-                    </PopoverTrigger>
+                          </Card>
+                        </button>
+                      </PopoverTrigger>
 
                     <PopoverContent
                       id={`experience-popover-${index}`}
@@ -292,10 +303,10 @@ export default function Experience() {
                       onTouchEnd={handleTouchEnd}
                       data-experience-popover="true"
                     >
-                      <div className={`${isSmallScreen ? 'h-full flex flex-col' : 'space-y-3'}`}>
+                      <article className={`${isSmallScreen ? 'h-full flex flex-col' : 'space-y-3'}`} aria-labelledby={`experience-title-${index}`}>
                         {/* Mobile header with close button */}
                         {isSmallScreen && (
-                          <div className="sticky top-0 left-0 right-0 pb-2 mb-2 border-b border-white/10 bg-[rgba(10,10,32,0.98)] z-10 pr-[17px]">
+                          <header className="sticky top-0 left-0 right-0 pb-2 mb-2 border-b border-white/10 bg-[rgba(10,10,32,0.98)] z-10 pr-[17px]">
                             <div className="flex justify-center w-full">
                               <div className="flex justify-between items-center w-full max-w-[540px] px-3 md:px-6">
                                 <h3 className={`text-2xl font-vt323 ${experience.type === 'work' ? 'neon-text-blue' : 'neon-text-pink'} truncate`}>
@@ -311,16 +322,16 @@ export default function Experience() {
                                 </button>
                               </div>
                             </div>
-                          </div>
+                          </header>
                         )}
 
                         {/* Scrollable content area */}
                         <div className={isSmallScreen ? "flex-1 overflow-y-auto pb-6" : ""}>
                           <div className="flex justify-center w-full">
                             <div className="space-y-3 w-full max-w-[540px] px-3 md:px-6 pb-safe">
-                            <div className={`flex justify-between items-start ${isSmallScreen ? '' : 'mb-3'}`}>
+                            <header className={`flex justify-between items-start ${isSmallScreen ? '' : 'mb-3'}`}>
                               <div>
-                                <h4 className={`text-xl font-vt323 ${experience.type === 'work' ? 'neon-text-blue' : 'neon-text-pink'}`}>
+                                <h4 id={`experience-title-${index}`} className={`text-xl font-vt323 ${experience.type === 'work' ? 'neon-text-blue' : 'neon-text-pink'}`}>
                                   {experience.title}
                                 </h4>
                                 <p className={`text-base ${experience.type === 'work' ? 'text-neon-pink' : 'text-neon-blue'}`}>
@@ -338,56 +349,59 @@ export default function Experience() {
                                   <X size={16} className="text-white/70" />
                                 </button>
                               )}
-                            </div>
+                            </header>
 
                             {/* Challenge */}
-                            <div>
-                              <h5 className="text-lg uppercase text-text-white-60 mb-1">Challenge</h5>
+                            <section aria-labelledby={`challenge-heading-${index}`}>
+                              <h5 id={`challenge-heading-${index}`} className="text-lg uppercase text-text-white-60 mb-1">Challenge</h5>
                               <p className="text-base text-text-white-90 break-words">{experience.challenge}</p>
-                            </div>
+                            </section>
 
                             {/* Solution */}
-                            <div>
-                              <h5 className="text-lg uppercase text-text-white-60 mb-1">Solution</h5>
+                            <section aria-labelledby={`solution-heading-${index}`}>
+                              <h5 id={`solution-heading-${index}`} className="text-lg uppercase text-text-white-60 mb-1">Solution</h5>
                               <p className="text-base text-text-white-90 break-words">{experience.solution}</p>
-                            </div>
+                            </section>
 
                             {/* Impact */}
                             {experience.impact && experience.impact.length > 0 && (
-                              <div>
-                                <h5 className="text-lg uppercase text-text-white-60 mb-1">Key Impact</h5>
+                              <section aria-labelledby={`impact-heading-${index}`}>
+                                <h5 id={`impact-heading-${index}`} className="text-lg uppercase text-text-white-60 mb-1">Key Impact</h5>
                                 <ul className="list-disc pl-4 text-text-white-80 text-base space-y-2">
                                   {experience.impact.map((item, i) => (
                                     <li key={i} className="break-words">{item}</li>
                                   ))}
                                 </ul>
-                              </div>
+                              </section>
                             )}
 
                             {/* Learnings */}
-                            <div>
-                              <h5 className="text-lg uppercase text-text-white-60 mb-1">Learnings</h5>
+                            <section aria-labelledby={`learnings-heading-${index}`}>
+                              <h5 id={`learnings-heading-${index}`} className="text-lg uppercase text-text-white-60 mb-1">Learnings</h5>
                               <p className="text-base text-text-white-90 break-words">{experience.learnings}</p>
-                            </div>
+                            </section>
 
                             {/* Call to Action */}
-                            <a
-                              href={experience.callToAction.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className={`inline-flex items-center text-base ${experience.type === 'work'
-                                ? 'text-neon-blue hover:text-neon-pink'
-                                : 'text-neon-pink hover:text-neon-blue'} transition-colors`}
-                            >
-                              {experience.callToAction.text} <ExternalLink size={16} className="ml-1" />
-                            </a>
+                            <footer>
+                              <a
+                                href={experience.callToAction.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`inline-flex items-center text-base ${experience.type === 'work'
+                                  ? 'text-neon-blue hover:text-neon-pink'
+                                  : 'text-neon-pink hover:text-neon-blue'} transition-colors`}
+                              >
+                                {experience.callToAction.text} <ExternalLink size={16} className="ml-1" />
+                              </a>
+                            </footer>
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </article>
                     </PopoverContent>
                   </Popover>
                 </div>
+                </article>
               </AnimatedSection>
             ))}
           </div>

@@ -29,7 +29,7 @@ export interface BadgeProps
 
 function Badge({ className, variant, ...props }: BadgeProps) {
   return (
-    <div className={cn(badgeVariants({ variant }), className)} {...props} />
+    <p aria-label={props.children as string} className={cn(badgeVariants({ variant }), className)} {...props} />
   )
 }
 

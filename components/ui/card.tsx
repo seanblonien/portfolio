@@ -31,7 +31,7 @@ const CardTitle = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
+  <h3
     className={cn(
       "text-2xl font-semibold leading-none tracking-tight",
       className
@@ -45,7 +45,7 @@ const CardDescription = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
+  <p
     className={cn("text-sm text-muted-foreground", className)}
     {...props}
   />
