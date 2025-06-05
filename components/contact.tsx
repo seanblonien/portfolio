@@ -23,7 +23,7 @@ export default function Contact() {
                   asChild
                   className="bg-transparent border border-neon-pink text-neon-pink hover:bg-neon-pink-10 hover:shadow-neon-pink-lg rounded-xl"
                 >
-                  <a href="mailto:seanb2016@gmail.com" className="flex items-center gap-2">
+                  <a href="mailto:contact@seanblonien.com" className="flex items-center gap-2">
                     <Mail size={18} /> Email Me
                   </a>
                 </Button>

@@ -20,8 +20,7 @@ export default function About() {
               <CardContent className="flex-1 flex flex-col">
                 {/* Profile Avatar */}
                 <div className="w-full aspect-square mb-4 bg-darker-blue/70 border-2 border-neon-blue rounded-xl overflow-hidden flex items-center justify-center relative shadow-neon-blue-lg">
-                  <div className="absolute inset-0 grid-overlay opacity-30"></div>
-                  <span className="font-vt323 neon-text-pink text-responsive-sb">SB</span>
+                  <img src="/images/profile.webp" alt="Sean Blonien Profile Picture" className="w-full h-full object-cover object-center" />
                 </div>
 
                 {/* Profile Stats */}
