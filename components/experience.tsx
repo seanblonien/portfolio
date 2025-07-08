@@ -7,8 +7,6 @@ import { useState, useEffect } from "react"
 import type { Experience } from "@/types/experience"
 import { useIsSmallScreen } from "@/hooks/use-mobile"
 
-
-
 // Experience data array - can be edited to add new experiences
 const experiences: Experience[] = [
   {
@@ -16,8 +14,8 @@ const experiences: Experience[] = [
     company: "Fly Bodies",
     period: "May 2024 - Present",
     location: "Remote/Los Angeles, CA",
-    challenge: "The core challenge was building a robust, real-time backend capable of handling simultaneous workout data and social updates from hundreds of users, while also integrating diverse health data sources (Apple Health, Fitbit, etc.) efficiently and securely. On the frontend, ensuring a smooth, native-like experience across iOS and Android with complex real-time features was paramount.",
-    solution: "I designed and engineered a serverless, event-driven architecture utilizing Node.js and Firestore on GCP for real-time data handling and scalability. React Native and TypeScript provided a robust, cross-platform mobile front-end. We implemented WebSockets for instantaneous updates crucial for workout tracking and leaderboards. I established a weekly release cadence with CI/CD via GitHub Actions/Expo EAS to iterate rapidly based on user feedback collected through surveys, reviews, and analytics. I also integrated Apple Health, Health Connect, and Fitbit platforms to provide comprehensive tracking.",
+    challenge: "Our mission was to build a fitness tracking app to track steps and mileage so that we could host mileage challenges with small businesses and schools as our customers. The core challenge was building a robust, cross-platform, easy-to-use app that synced all of the various fitness tracking devices real-time backend capable of handling simultaneous workout data and social updates from hundreds of users, while also integrating diverse health data sources (Apple Health, Fitbit, etc.) efficiently and securely. On the frontend, ensuring a smooth, native-like experience across iOS and Android with complex real-time features was paramount.",
+    solution: "I designed and engineered a serverless, event-driven architecture utilizing Node.js and Firestore on GCP for real-time data handling and scalability. React Native + TypeScript provided the robust, cross-platform mobile front-end foundation to make the experience the same accross all devices. I implemented this real-time system using websockets/snapshot listeners from Firebase and a 'local-first' data access pattern in the app that synced with the database anytime values changed on the leaderboards/shared pages. I established a weekly app release cadence with CI/CD via GitHub Actions/Expo EAS to iterate rapidly based on user feedback collected through surveys, reviews, and analytics. I also integrated Apple Health, Health Connect, and Fitbit platforms to provide comprehensive tracking.",
     impact: [
       "Spearheaded the full product lifecycle from roadmap definition to technical design and App Store releases.",
       "Launched the MVP in just 3 months, achieving a 4.8-star App Store rating.",
