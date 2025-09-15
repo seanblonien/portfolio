@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { Code, Heart, Zap, Trophy, Cpu, Gamepad2 } from "lucide-react"
+import Image from "next/image"
 
 export default function About() {
   return (
@@ -20,7 +21,12 @@ export default function About() {
               <CardContent className="flex-1 flex flex-col">
                 {/* Profile Avatar */}
                 <div className="w-full aspect-square mb-4 bg-darker-blue/70 border-2 border-neon-blue rounded-xl overflow-hidden flex items-center justify-center relative shadow-neon-blue-lg">
-                  <img src="/images/profile.webp" alt="Sean Blonien Profile Picture" className="w-full h-full object-cover object-center" />
+                  <Image
+                    src="/images/profile.webp"
+                    alt="Sean Blonien Profile Picture"
+                    fill
+                    className="object-cover object-center"
+                  />
                 </div>
 
                 {/* Profile Stats */}
