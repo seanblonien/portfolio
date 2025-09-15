@@ -28,23 +28,25 @@ export type ExperienceType = 'work' | 'project';
  * Experience entry interface
  */
 export interface Experience {
-  title: string;
-  company: string;
+  projectName: string;
+  role: string;
+  company?: string;
+  client?: string;
   period: string;
   location: string;
-  
+
   // Detailed content
   challenge: string;
   solution: string;
   impact: string[];
   learnings: string;
-  
+
   // Visual content
   visuals?: ExperienceVisual[];
-  
+
   // Call to action (e.g., link to LinkedIn, GitHub, etc.)
   callToAction: ExperienceCallToAction;
-  
+
   // Type of experience (work or project)
   type: ExperienceType;
 }

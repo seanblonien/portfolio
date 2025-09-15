@@ -7,61 +7,56 @@ import { useState, useEffect } from "react"
 import type { Experience } from "@/types/experience"
 import { useIsSmallScreen } from "@/hooks/use-mobile"
 
-// Experience data array - can be edited to add new experiences
 const experiences: Experience[] = [
   {
-    title: "Director of Engineering",
-    company: "Fly Bodies",
-    period: "May 2024 - Present",
-    location: "Remote/Los Angeles, CA",
-    challenge: "Our mission was to build a fitness tracking app to track steps and mileage so that we could host mileage challenges with small businesses and schools as our customers. The core challenge was building a robust, cross-platform, easy-to-use app that synced all of the various fitness tracking devices real-time backend capable of handling simultaneous workout data and social updates from hundreds of users, while also integrating diverse health data sources (Apple Health, Fitbit, etc.) efficiently and securely. On the frontend, ensuring a smooth, native-like experience across iOS and Android with complex real-time features was paramount.",
-    solution: "I designed and engineered a serverless, event-driven architecture utilizing Node.js and Firestore on GCP for real-time data handling and scalability. React Native + TypeScript provided the robust, cross-platform mobile front-end foundation to make the experience the same accross all devices. I implemented this real-time system using websockets/snapshot listeners from Firebase and a 'local-first' data access pattern in the app that synced with the database anytime values changed on the leaderboards/shared pages. I established a weekly app release cadence with CI/CD via GitHub Actions/Expo EAS to iterate rapidly based on user feedback collected through surveys, reviews, and analytics. I also integrated Apple Health, Health Connect, and Fitbit platforms to provide comprehensive tracking.",
+    projectName: "Forever Fest Website",
+    role: "Full-Stack Developer",
+    period: 'August 2025',
+    location: "Personal Project",
+    challenge: "I was engaged and needed a wedding website. I met the love of my life, Eva, at the Lights All Night (LAN) EDM festival in 2022 and proposed at LAN 2024. Since a music festival is central to our story, we created “Forever Fest 2026” as our wedding theme—our own festival brand. The site had to match the vibe: playful, vibrant, and totally us.",
+    solution: "Eva designed a colorful disco-inspired pink and purple theme, and I brought her vision to life. With her design background and my dev chops, we built the wedding website of our dreams from scratch. Using Next.js, React, and Tailwind CSS, we created a unique, non-cookie-cutter site that stands out from the all-too-common templates. Those work fine, but as a web developer I wanted something custom and polished for the biggest day of my life.",
     impact: [
-      "Spearheaded the full product lifecycle from roadmap definition to technical design and App Store releases.",
-      "Launched the MVP in just 3 months, achieving a 4.8-star App Store rating.",
-      "Built real-time workout tracking and leaderboards with WebSockets for zero-refresh UX.",
-      "Achieved over 1,500 organic downloads and $30K+ in first-year revenue with zero marketing spend.",
-      "Engineered and implemented a real-time, serverless backend supporting 300+ MAUs with autoscaling.",
-      "Designed and implemented key gamification features (streaks, quizzes, goals), resulting in a 210% increase in user engagement.",
-      "Reduced initial cloud infrastructure costs by 40% through architecture optimizations."
+      'Mobile-first responsive design that works across all devices',
+      'Optimized for a 100% Google Chrome Lighthouse score'
     ],
-    learnings: "This role significantly deepened my experience in full-stack mobile development, particularly in architecting scalable, real-time systems and managing a product through its full lifecycle. It underscored the power of iterative development driven by direct user feedback and the challenges and rewards of leading technical strategy for a new product.",
-    visuals: [
-      {
-        type: "image",
-        url: "/images/flybodies/app-screenshot-1.png",
-        caption: "Screenshot of the FlyFit app dashboard."
-      },
-      {
-        type: "image",
-        url: "/images/flybodies/engagement-chart.png",
-        caption: "Graph showing 210% increase in user engagement post-gamification."
-      },
-      {
-        type: "diagram",
-        url: "/images/flybodies/architecture-diagram.svg",
-        caption: "Simplified diagram of the serverless backend architecture."
-      }
-    ],
+    learnings: "I loved collaborating with Eva co-creating an idea and turning it into something real. It was a fun, creative project that pushed me to make deliberate design and UX decisions while keeping everything functional and easy to use.",
+    visuals: [],
     callToAction: {
-      text: "View on LinkedIn",
-      url: "https://www.linkedin.com/in/your-linkedin-profile-link-here"
+      text: "Visit Forever Fest 2026 Website",
+      url: "https://www.foreverfest.wedding/"
+    },
+    type: "project"
+  },
+  {
+    projectName: "myLexia Platform Modernization",
+    role: "Senior Software Engineer",
+    company: "Lexia Learning",
+    period: "July 2025 - Present",
+    location: "Remote",
+    challenge: 'Lexia is a 40-year-old language learning company focused on improving K-12 English literacy for students. Serving 1 in 3 public school districts, Lexia serves 7+ million students and 300k educators helping to address the national literacy crisis. I joined the myLexia team, which is the educator-facing product that teachers and school admins use to manage students, monitor progress, and manage their classrooms. I was brought in to help modernize the frontend migrating from AngularJs to Angular.',
+    solution: 'This being my 2nd large codebase migration from AngularJs to a modern web dev framework, it was not my first rodeo. I joined as an individual contributor, but quickly have become an integral part of the team bringing my expertise in modern component-based frontend development, agile process improvement, and product thinking to the team.',
+    impact: [],
+    learnings: 'Learnings to come! Still very new to the role.',
+    visuals: [],
+    callToAction: {
+      text: "Lexia Learning Website",
+      url: "https://www.lexialearning.com"
     },
     type: "work"
   },
   {
-    title: "Personal Portfolio",
-    company: "Side Project",
-    period: "April 2024",
+    projectName: "Portfolio Website",
+    role: "Full-Stack Developer",
+    period: "April 2025",
     location: "Personal Project",
-    challenge: "Creating a personal portfolio that stands out in a sea of templates while showcasing my skills and personality in a unique way.",
-    solution: "Designed and developed a personal portfolio website with a retro cyberpunk aesthetic. Built with Next.js, React, and Tailwind CSS featuring custom animations and responsive design.",
+    challenge: "Creating a personal portfolio website that stands out in a sea of templates while showcasing my skills and personality in a unique way.",
+    solution: "This website! I designed this portfolio website with an Outrun, synthwave, and retro aesthetic. Built with Next.js, React, and Tailwind CSS featuring custom animations and responsive design. The initial mockup was done with v0.dev and then built out from there.",
     impact: [
-      "Implemented custom neon timeline component",
+      "Brushed up on modern Next.js best practice patterns and practices",
       "Created responsive design that works across all devices",
-      "Optimized for accessibility and performance"
+      "Optimized for a 100% Google Chrome Lighthouse score"
     ],
-    learnings: "This project reinforced my skills in modern front-end development while allowing me to express my creativity through design. I learned valuable lessons about balancing aesthetics with performance and accessibility.",
+    learnings: "This project was a fun way to keep my front-end web development skills up-to-date when building a Next.js/React web app from scratch for this website. since I had been working on a mobile app for the previous year. optimized, and reinforced my skills in modern front-end development while allowing me to express my creativity through design. I learned valuable lessons about balancing aesthetics with performance and accessibility.",
     callToAction: {
       text: "View on GitHub",
       url: "https://github.com/seanblonien/portfolio"
@@ -69,18 +64,44 @@ const experiences: Experience[] = [
     type: "project"
   },
   {
-    title: "Senior Software Consultant",
-    company: "Pariveda Solutions",
-    period: "July 2020 - May 2024",
-    location: "Dallas, TX",
-    challenge: "Delivering high-quality technical solutions for enterprise clients with complex requirements and legacy systems while meeting tight deadlines and managing stakeholder expectations.",
-    solution: "Led technical delivery for enterprise clients including UnitedHealthcare, Southwest Airlines, and Toyota Financial Services, focusing on front-end migrations, data pipelines, and cloud architecture.",
+    projectName: "FlyFit Mobile App & Platform",
+    role: "Director of Engineering",
+    company: "Fly Bodies",
+    period: "May 2024 - July 2025",
+    location: "Remote/Los Angeles, CA",
+    challenge: "Fly Bodies is a health and wellness startup that helps schools and small organizations keep their communities active in a simple, motivating way. Our users are teachers, staff, and small teams who want to move more but struggle with consistency and accountability. Many do not have time for complex tools or the budget for enterprise wellness platforms. They need something that feels fun and social, works on the phones and wearables they already use, and respects privacy. The core problem to solve was making daily activity feel rewarding and shared through challenges, streaks, and personal goals. The platform needed to be easy to onboard, reliable across iOS and Android, and securely sync activity from Apple Health, Health Connect, and Fitbit in real time so people could see progress and cheer each other on without friction.",
+    solution: "I joined as the 1st engineer and took the product from 0 to 1. I led discovery, planning, design, architecture, development, testing, and releases to ship the FlyFit mobile app and supporting backend. At a high level, I built a modern, cross-platform app using React Native and TypeScript, paired with a serverless Node.js backend on GCP and Firebase. The system delivers real time updates for leaderboards, feeds, and shared workouts so the app feels instant and never needs a manual refresh. I integrated Apple Health, Health Connect, and Fitbit for seamless activity sync, and set up a solid CI/CD pipeline with GitHub Actions and Expo EAS to support weekly releases and fast iteration based on user feedback.",
     impact: [
-      "Led a team of 8 developers on the UnitedHealthcare project",
-      "Reduced page load times by 60% through code splitting and optimization",
-      "Implemented CI/CD pipelines that cut deployment time from days to minutes"
+      "Product and delivery: Shipped the MVP in 3 months, sustained weekly releases, and earned a 5-star App Store rating.",
+      "Growth and outcomes: Achieved 1,500+ organic downloads and $30K+ in first-year revenue with zero marketing spend.",
+      "Architecture and scale: Designed a real time, serverless platform on GCP/Firebase that supported 300+ MAUs with autoscaling and a local-first, zero-refresh UX.",
+      "Engagement: Implemented gamification features including streaks, quizzes, and goals that increased engagement by 210%.",
+      "Cost efficiency: Reduced initial cloud costs by 40% through architecture and data model optimizations.",
+      "Leadership and communication: Owned the full lifecycle from roadmap and technical design to integrations, security, testing, and App Store releases while aligning stakeholders and communicating progress clearly with nontechnical partners and customers.",
     ],
-    learnings: "Working across multiple industries and technologies taught me to quickly adapt to new domains and technical challenges. I developed strong skills in client communication, technical leadership, and delivering value in complex enterprise environments.",
+    learnings: "This role sharpened my product engineering skills. I translated user needs into a focused roadmap, kept scope tight, and iterated quickly based on what we heard from schools and teams using the app. In a true startup environment, I wore multiple hats and enjoyed it. I acted as an IC, architect, product partner, and delivery lead while building modern, scalable infrastructure that I designed end to end. It reinforced how to make pragmatic, cost-aware technical decisions, work on the cutting edge with real time systems and serverless tech, and lead early stage product development and technical strategy under tight budget constraints.",
+    callToAction: {
+      text: "View on Fly Bodies website",
+      url: "https://www.fly-bodies.com/flyfit-app"
+    },
+    type: "work"
+  },
+  {
+    projectName: "UnitedHealthcare Platform Migration",
+    role: "Technical Lead",
+    company: "Pariveda Solutions",
+    client: "UnitedHealthcare",
+    period: "Jan. 2024 - May 2024",
+    location: "Dallas, TX",
+    challenge: "UnitedHealthcare needed to migrate their $200M+ DTC eCommerce platform from AngularJS to React while maintaining business continuity and improving performance for millions of users.",
+    solution: "Led the front-end migration as Technical Lead, delivering a 5× faster UI with responsive design and modern component architecture. Coordinated with cross-functional teams to ensure seamless transition.",
+    impact: [
+      "Led a team of 6 developers through complete platform migration",
+      "Achieved 5× performance improvement in UI responsiveness",
+      "Delivered modern component architecture serving millions of users",
+      "Maintained zero downtime during critical business operations"
+    ],
+    learnings: "Leading a large-scale migration taught me the importance of incremental delivery, stakeholder communication, and balancing technical excellence with business continuity. The experience reinforced my expertise in React architecture and team leadership.",
     callToAction: {
       text: "View on LinkedIn",
       url: "https://linkedin.com/in/seanblonien"
@@ -88,24 +109,115 @@ const experiences: Experience[] = [
     type: "work"
   },
   {
-    title: "AI-Powered Fitness App",
-    company: "Hackathon Project",
-    period: "January 2023",
-    location: "Virtual Event",
-    challenge: "Building a functional AI-powered fitness application in just 48 hours that could accurately analyze workout form and provide real-time feedback.",
-    solution: "Created an AI-powered fitness application that analyzes workout form using computer vision and provides real-time feedback to users. Won first place in the health tech category.",
+    projectName: "Southwest Airlines Data Pipeline",
+    role: "Senior Software Consultant",
+    company: "Pariveda Solutions",
+    client: "Southwest Airlines",
+    period: "Aug. 2022 - May 2024",
+    location: "Dallas, TX",
+    challenge: "Southwest Airlines needed a scalable, event-driven data pipeline to process information for 90,000+ employees while integrating with legacy enterprise applications and ensuring high availability.",
+    solution: "Architected and implemented a cloud-native data processing system using Kafka, GraphQL, and Java/Python microservices to integrate Workday with internal enterprise applications.",
     impact: [
-      "Implemented TensorFlow pose estimation model",
-      "Built React Native mobile interface",
-      "Completed project in 48 hours and won first place"
+      "Built scalable pipeline processing data for 90,000+ employees",
+      "Implemented event-driven architecture with Kafka for real-time processing",
+      "Integrated legacy systems with modern cloud-native solutions",
+      "Delivered high-availability system with enterprise-grade reliability"
     ],
-    learnings: "This hackathon taught me how to rapidly prototype and deliver a functional product under extreme time constraints. I gained valuable experience with TensorFlow and computer vision while learning to focus on core features that deliver the most value.",
+    learnings: "This project deepened my understanding of enterprise-scale data architecture and the complexities of integrating modern solutions with legacy systems. I gained valuable experience in event-driven design and microservices architecture.",
     callToAction: {
-      text: "View on GitHub",
-      url: "https://github.com/seanblonien"
+      text: "View on LinkedIn",
+      url: "https://linkedin.com/in/seanblonien"
     },
-    type: "project"
-  }
+    type: "work"
+  },
+  {
+    projectName: "Toyota Financial Services Optimization",
+    role: "Senior Software Consultant",
+    company: "Pariveda Solutions",
+    client: "Toyota Financial Services",
+    period: "Aug. 2022 - May 2024",
+    location: "Dallas, TX",
+    challenge: "Toyota FS needed to analyze and optimize their technical architecture to support 1,500 dealerships and handle 300K+ daily quotes while identifying performance bottlenecks and scalability issues.",
+    solution: "Conducted comprehensive technical architecture assessment, identifying key bottlenecks and recommending enhancements to support massive scale and improve system efficiency.",
+    impact: [
+      "Analyzed architecture supporting 1,500+ dealerships",
+      "Identified optimizations for 300K+ daily quote processing",
+      "Delivered actionable recommendations for scalability improvements",
+      "Provided technical roadmap for enhanced system performance"
+    ],
+    learnings: "This assessment project taught me how to quickly understand complex enterprise architectures and identify optimization opportunities. I developed skills in technical analysis, stakeholder communication, and strategic technical planning.",
+    callToAction: {
+      text: "View on LinkedIn",
+      url: "https://linkedin.com/in/seanblonien"
+    },
+    type: "work"
+  },
+  {
+    projectName: "Optum ETL Platform Development",
+    role: "Senior Software Consultant",
+    company: "Pariveda Solutions",
+    client: "Optum",
+    period: "Aug. 2022 - May 2024",
+    location: "Dallas, TX",
+    challenge: "Optum required a robust ETL platform to handle complex healthcare data transformations with strict compliance requirements and high data integrity standards for their enterprise operations.",
+    solution: "Led development and delivery of a Medicare compliance ETL platform using Azure Data Factory, Azure Data Pipelines, and Terraform for infrastructure as code, ensuring scalable and compliant data processing.",
+    impact: [
+      "Delivered Medicare-compliant ETL platform for healthcare data",
+      "Implemented infrastructure as code using Terraform",
+      "Built scalable data processing with Azure Data Factory",
+      "Ensured strict compliance with healthcare data regulations"
+    ],
+    learnings: "Working in healthcare taught me the critical importance of data compliance and security. I gained deep experience with Azure cloud services and infrastructure automation while navigating complex regulatory requirements.",
+    callToAction: {
+      text: "View on LinkedIn",
+      url: "https://linkedin.com/in/seanblonien"
+    },
+    type: "work"
+  },
+  {
+    projectName: "Girl Scouts Progress Library",
+    role: "Senior Software Consultant",
+    company: "Pariveda Solutions",
+    client: "Girl Scouts",
+    period: "Aug. 2022 - May 2024",
+    location: "Dallas, TX",
+    challenge: "Girl Scouts needed to centralize and automate 150+ business workflows via a SharePoint-based Process Library, requiring significant process improvement and workflow optimization.",
+    solution: "Managed and mentored a team of 6 interns to centralize business processes, implementing automated workflows and creating a comprehensive digital process library with improved efficiency.",
+    impact: [
+      "Centralized and automated 150+ business workflows",
+      "Led and mentored team of 6 interns through complex project",
+      "Significantly improved organizational process efficiency",
+      "Delivered comprehensive SharePoint-based solution"
+    ],
+    learnings: "This project taught me valuable lessons in process optimization, team mentorship, and working with non-profit organizations. I developed skills in workflow automation and learned how to guide junior team members through complex business challenges.",
+    callToAction: {
+      text: "View on LinkedIn",
+      url: "https://linkedin.com/in/seanblonien"
+    },
+    type: "work"
+  },
+  {
+    projectName: "Girl Scouts AI Learning Platform",
+    role: "Software Consultant",
+    company: "Pariveda Solutions",
+    client: "Girl Scouts",
+    period: "May 2019 - Aug. 2019",
+    location: "Dallas, TX",
+    challenge: "Girl Scouts wanted to create an innovative AI learning platform to teach 2,200+ STEM camp participants about machine learning concepts through interactive, gamified experiences using computer vision.",
+    solution: "Developed and mentored an interactive AI learning web app using Angular, .NET Core, and OpenCV, incorporating image detection, facial recognition, and reinforcement learning in a gamified experience.",
+    impact: [
+      "Built interactive platform serving 2,200+ STEM camp participants",
+      "Implemented cutting-edge ML concepts in accessible format",
+      "Created gamified learning experience with computer vision",
+      "Successfully taught complex AI concepts to young learners"
+    ],
+    learnings: "This early project sparked my passion for making complex technology accessible and educational. I learned how to translate advanced technical concepts into engaging, understandable experiences while working with emerging AI technologies.",
+    callToAction: {
+      text: "View on LinkedIn",
+      url: "https://linkedin.com/in/seanblonien"
+    },
+    type: "work"
+  },
 ]
 
 export default function Experience() {
@@ -230,7 +342,7 @@ export default function Experience() {
                           aria-haspopup="dialog"
                           aria-expanded={openPopoverIndex === index}
                           aria-controls={`experience-popover-${index}`}
-                          aria-label={`View details about ${experience.title} at ${experience.company}`}
+                          aria-label={`View details about ${experience.projectName}${experience.company ? ` at ${experience.company}` : ''}`}
                           className={`w-full md:w-[calc(50%-2rem)] text-left ${index % 2 === 0 ? 'md:mr-[calc(50%+2rem)]' : 'md:ml-auto'} ml-auto`}
                           onClick={() => setOpenPopoverIndex(openPopoverIndex === index ? null : index)}
                           onKeyDown={(e) => {
@@ -247,10 +359,10 @@ export default function Experience() {
                             <CardHeader>
                               <div className="flex flex-col gap-1">
                                 <CardTitle className={`text-xl font-vt323 ${experience.type === 'work' ? 'neon-text-blue' : 'neon-text-pink'}`}>
-                                  {experience.title}
+                                  {experience.projectName}
                                 </CardTitle>
                                 <CardDescription className={`text-lg ${experience.type === 'work' ? 'text-neon-pink' : 'text-neon-blue'}`}>
-                                  {experience.company}
+                                  {experience.company ? `${experience.role} @${experience.company}` : experience.role}
                                 </CardDescription>
                                 <time dateTime={experience.period.replace(/\s/g, '')} className="text-base text-text-white-70 mt-1">
                                   {experience.period}
@@ -330,10 +442,10 @@ export default function Experience() {
                             <header className={`flex justify-between items-start ${isSmallScreen ? '' : 'mb-3'}`}>
                               <div>
                                 <h4 id={`experience-title-${index}`} className={`text-xl font-vt323 ${experience.type === 'work' ? 'neon-text-blue' : 'neon-text-pink'}`}>
-                                  {experience.title}
+                                  {experience.projectName}
                                 </h4>
                                 <p className={`text-base ${experience.type === 'work' ? 'text-neon-pink' : 'text-neon-blue'}`}>
-                                  {experience.company} • {experience.location}
+                                  {experience.company ? `${experience.role} at ${experience.company}` : experience.role} • {experience.location}
                                 </p>
                               </div>
                               {/* Close button - only visible on desktop */}
