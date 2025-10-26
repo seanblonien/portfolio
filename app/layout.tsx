@@ -4,7 +4,7 @@ import './globals.css';
 import {Analytics} from '@vercel/analytics/react';
 import AudioPlayer from '@/components/audio-player';
 import {SpeedInsights} from '@vercel/speed-insights/next';
-import {ThemeProvider} from 'next-themes';
+import {ThemeProvider} from '@/components/ThemeProvider';
 
 const inter = Inter({subsets: ['latin'], variable: '--font-inter'});
 const vt323 = VT323({
