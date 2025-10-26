@@ -319,7 +319,7 @@ export default function Experience() {
                 className="mb-16 relative"
               >
                 <article className="experience-entry">
-                  {/* Timeline node - different color based on type, positioned differently on mobile */}
+                  {/* Timeline node */}
                   <div
                     className={`absolute md:left-1/2 left-[20px] top-6 w-4 h-4 rounded-full bg-dark-blue border-2
                                ${experience.type === 'work'
@@ -330,7 +330,7 @@ export default function Experience() {
                   >
                   </div>
 
-                  {/* Content container - alternating sides of timeline on desktop, all on right for mobile */}
+                  {/* Content container */}
                   <div className="flex md:justify-end justify-end relative z-30">
                     <Popover
                       open={openPopoverIndex === index}
@@ -346,7 +346,8 @@ export default function Experience() {
                           aria-controls={`experience-popover-${index}`}
                           aria-label={`View details about ${experience.projectName}${experience.company ? ` at ${experience.company}` : ''}`}
                           className={`w-full md:w-[calc(50%-2rem)] text-left ${index % 2 === 0 ? 'md:mr-[calc(50%+2rem)]' : 'md:ml-auto'} ml-auto`}
-                          onClick={() => setOpenPopoverIndex(openPopoverIndex === index ? null : index)}
+                          onClick={() =>
+                            setOpenPopoverIndex(openPopoverIndex === index ? null : index)}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter' || e.key === ' ') {
                               e.preventDefault();

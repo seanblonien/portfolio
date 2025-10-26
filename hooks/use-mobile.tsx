@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import {useEffect, useState} from 'react';
 
 // Default breakpoints matching Tailwind's common breakpoints
 export const BREAKPOINTS = {
@@ -17,9 +17,9 @@ export const BREAKPOINTS = {
  * @returns boolean indicating if screen is below the breakpoint
  */
 export function useBreakpoint(breakpoint = BREAKPOINTS.MD) {
-  const [isBelow, setIsBelow] = React.useState<boolean | undefined>(undefined);
+  const [isBelow, setIsBelow] = useState<boolean | undefined>(undefined);
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Use matchMedia for better performance
     const mql = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
 

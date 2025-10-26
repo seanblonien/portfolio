@@ -1,36 +1,36 @@
-"use client"
+'use client';
 
-import * as React from "react"
-import * as SliderPrimitive from "@radix-ui/react-slider"
+import * as SliderPrimitive from '@radix-ui/react-slider';
 
-import { cn } from "@/lib/utils"
+import {cn} from '@/lib/utils';
+import {forwardRef} from 'react';
 
-interface AudioSliderProps extends React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> {
+type AudioSliderProps = {
   showValueLabel?: boolean;
   valueLabel?: string;
-}
+} & React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>;
 
-const AudioSlider = React.forwardRef<
+const AudioSlider = forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
   AudioSliderProps
->(({ className, showValueLabel, valueLabel, ...props }, ref) => {
+>(({className, showValueLabel, valueLabel, ...props}, ref) => {
   return (
     <SliderPrimitive.Root
       ref={ref}
       className={cn(
-        "relative flex w-full touch-none select-none items-center",
-        className
+        'relative flex w-full touch-none select-none items-center',
+        className,
       )}
       {...props}
     >
       <SliderPrimitive.Track
         className="relative h-2 w-full grow overflow-hidden rounded-full"
-        style={{ backgroundColor: 'var(--neon-blue-20)' }}
+        style={{backgroundColor: 'var(--neon-blue-20)'}}
       >
         <SliderPrimitive.Range
           className="absolute h-full"
           style={{
-            background: 'linear-gradient(to right, var(--neon-pink), var(--neon-blue))'
+            background: 'linear-gradient(to right, var(--neon-pink), var(--neon-blue))',
           }}
         />
       </SliderPrimitive.Track>
@@ -52,6 +52,6 @@ const AudioSlider = React.forwardRef<
   );
 });
 
-AudioSlider.displayName = "AudioSlider"
+AudioSlider.displayName = 'AudioSlider';
 
-export { AudioSlider }
+export {AudioSlider};

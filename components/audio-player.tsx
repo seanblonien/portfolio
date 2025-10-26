@@ -29,7 +29,8 @@ const START_TIME = 70;
 
 export default function AudioPlayer() {
   const isMobile = useIsMobile();
-  const [isMuted, setIsMuted] = useState(true); // Start muted to comply with browser autoplay policies
+  // Start muted to comply with browser autoplay policies
+  const [isMuted, setIsMuted] = useState(true);
   const [volume, setVolume] = useState(() => {
     // Try to get saved volume from localStorage, default to 0.7
     if (typeof window !== 'undefined') {
@@ -57,7 +58,8 @@ export default function AudioPlayer() {
       audioRef.current.preload = 'none'; // Options: "none", "metadata", "auto"
       audioRef.current.src = '/music.mp3';
       audioRef.current.loop = true;
-      audioRef.current.volume = 0; // Always start with volume 0 to comply with browser autoplay policies
+      // Always start with volume 0 to comply with browser autoplay policies
+      audioRef.current.volume = 0;
 
       return audioRef.current;
     };
