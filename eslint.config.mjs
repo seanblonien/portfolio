@@ -79,6 +79,18 @@ export default tseslint.config(
   },
   // Ignore patterns
   {
-    ignores: ['.next/*', 'node_modules/*'],
+    ignores: [
+      // Build outputs
+      '.next/**',
+      'out/**',
+      'build/**',
+      // Dependencies
+      'node_modules/**',
+      // TypeScript generated files
+      '*.tsbuildinfo',
+      'next-env.d.ts',
+      // Vercel
+      '.vercel/**',
+    ],
   },
 );
