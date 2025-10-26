@@ -1,9 +1,9 @@
-"use client"
+'use client';
 
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { ArrowDown, FileText } from "lucide-react"
-import VHSTitle from "./vhs-title"
+import Image from 'next/image';
+import {Button} from '@/components/ui/button';
+import {ArrowDown, FileText} from 'lucide-react';
+import VHSTitle from './vhs-title';
 
 export default function Hero() {
   return (
@@ -32,7 +32,9 @@ export default function Hero() {
             className="bg-transparent border border-neon-pink text-neon-pink hover:bg-neon-pink-10 hover:shadow-neon-pink-lg rounded-xl"
           >
             <a href="#about" className="flex items-center gap-2">
-              EXPLORE <ArrowDown size={16} />
+              EXPLORE
+              {' '}
+              <ArrowDown size={16} />
             </a>
           </Button>
 
@@ -44,11 +46,13 @@ export default function Hero() {
               href="/resume.pdf"
               className="flex items-center gap-2"
             >
-              RESUME <FileText size={16} />
+              RESUME
+              {' '}
+              <FileText size={16} />
             </a>
           </Button>
         </div>
       </div>
     </section>
-  )
+  );
 }

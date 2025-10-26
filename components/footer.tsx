@@ -1,25 +1,37 @@
-import { GithubIcon } from "lucide-react"
-import { formatDate } from "@/lib/utils"
+import {GithubIcon} from 'lucide-react';
+import {formatDate} from '@/lib/utils';
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear()
-  const lastUpdated = formatDate(new Date('2025-09-13T18:00:00Z'))
+  const currentYear = new Date().getFullYear();
+  const lastUpdated = formatDate(new Date('2025-09-13T18:00:00Z'));
 
   return (
     <footer className="py-8 border-t border-neon-blue-20 relative z-10">
       <div className="max-w-6xl mx-auto px-4 md:flex md:justify-between md:items-center">
         <div className="text-center md:text-left mb-4 md:mb-0">
           <p className="text-text-white-60">
-            © {currentYear} Sean Blonien
+            ©
+            {' '}
+            {currentYear}
+            {' '}
+            Sean Blonien
           </p>
           <p className="text-text-white-40 text-sm mt-1">
-            Last updated: {lastUpdated}
+            Last updated:
+            {' '}
+            {lastUpdated}
           </p>
         </div>
 
         <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
           <p className="text-text-white-40 text-sm">
-            Built with <span className="text-text-white-60">Next.js</span> and <span className="text-text-white-60">Tailwind</span>
+            Built with
+            {' '}
+            <span className="text-text-white-60">Next.js</span>
+            {' '}
+            and
+            {' '}
+            <span className="text-text-white-60">Tailwind</span>
           </p>
 
           <a
@@ -34,5 +46,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

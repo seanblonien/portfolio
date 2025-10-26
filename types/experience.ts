@@ -27,7 +27,7 @@ export type ExperienceType = 'work' | 'project';
 /**
  * Experience entry interface
  */
-export interface Experience {
+export type Experience = {
   projectName: string;
   role: string;
   company?: string;
@@ -49,4 +49,4 @@ export interface Experience {
 
   // Type of experience (work or project)
   type: ExperienceType;
-}
+};

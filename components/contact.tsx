@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button"
-import { Mail, Linkedin, Github } from "lucide-react"
-import AnimatedSection from "./animated-section"
+import {Button} from '@/components/ui/button';
+import {Mail, Linkedin, Github} from 'lucide-react';
+import AnimatedSection from './animated-section';
 
 export default function Contact() {
   return (
@@ -24,7 +24,9 @@ export default function Contact() {
                   className="bg-transparent border border-neon-pink text-neon-pink hover:bg-neon-pink-10 hover:shadow-neon-pink-lg rounded-xl"
                 >
                   <a href="mailto:contact@seanblonien.com" className="flex items-center gap-2">
-                    <Mail size={18} /> Email Me
+                    <Mail size={18} />
+                    {' '}
+                    Email Me
                   </a>
                 </Button>
                 <Button
@@ -38,7 +40,9 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
                   >
-                    <Linkedin size={18} /> LinkedIn
+                    <Linkedin size={18} />
+                    {' '}
+                    LinkedIn
                   </a>
                 </Button>
                 <Button
@@ -52,7 +56,9 @@ export default function Contact() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
                   >
-                    <Github size={18} /> GitHub
+                    <Github size={18} />
+                    {' '}
+                    GitHub
                   </a>
                 </Button>
               </div>
@@ -61,5 +67,5 @@ export default function Contact() {
         </div>
       </AnimatedSection>
     </section>
-  )
+  );
 }

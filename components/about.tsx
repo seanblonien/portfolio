@@ -1,9 +1,9 @@
-import AnimatedSection from "./animated-section"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
-import { Code, Heart, Zap, Trophy, Cpu, Gamepad2 } from "lucide-react"
-import Image from "next/image"
+import AnimatedSection from './animated-section';
+import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card';
+import {Badge} from '@/components/ui/badge';
+import {Separator} from '@/components/ui/separator';
+import {Code, Heart, Zap, Trophy, Cpu, Gamepad2} from 'lucide-react';
+import Image from 'next/image';
 
 export default function About() {
   return (
@@ -153,7 +153,7 @@ export default function About() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-text-white-90">
-                  {`Welcome to my stretch of the digital highway! As a Senior Software Engineer navigating the dynamic worlds of technology and AI, I've dedicated my journey to intentional software design that prioritizes product innovation and a seamless user experience. I thrive on building robust, elegant solutions that solve real-world challenges and empower users. Whether I'm diving deep into code or mentoring a team, I'm passionate about crafting intuitive, responsive systems that drive meaningful impact.`}
+                    {`Welcome to my stretch of the digital highway! As a Senior Software Engineer navigating the dynamic worlds of technology and AI, I've dedicated my journey to intentional software design that prioritizes product innovation and a seamless user experience. I thrive on building robust, elegant solutions that solve real-world challenges and empower users. Whether I'm diving deep into code or mentoring a team, I'm passionate about crafting intuitive, responsive systems that drive meaningful impact.`}
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     <Badge className="bg-neon-pink-20 text-neon-pink rounded-xl">Passionate</Badge>
@@ -172,7 +172,7 @@ export default function About() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-text-white-90">
-                    {`Cruising the digital highway at Pariveda gave me a chance to explore diverse tech landscapes early on. Fresh out of college, I led a full-stack migration from Angular to React—a challenge that sharpened my problem-solving skills and sparked my passion for building complete solutions. I also had the opportunity to mentor a team of interns on a process improvement project for the Girl Scouts using Power Automate, which showed me firsthand how rewarding it is to guide others through real-world challenges. My time at Southwest Airlines reinforced just how important scalable infrastructure and thoughtful design are for real-time, data-driven platforms.`}
+                    Cruising the digital highway at Pariveda gave me a chance to explore diverse tech landscapes early on. Fresh out of college, I led a full-stack migration from Angular to React—a challenge that sharpened my problem-solving skills and sparked my passion for building complete solutions. I also had the opportunity to mentor a team of interns on a process improvement project for the Girl Scouts using Power Automate, which showed me firsthand how rewarding it is to guide others through real-world challenges. My time at Southwest Airlines reinforced just how important scalable infrastructure and thoughtful design are for real-time, data-driven platforms.
                   </p>
                   <p className="mt-3 text-text-white-90">
                     {`Shifting gears, I decided to pursue my side project, FlyFit, full time. FlyFit is a B2B mobile fitness app for schools and organizations, offering fitness tracking, social mileage challenges, and other health and wellness features. Over the past year, I've devoted myself to building and scaling FlyFit into a production-grade, real-time full-stack app—ensuring every stat and leaderboard updates seamlessly. I truly enjoy the purpose-driven nature of my work at Fly Bodies, knowing that the software I create helps motivate people to live healthier, more connected lives.`}
@@ -203,7 +203,7 @@ export default function About() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-text-white-90">
-                  {`Off the grid, I like to keep the momentum going. Whether I'm taking on a marathon, getting lost in a VR adventure, or soaking up the vibe at an EDM festival, I find these experiences remind me of the core values in my work—persistence, exploration, and always aiming to improve. When I'm not at the keyboard, I mix it up with HIIT workouts, weight training, and even a round of golf, balanced by a little downtime for meditation. I also mentor an after-school coding club at a local school, where I enjoy sharing my passion for tech and helping the next generation explore both the digital and real world.`}
+                    {`Off the grid, I like to keep the momentum going. Whether I'm taking on a marathon, getting lost in a VR adventure, or soaking up the vibe at an EDM festival, I find these experiences remind me of the core values in my work—persistence, exploration, and always aiming to improve. When I'm not at the keyboard, I mix it up with HIIT workouts, weight training, and even a round of golf, balanced by a little downtime for meditation. I also mentor an after-school coding club at a local school, where I enjoy sharing my passion for tech and helping the next generation explore both the digital and real world.`}
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     <Badge className="bg-neon-orange-20 text-neon-orange rounded-xl shadow-neon-orange">Running</Badge>
@@ -221,5 +221,5 @@ export default function About() {
         </div>
       </AnimatedSection>
     </section>
-  )
+  );
 }

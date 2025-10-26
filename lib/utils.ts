@@ -1,11 +1,11 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+import {clsx, type ClassValue} from 'clsx';
+import {twMerge} from 'tailwind-merge';
 
 /**
  * Combines multiple class names with Tailwind's merge utility
  */
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 /**
@@ -13,14 +13,14 @@ export function cn(...inputs: ClassValue[]) {
  */
 export function debounce<T extends (...args: Parameters<T>) => ReturnType<T>>(
   func: T,
-  wait: number
+  wait: number,
 ): (...args: Parameters<T>) => void {
-  let timeout: ReturnType<typeof setTimeout> | null = null
+  let timeout: ReturnType<typeof setTimeout> | null = null;
 
-  return function(...args: Parameters<T>) {
-    if (timeout) clearTimeout(timeout)
-    timeout = setTimeout(() => func(...args), wait)
-  }
+  return function (...args: Parameters<T>) {
+    if (timeout) clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
 }
 
 /**
@@ -28,12 +28,12 @@ export function debounce<T extends (...args: Parameters<T>) => ReturnType<T>>(
  */
 export function formatDate(date: Date | string): string {
   if (typeof date === 'string') {
-    date = new Date(date)
+    date = new Date(date);
   }
 
   return date.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
-    day: 'numeric'
-  })
+    day: 'numeric',
+  });
 }

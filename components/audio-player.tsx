@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 /**
  * Audio Player Component with Lazy Loading
@@ -12,40 +12,40 @@
  * leverages the browser's built-in streaming capabilities via HTTP range requests.
  */
 
-import { useState, useRef, useEffect, useCallback } from "react"
-import { Volume2, VolumeX, Volume1, Volume, Rewind, FastForward, X } from "lucide-react"
+import {useState, useRef, useEffect, useCallback} from 'react';
+import {Volume2, VolumeX, Volume1, Volume, Rewind, FastForward, X} from 'lucide-react';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { Separator } from "@/components/ui/separator"
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
-import { useIsMobile } from "@/hooks/use-mobile"
-import { AudioSlider } from "@/components/ui/audio-slider"
+} from '@/components/ui/tooltip';
+import {Separator} from '@/components/ui/separator';
+import {Dialog, DialogContent, DialogTitle} from '@/components/ui/dialog';
+import {useIsMobile} from '@/hooks/use-mobile';
+import {AudioSlider} from '@/components/ui/audio-slider';
 
 const START_TIME = 70;
 
 export default function AudioPlayer() {
   const isMobile = useIsMobile();
-  const [isMuted, setIsMuted] = useState(true) // Start muted to comply with browser autoplay policies
+  const [isMuted, setIsMuted] = useState(true); // Start muted to comply with browser autoplay policies
   const [volume, setVolume] = useState(() => {
     // Try to get saved volume from localStorage, default to 0.7
     if (typeof window !== 'undefined') {
-      const savedVolume = localStorage.getItem('portfolio-music-volume')
-      return savedVolume ? parseFloat(savedVolume) : 0.7
+      const savedVolume = localStorage.getItem('portfolio-music-volume');
+      return savedVolume ? parseFloat(savedVolume) : 0.7;
     }
-    return 0.7
-  })
+    return 0.7;
+  });
   // Single shared state for both desktop popover and mobile dialog
-  const [isOpen, setIsOpen] = useState(false)
-  const [currentTime, setCurrentTime] = useState(START_TIME) // Start at 1:30
-  const [duration, setDuration] = useState(0)
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentTime, setCurrentTime] = useState(START_TIME); // Start at 1:30
+  const [duration, setDuration] = useState(0);
   // Track if music has been started by user
-  const [hasInteracted, setHasInteracted] = useState(false)
-  const audioRef = useRef<HTMLAudioElement | null>(null)
-  const previousVolumeRef = useRef(volume) // Store previous volume for unmuting
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const previousVolumeRef = useRef(volume); // Store previous volume for unmuting
 
   // Initialize audio element - lazy loading approach
   useEffect(() => {
@@ -53,115 +53,115 @@ export default function AudioPlayer() {
     // This defers loading until the user actually interacts with the player
     const initializeAudio = () => {
       // Create audio element with preload="none" to prevent immediate loading
-      audioRef.current = new Audio()
-      audioRef.current.preload = "none" // Options: "none", "metadata", "auto"
-      audioRef.current.src = "/music.mp3"
-      audioRef.current.loop = true
-      audioRef.current.volume = 0 // Always start with volume 0 to comply with browser autoplay policies
+      audioRef.current = new Audio();
+      audioRef.current.preload = 'none'; // Options: "none", "metadata", "auto"
+      audioRef.current.src = '/music.mp3';
+      audioRef.current.loop = true;
+      audioRef.current.volume = 0; // Always start with volume 0 to comply with browser autoplay policies
 
-      return audioRef.current
-    }
+      return audioRef.current;
+    };
 
-    const audio = initializeAudio()
+    const audio = initializeAudio();
 
     // Update time display
     const timeUpdateHandler = () => {
       if (audio) {
-        setCurrentTime(audio.currentTime)
+        setCurrentTime(audio.currentTime);
       }
-    }
+    };
 
     // Get duration when metadata is loaded
     const loadedMetadataHandler = () => {
       if (audio) {
-        setDuration(audio.duration)
+        setDuration(audio.duration);
         // Set initial position to START_TIME
-        audio.currentTime = START_TIME
+        audio.currentTime = START_TIME;
         // We'll start playing after user interaction, not automatically
       }
-    }
+    };
 
     // Add event listeners
-    audio.addEventListener('timeupdate', timeUpdateHandler)
-    audio.addEventListener('loadedmetadata', loadedMetadataHandler)
+    audio.addEventListener('timeupdate', timeUpdateHandler);
+    audio.addEventListener('loadedmetadata', loadedMetadataHandler);
 
     // Clean up on unmount
     return () => {
       if (audio) {
-        audio.removeEventListener('timeupdate', timeUpdateHandler)
-        audio.removeEventListener('loadedmetadata', loadedMetadataHandler)
-        audio.pause()
-        audio.src = ""
+        audio.removeEventListener('timeupdate', timeUpdateHandler);
+        audio.removeEventListener('loadedmetadata', loadedMetadataHandler);
+        audio.pause();
+        audio.src = '';
       }
-    }
-  }, [])
+    };
+  }, []);
 
   // Define the toggle mute function
   const toggleMute = useCallback(() => {
-    if (!audioRef.current) return
+    if (!audioRef.current) return;
 
     // If this is the first interaction, start playing the audio
     if (!hasInteracted) {
       // First interaction - load metadata if needed
-      if (audioRef.current.preload === "none") {
+      if (audioRef.current.preload === 'none') {
         // Change preload to "metadata" to start loading essential information
-        audioRef.current.preload = "metadata"
+        audioRef.current.preload = 'metadata';
       }
 
       // Set the current time to START_TIME
-      audioRef.current.currentTime = START_TIME
+      audioRef.current.currentTime = START_TIME;
 
       // When user actually wants to play, switch to auto preload for better streaming
-      audioRef.current.preload = "auto"
+      audioRef.current.preload = 'auto';
 
       // Start playing
-      audioRef.current.play().catch(error => {
-        console.error("Error playing audio on mute toggle:", error)
-      })
+      audioRef.current.play().catch((error) => {
+        console.error('Error playing audio on mute toggle:', error);
+      });
 
-      setHasInteracted(true)
+      setHasInteracted(true);
     }
 
     if (isMuted) {
       // Unmute - restore previous volume
-      audioRef.current.volume = previousVolumeRef.current
+      audioRef.current.volume = previousVolumeRef.current;
     } else {
       // Mute - save current volume first
-      previousVolumeRef.current = volume
-      audioRef.current.volume = 0
+      previousVolumeRef.current = volume;
+      audioRef.current.volume = 0;
     }
 
-    setIsMuted(!isMuted)
-  }, [isMuted, hasInteracted, volume])
+    setIsMuted(!isMuted);
+  }, [isMuted, hasInteracted, volume]);
 
   // Add keyboard shortcuts for when controls are open
   useEffect(() => {
-    if (!isOpen) return
+    if (!isOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       // Space to toggle mute/unmute
       if (e.code === 'Space') {
-        e.preventDefault()
-        toggleMute()
+        e.preventDefault();
+        toggleMute();
       }
 
       // Arrow right to skip forward
       if (e.code === 'ArrowRight') {
-        skipForward()
+        skipForward();
       }
 
       // Arrow left to skip backward
       if (e.code === 'ArrowLeft') {
-        skipBackward()
+        skipBackward();
       }
-    }
+    };
 
-    window.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [isOpen, isMuted, toggleMute])
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, isMuted, toggleMute]);
 
   // Update volume when it changes and save to localStorage
   useEffect(() => {
@@ -169,63 +169,63 @@ export default function AudioPlayer() {
       // Only update volume if not muted
       if (!isMuted) {
         // Store current playing state
-        const wasPlaying = !audioRef.current.paused
+        const wasPlaying = !audioRef.current.paused;
 
         // Update volume
-        audioRef.current.volume = volume
-        previousVolumeRef.current = volume
+        audioRef.current.volume = volume;
+        previousVolumeRef.current = volume;
 
         // Resume playback if it was playing before
         if (wasPlaying && audioRef.current.paused) {
-          audioRef.current.play().catch(error => {
-            console.error("Error resuming audio after volume change:", error)
-          })
+          audioRef.current.play().catch((error) => {
+            console.error('Error resuming audio after volume change:', error);
+          });
         }
       }
     }
 
     // Save volume preference to localStorage
     if (typeof window !== 'undefined') {
-      localStorage.setItem('portfolio-music-volume', volume.toString())
+      localStorage.setItem('portfolio-music-volume', volume.toString());
     }
-  }, [volume, isMuted])
+  }, [volume, isMuted]);
 
   // hasInteracted state is declared above
 
   // Skip forward 15 seconds
   const skipForward = () => {
-    if (!audioRef.current) return
+    if (!audioRef.current) return;
 
-    const newTime = Math.min(audioRef.current.currentTime + 15, audioRef.current.duration)
-    audioRef.current.currentTime = newTime
-    setCurrentTime(newTime)
-  }
+    const newTime = Math.min(audioRef.current.currentTime + 15, audioRef.current.duration);
+    audioRef.current.currentTime = newTime;
+    setCurrentTime(newTime);
+  };
 
   // Skip backward 15 seconds
   const skipBackward = () => {
-    if (!audioRef.current) return
+    if (!audioRef.current) return;
 
-    const newTime = Math.max(audioRef.current.currentTime - 15, 0)
-    audioRef.current.currentTime = newTime
-    setCurrentTime(newTime)
-  }
+    const newTime = Math.max(audioRef.current.currentTime - 15, 0);
+    audioRef.current.currentTime = newTime;
+    setCurrentTime(newTime);
+  };
 
   // Format time in MM:SS format
   const formatTime = (timeInSeconds: number) => {
-    if (isNaN(timeInSeconds)) return "00:00"
+    if (isNaN(timeInSeconds)) return '00:00';
 
-    const minutes = Math.floor(timeInSeconds / 60)
-    const seconds = Math.floor(timeInSeconds % 60)
-    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
-  }
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = Math.floor(timeInSeconds % 60);
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  };
 
   // Get the appropriate volume icon based on current volume
   const getVolumeIcon = () => {
-    if (isMuted || volume === 0) return <VolumeX className="w-6 h-6 text-neon-blue group-hover:text-neon-pink transition-colors duration-300" />
-    if (volume < 0.3) return <Volume className="w-6 h-6 text-neon-blue group-hover:text-neon-pink transition-colors duration-300" />
-    if (volume < 0.7) return <Volume1 className="w-6 h-6 text-neon-blue group-hover:text-neon-pink transition-colors duration-300" />
-    return <Volume2 className="w-6 h-6 text-neon-blue group-hover:text-neon-pink transition-colors duration-300" />
-  }
+    if (isMuted || volume === 0) return <VolumeX className="w-6 h-6 text-neon-blue group-hover:text-neon-pink transition-colors duration-300" />;
+    if (volume < 0.3) return <Volume className="w-6 h-6 text-neon-blue group-hover:text-neon-pink transition-colors duration-300" />;
+    if (volume < 0.7) return <Volume1 className="w-6 h-6 text-neon-blue group-hover:text-neon-pink transition-colors duration-300" />;
+    return <Volume2 className="w-6 h-6 text-neon-blue group-hover:text-neon-pink transition-colors duration-300" />;
+  };
 
   // Toggle controls based on device type - now uses a single shared state
   const toggleControls = useCallback(() => {
@@ -236,21 +236,21 @@ export default function AudioPlayer() {
   const AudioControlsContent = () => (
     <div className="space-y-4">
       {/* Track info */}
-      <div className="text-center border border-neon-blue-30 rounded-xl p-2 shadow-neon-blue" style={{ backgroundColor: 'rgba(5, 5, 24, 0.5)' }}>
+      <div className="text-center border border-neon-blue-30 rounded-xl p-2 shadow-neon-blue" style={{backgroundColor: 'rgba(5, 5, 24, 0.5)'}}>
         <p className="text-sm font-vt323 neon-text-blue">
-          {hasInteracted ? (duration === 0 ? "LOADING..." : "NOW PLAYING") : "READY TO PLAY"}
+          {hasInteracted ? (duration === 0 ? 'LOADING...' : 'NOW PLAYING') : 'READY TO PLAY'}
         </p>
-        <p className="text-xs font-medium" style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
+        <p className="text-xs font-medium" style={{color: 'rgba(255, 255, 255, 0.8)'}}>
           Allude by Voyage
         </p>
-        <p className="text-xs" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
+        <p className="text-xs" style={{color: 'rgba(255, 255, 255, 0.6)'}}>
           {!hasInteracted
-            ? "(Click speaker to start)"
+            ? '(Click speaker to start)'
             : duration === 0
-              ? "(Loading audio...)"
+              ? '(Loading audio...)'
               : isMuted
-                ? "(Muted)"
-                : ""}
+                ? '(Muted)'
+                : ''}
         </p>
 
         {/* Progress bar */}
@@ -277,7 +277,13 @@ export default function AudioPlayer() {
           />
         </div>
 
-        <p className="text-xs text-text-white-60">{formatTime(currentTime)} / {formatTime(duration)}</p>
+        <p className="text-xs text-text-white-60">
+          {formatTime(currentTime)}
+          {' '}
+          /
+          {' '}
+          {formatTime(duration)}
+        </p>
       </div>
 
       {/* Playback controls */}
@@ -293,14 +299,16 @@ export default function AudioPlayer() {
         <button
           onClick={toggleMute}
           className="p-3 rounded-full bg-darker-blue border-2 border-neon-pink hover:shadow-neon-pink-lg transition-all duration-300"
-          aria-label={isMuted ? "Unmute" : "Mute"}
+          aria-label={isMuted ? 'Unmute' : 'Mute'}
           title="Toggle mute/unmute"
         >
-          {isMuted ? (
-            <VolumeX className="w-6 h-6 text-neon-pink" />
-          ) : (
-            <Volume2 className="w-6 h-6 text-neon-pink" />
-          )}
+          {isMuted
+            ? (
+                <VolumeX className="w-6 h-6 text-neon-pink" />
+              )
+            : (
+                <Volume2 className="w-6 h-6 text-neon-pink" />
+              )}
         </button>
 
         <button
@@ -318,7 +326,10 @@ export default function AudioPlayer() {
       <div className="space-y-2">
         <div className="flex justify-between">
           <span className="text-sm text-neon-blue">Volume</span>
-          <span className="text-sm text-neon-blue">{Math.round(volume * 100)}%</span>
+          <span className="text-sm text-neon-blue">
+            {Math.round(volume * 100)}
+            %
+          </span>
         </div>
         <div className="py-2">
           <AudioSlider
@@ -374,7 +385,7 @@ export default function AudioPlayer() {
                   toggleControls();
                 }}
                 className="w-12 h-12 rounded-full bg-darker-blue border-2 border-neon-blue flex items-center justify-center transition-all duration-300 hover:border-neon-pink hover:shadow-neon-pink-lg group"
-                aria-label={isMuted ? "Unmute music and open controls" : "Mute music and open controls"}
+                aria-label={isMuted ? 'Unmute music and open controls' : 'Mute music and open controls'}
               >
                 {getVolumeIcon()}
 
@@ -392,8 +403,8 @@ export default function AudioPlayer() {
               className="bg-darker-blue border border-neon-blue text-white rounded-xl shadow-neon-blue"
               data-audio-player-tooltip="true"
             >
-              <p>{isMuted ? "Unmute music" : "Mute music"}</p>
-              <p className="text-xs text-text-white-70">{hasInteracted ? "Music is playing but muted" : "Click to start music (muted)"}</p>
+              <p>{isMuted ? 'Unmute music' : 'Mute music'}</p>
+              <p className="text-xs text-text-white-70">{hasInteracted ? 'Music is playing but muted' : 'Click to start music (muted)'}</p>
               <p className="text-xs text-text-white-70">Click to toggle sound and open controls</p>
               <p className="text-xs text-text-white-70">Right-click also opens controls</p>
             </TooltipContent>
@@ -424,7 +435,7 @@ export default function AudioPlayer() {
             className="w-[90vw] max-w-[350px] p-4 bg-darker-blue border border-neon-blue shadow-neon-blue-lg rounded-xl overflow-hidden [&>button]:hidden"
             onOpenAutoFocus={(e) => e.preventDefault()}
             data-audio-player-dialog="true"
-            style={{ paddingRight: '1rem' }}
+            style={{paddingRight: '1rem'}}
           >
             {/* Add DialogTitle for accessibility */}
             <DialogTitle className="sr-only">Music Player Controls</DialogTitle>
@@ -443,5 +454,5 @@ export default function AudioPlayer() {
         </Dialog>
       )}
     </div>
-  )
+  );
 }
