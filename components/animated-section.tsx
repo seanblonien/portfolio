@@ -11,7 +11,7 @@ type AnimatedSectionProps = {
   delay?: number;
 };
 
-export default function AnimatedSection({
+export function AnimatedSection({
   children,
   className = '',
   delay = 0,

@@ -1,8 +1,4 @@
 /**
- * Types for the experience component
- */
-
-/**
  * Visual media type for experience entries
  */
 export type ExperienceVisual = {

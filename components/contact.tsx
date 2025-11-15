@@ -1,6 +1,6 @@
 import {Button} from '@/components/ui/button';
 import {Mail, Linkedin, Github} from 'lucide-react';
-import AnimatedSection from './animated-section';
+import {AnimatedSection} from './animated-section';
 
 export default function Contact() {
   return (
