@@ -2,7 +2,7 @@ import type {Metadata} from 'next';
 import {Inter, VT323} from 'next/font/google';
 import './globals.css';
 import {Analytics} from '@vercel/analytics/react';
-import AudioPlayer from '@/components/audio-player';
+import {AudioPlayer} from '@/components/audio-player';
 import {SpeedInsights} from '@vercel/speed-insights/next';
 import {ThemeProvider} from '@/components/ThemeProvider';
 

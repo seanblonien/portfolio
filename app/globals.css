@@ -80,6 +80,40 @@
     color: white;
     text-shadow: 0 0 8px var(--neon-pink-90);
   }
+
+  /* Custom Scrollbar Styling - Neon Pink with Glow */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--darker-blue);
+    border-left: 1px solid var(--neon-pink-10);
+    border-radius: var(--border-radius-lg);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--neon-pink);
+    border-radius: 6px;
+    box-shadow:
+      0 0 10px var(--neon-pink-70),
+      0 0 20px var(--neon-pink-30),
+      inset 0 0 5px var(--neon-pink-90);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--neon-pink);
+    box-shadow:
+      0 0 15px var(--neon-pink),
+      0 0 30px var(--neon-pink-50),
+      inset 0 0 8px var(--neon-pink);
+  }
+
+  /* Firefox Scrollbar Styling */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--neon-pink) var(--darker-blue);
+  }
 }
 
 @layer components {

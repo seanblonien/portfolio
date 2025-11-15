@@ -11,6 +11,7 @@ type ExperiencePopoverHeaderDesktopProps = {
 export const ExperiencePopoverHeaderDesktop: React.FC<ExperiencePopoverHeaderDesktopProps>
   = ({experience, index, onClose}) => {
     const isSmallScreen = useIsSmallScreen();
+    const experienceSubtitle = `${experience.company ? `${experience.role} at ${experience.company}` : experience.role} • ${experience.location}`;
 
     return (
       <header className={`flex justify-between items-start ${isSmallScreen ? '' : 'mb-3'}`}>
@@ -19,10 +20,7 @@ export const ExperiencePopoverHeaderDesktop: React.FC<ExperiencePopoverHeaderDes
             {experience.projectName}
           </h4>
           <p className={`text-base ${experience.type === 'work' ? 'text-neon-pink' : 'text-neon-blue'}`}>
-            {experience.company ? `${experience.role} at ${experience.company}` : experience.role}
-            {' '}
-            •
-            {experience.location}
+            {experienceSubtitle}
           </p>
         </div>
         {/* Close button - only visible on desktop */}

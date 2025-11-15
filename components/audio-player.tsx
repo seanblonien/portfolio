@@ -27,7 +27,7 @@ import {AudioSlider} from '@/components/ui/audio-slider';
 
 const START_TIME = 70;
 
-export default function AudioPlayer() {
+export const AudioPlayer: React.FC = () => {
   const isMobile = useIsMobile();
   // Start muted to comply with browser autoplay policies
   const [isMuted, setIsMuted] = useState(true);
@@ -457,4 +457,4 @@ export default function AudioPlayer() {
       )}
     </div>
   );
-}
+};

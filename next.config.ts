@@ -19,6 +19,7 @@ const nextConfig: NextConfig = withBundleAnalyzer({
   reactCompiler: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  cacheComponents: true,
   experimental: {
     turbopackFileSystemCacheForDev: true,
     optimizeCss: true,

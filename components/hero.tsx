@@ -1,11 +1,9 @@
-'use client';
-
 import Image from 'next/image';
 import {Button} from '@/components/ui/button';
 import {ArrowDown, FileText} from 'lucide-react';
-import VHSTitle from './vhs-title';
+import {VHSTitle} from './vhs-title';
 
-export default function Hero() {
+export const Hero: React.FC = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
@@ -55,4 +53,4 @@ export default function Hero() {
       </div>
     </section>
   );
-}
+};

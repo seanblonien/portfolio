@@ -1,9 +1,10 @@
 import {GithubIcon} from 'lucide-react';
 import {formatDate} from '@/lib/utils';
 
-export default function Footer() {
-  const currentYear = new Date().getFullYear();
-  const lastUpdated = formatDate(new Date('2025-10-25T18:00:00Z'));
+const currentYear = new Date().getFullYear();
+
+export const Footer: React.FC = () => {
+  const lastUpdated = formatDate(new Date('2025-11-14T18:00:00Z'));
 
   return (
     <footer className="py-8 border-t border-neon-blue-20 relative z-10">
@@ -47,4 +48,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};

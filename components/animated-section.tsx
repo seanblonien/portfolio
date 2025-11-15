@@ -11,11 +11,11 @@ type AnimatedSectionProps = {
   delay?: number;
 };
 
-export function AnimatedSection({
+export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   children,
   className = '',
   delay = 0,
-}: AnimatedSectionProps) {
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -88,4 +88,4 @@ export function AnimatedSection({
       {children}
     </div>
   );
-}
+};

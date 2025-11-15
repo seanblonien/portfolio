@@ -2,7 +2,6 @@
 import {Card, CardDescription, CardHeader, CardTitle} from '@/components/ui/card';
 import {AnimatedSection} from '../animated-section';
 import {Popover, PopoverContent, PopoverTrigger} from '@/components/ui/popover';
-import type {Experience} from '@/types/experience';
 import {experiences} from '@/data/experience';
 import {useExperiencePopover} from '@/hooks/use-experience-popover';
 import {useIsSmallScreen} from '@/hooks/use-mobile';
@@ -13,7 +12,7 @@ import {ExperiencePopoverHeaderMobile} from '@/components/experience/experience-
 import {ExperiencePopoverHeaderDesktop} from '@/components/experience/experience-popover-header-desktop';
 import {ExperiencePopoverContent} from '@/components/experience/experience-popover-content';
 
-export function Experience() {
+export const ExperienceSection: React.FC = () => {
   const isSmallScreen = useIsSmallScreen();
   const {
     openPopoverIndex, setOpenPopoverIndex, handleTouchStart, handleTouchEnd,
@@ -171,4 +170,4 @@ export function Experience() {
       </AnimatedSection>
     </section>
   );
-}
+};

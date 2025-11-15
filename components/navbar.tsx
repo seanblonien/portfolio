@@ -16,7 +16,7 @@ const socialLinks = [
   {name: 'LinkedIn', href: 'https://linkedin.com/in/seanblonien', icon: Linkedin},
 ];
 
-export default function Navbar() {
+export const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -174,4 +174,4 @@ export default function Navbar() {
       </div>
     </nav>
   );
-}
+};

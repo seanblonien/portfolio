@@ -2,7 +2,7 @@ import {Button} from '@/components/ui/button';
 import {Mail, Linkedin, Github} from 'lucide-react';
 import {AnimatedSection} from './animated-section';
 
-export default function Contact() {
+export const Contact: React.FC = () => {
   return (
     <section id="contact" className="section-container">
       <AnimatedSection>
@@ -68,4 +68,4 @@ export default function Contact() {
       </AnimatedSection>
     </section>
   );
-}
+};

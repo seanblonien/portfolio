@@ -5,7 +5,7 @@ import {Separator} from '@/components/ui/separator';
 import {Code, Heart, Zap, Trophy, Cpu, Gamepad2} from 'lucide-react';
 import Image from 'next/image';
 
-export default function About() {
+export const About: React.FC = () => {
   return (
     <section id="about" className="section-container">
       <AnimatedSection>
@@ -223,4 +223,4 @@ export default function About() {
       </AnimatedSection>
     </section>
   );
-}
+};

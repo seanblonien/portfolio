@@ -25,7 +25,7 @@ const badgeVariants = cva(
 export type BadgeProps = {} & React.HTMLAttributes<HTMLDivElement>
   & VariantProps<typeof badgeVariants>;
 
-function Badge({className, variant, ...props}: BadgeProps) {
+const Badge: React.FC<BadgeProps> = ({className, variant, ...props}) => {
   return (
     <p
       aria-label={props.children as string}
@@ -33,6 +33,6 @@ function Badge({className, variant, ...props}: BadgeProps) {
       {...props}
     />
   );
-}
+};
 
 export {Badge, badgeVariants};

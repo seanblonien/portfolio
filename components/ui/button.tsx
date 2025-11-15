@@ -36,13 +36,13 @@ export type ButtonProps = {
   asChild?: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement> & VariantProps<typeof buttonVariants>;
 
-const Button = ({
+const Button: React.FC<ButtonProps> = ({
   className,
   variant,
   size,
   asChild = false,
   ...props
-}: ButtonProps) => {
+}) => {
   const Comp = asChild ? Slot : 'button';
   return (
     <Comp

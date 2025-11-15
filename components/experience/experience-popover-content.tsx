@@ -1,4 +1,3 @@
-'use client';
 import {ExternalLink} from 'lucide-react';
 import {Experience} from '@/types/experience';
 

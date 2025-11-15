@@ -1,9 +1,9 @@
 import {cn} from '@/lib/utils';
 
-const Card = ({
+const Card: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
+}) => (
   <div
     className={cn(
       'rounded-lg border bg-card text-card-foreground shadow-sm',
@@ -14,10 +14,10 @@ const Card = ({
 );
 Card.displayName = 'Card';
 
-const CardHeader = ({
+const CardHeader: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
+}) => (
   <div
     className={cn('flex flex-col space-y-1.5 p-4 md:p-6', className)}
     {...props}
@@ -25,10 +25,10 @@ const CardHeader = ({
 );
 CardHeader.displayName = 'CardHeader';
 
-const CardTitle = ({
+const CardTitle: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
+}) => (
   <h3
     className={cn(
       'text-2xl font-semibold leading-none tracking-tight',
@@ -39,10 +39,10 @@ const CardTitle = ({
 );
 CardTitle.displayName = 'CardTitle';
 
-const CardDescription = ({
+const CardDescription: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
+}) => (
   <p
     className={cn('text-sm text-muted-foreground', className)}
     {...props}
@@ -50,18 +50,18 @@ const CardDescription = ({
 );
 CardDescription.displayName = 'CardDescription';
 
-const CardContent = ({
+const CardContent: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
+}) => (
   <div className={cn('p-4 pt-0 md:p-6 md:pt-0', className)} {...props} />
 );
 CardContent.displayName = 'CardContent';
 
-const CardFooter = ({
+const CardFooter: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
+}) => (
   <div
     className={cn('flex items-center p-4 pt-0 md:p-6 md:pt-0', className)}
     {...props}
