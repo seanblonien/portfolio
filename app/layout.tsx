@@ -2,9 +2,9 @@ import type {Metadata} from 'next';
 import {Inter, VT323} from 'next/font/google';
 import './globals.css';
 import {Analytics} from '@vercel/analytics/react';
-import {AudioPlayer} from '@/components/audio-player';
 import {SpeedInsights} from '@vercel/speed-insights/next';
 import {ThemeProvider} from '@/components/ThemeProvider';
+import {AudioPlayerWrapper} from '@/components/audio-player-wrapper';
 
 const inter = Inter({subsets: ['latin'], variable: '--font-inter'});
 const vt323 = VT323({
@@ -85,7 +85,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${vt323.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
-          <AudioPlayer />
+          <AudioPlayerWrapper />
           <Analytics />
           <SpeedInsights />
         </ThemeProvider>
