@@ -1,6 +1,5 @@
 'use client';
-
-import {useEffect, useRef, useState} from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 /**
  * VHS-style title component with glitch effects
@@ -20,7 +19,7 @@ export const VHSTitle: React.FC = () => {
           if (titleRef.current) observer.unobserve(titleRef.current);
         }
       },
-      {threshold: 0.1},
+      { threshold: 0.1 },
     );
 
     const element = titleRef.current;
@@ -73,10 +72,10 @@ export const VHSTitle: React.FC = () => {
     // Create glitch effect at random intervals
     const glitchInterval = setInterval(
       () => {
-        const multiGlitch = Math.random() > 0.7;
+        const isMultiGlitch = Math.random() > 0.7;
         createGlitch(title);
 
-        if (multiGlitch) {
+        if (isMultiGlitch) {
           glitchTimeout = setTimeout(() => {
             createGlitch(title);
           }, 200);
@@ -92,10 +91,10 @@ export const VHSTitle: React.FC = () => {
   }, [isInView, hasGlitched]);
 
   return (
-    <div className="relative">
+    <div className='relative'>
       <div
         ref={titleRef}
-        className="vhs-title relative z-10"
+        className='vhs-title relative z-10'
         onMouseEnter={() => {
           if (Math.random() > 0.5 && titleRef.current) {
             titleRef.current.classList.add('glitching');
@@ -105,10 +104,10 @@ export const VHSTitle: React.FC = () => {
           }
         }}
       >
-        <h1 className="text-5xl md:text-7xl font-vt323 mb-4 tracking-wide">
-          <span className="neon-text-blue">SEAN</span>
+        <h1 className='text-5xl md:text-7xl font-vt323 mb-4 tracking-wide'>
+          <span className='neon-text-blue'>SEAN</span>
           {' '}
-          <span className="neon-text-pink">BLONIEN</span>
+          <span className='neon-text-pink'>BLONIEN</span>
         </h1>
       </div>
     </div>

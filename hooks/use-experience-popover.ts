@@ -1,5 +1,5 @@
-import {useIsSmallScreen} from '@/hooks/use-mobile';
-import {useState, useEffect} from 'react';
+import { useEffect, useState } from 'react';
+import { useIsSmallScreen } from '@/hooks/use-mobile';
 
 export const useExperiencePopover = () => {
   const isSmallScreen = useIsSmallScreen();

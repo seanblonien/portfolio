@@ -1,19 +1,18 @@
 'use client';
-
-import {useState, useEffect} from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import {Menu, X, Github, Linkedin} from 'lucide-react';
-import {debounce} from '@/lib/utils';
+import { Github, Linkedin, Menu, X } from 'lucide-react';
+import { debounce } from '@/lib/utils';
 
 const navLinks = [
-  {name: 'About', href: '#about'},
-  {name: 'Experience', href: '#experience'},
-  {name: 'Contact', href: '#contact'},
+  { name: 'About', href: '#about' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Contact', href: '#contact' },
 ];
 
 const socialLinks = [
-  {name: 'GitHub', href: 'https://github.com/seanblonien', icon: Github},
-  {name: 'LinkedIn', href: 'https://linkedin.com/in/seanblonien', icon: Linkedin},
+  { name: 'GitHub', href: 'https://github.com/seanblonien', icon: Github },
+  { name: 'LinkedIn', href: 'https://linkedin.com/in/seanblonien', icon: Linkedin },
 ];
 
 export const Navbar: React.FC = () => {
@@ -41,6 +40,7 @@ export const Navbar: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll);
     handleScroll();
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -56,6 +56,7 @@ export const Navbar: React.FC = () => {
     };
 
     document.addEventListener('click', handleClickOutside);
+
     return () => document.removeEventListener('click', handleClickOutside);
   }, [menuOpen]);
 
@@ -66,46 +67,47 @@ export const Navbar: React.FC = () => {
           ? 'backdrop-blur-md shadow-lg py-2'
           : 'bg-transparent py-4'
       }`}
-      style={hasScrolled ? {backgroundColor: 'var(--dark-blue-80, rgba(10, 10, 32, 0.8))'} : undefined}
+      style={hasScrolled ? { backgroundColor: 'var(--dark-blue-80, rgba(10, 10, 32, 0.8))' } : undefined}
     >
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="flex justify-between items-center">
+      <div className='max-w-6xl mx-auto px-4'>
+        <div className='flex justify-between items-center'>
           <Link
-            href="/"
-            className="font-vt323 text-2xl neon-text-pink hover:scale-105 transition-transform"
+            className='font-vt323 text-2xl neon-text-pink hover:scale-105 transition-transform'
+            href='/'
           >
             SEAN.BLONIEN
           </Link>
 
           {/* Desktop menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            <div className="flex space-x-6">
+          <div className='hidden md:flex items-center space-x-8'>
+            <div className='flex space-x-6'>
               {navLinks.map((item) => (
                 <Link
                   key={item.name}
-                  href={item.href}
                   className={`font-vt323 text-lg transition-all duration-300 ${
-                    activeSection === item.href.substring(1)
+                    activeSection === item.href.slice(1)
                       ? 'neon-text-blue'
                       : 'text-white hover:neon-text-blue'
                   }`}
+                  href={item.href}
                 >
                   {item.name}
                 </Link>
               ))}
             </div>
 
-            <div className="flex space-x-4 border-l border-white/20 pl-6">
+            <div className='flex space-x-4 border-l border-white/20 pl-6'>
               {socialLinks.map((item) => {
                 const Icon = item.icon;
+
                 return (
                   <a
                     key={item.name}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white/70 hover:text-neon-pink transition-colors"
                     aria-label={item.name}
+                    className='text-white/70 hover:text-neon-pink transition-colors'
+                    href={item.href}
+                    rel='noopener noreferrer'
+                    target='_blank'
                   >
                     <Icon size={20} />
                   </a>
@@ -115,14 +117,14 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className='md:hidden'>
             <button
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              className='text-white hover:text-neon-blue p-1'
               onClick={(e) => {
                 e.stopPropagation();
                 setMenuOpen(!menuOpen);
               }}
-              className="text-white hover:text-neon-blue p-1"
-              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             >
               {menuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -135,35 +137,36 @@ export const Navbar: React.FC = () => {
         className={`md:hidden absolute w-full backdrop-blur-md shadow-lg transition-all duration-300 overflow-hidden ${
           menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
         }`}
-        style={{backgroundColor: 'var(--dark-blue-95, rgba(10, 10, 32, 0.95))'}}
+        style={{ backgroundColor: 'var(--dark-blue-95, rgba(10, 10, 32, 0.95))' }}
       >
-        <div className="px-4 py-2 space-y-3">
+        <div className='px-4 py-2 space-y-3'>
           {navLinks.map((item) => (
             <Link
               key={item.name}
-              href={item.href}
               className={`block py-2 font-vt323 text-lg ${
-                activeSection === item.href.substring(1)
+                activeSection === item.href.slice(1)
                   ? 'neon-text-blue'
                   : 'text-white hover:neon-text-blue'
               }`}
+              href={item.href}
               onClick={() => setMenuOpen(false)}
             >
               {item.name}
             </Link>
           ))}
 
-          <div className="flex space-x-6 pt-2 border-t border-white/20">
+          <div className='flex space-x-6 pt-2 border-t border-white/20'>
             {socialLinks.map((item) => {
               const Icon = item.icon;
+
               return (
                 <a
                   key={item.name}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/70 hover:text-neon-pink transition-colors"
                   aria-label={item.name}
+                  className='text-white/70 hover:text-neon-pink transition-colors'
+                  href={item.href}
+                  rel='noopener noreferrer'
+                  target='_blank'
                 >
                   <Icon size={20} />
                 </a>

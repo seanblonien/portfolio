@@ -1,6 +1,5 @@
 'use client';
-
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 
 // Default breakpoints matching Tailwind's common breakpoints
 export const BREAKPOINTS = {
