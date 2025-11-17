@@ -42,31 +42,31 @@ export const VHSTitle: React.FC = () => {
     const title = titleRef.current;
     let glitchTimeout: NodeJS.Timeout | null = null;
 
+    // Function to create a single glitch
+    const createGlitch = (element: HTMLDivElement) => {
+      element.classList.add('glitching');
+
+      // Random horizontal offset - sometimes more extreme
+      const isExtremeGlitch = Math.random() > 0.7;
+      const xOffset = (Math.random() * (isExtremeGlitch ? 20 : 10)) - (isExtremeGlitch ? 10 : 5);
+      const yOffset = isExtremeGlitch ? ((Math.random() * 8) - 4) : 0;
+
+      element.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+
+      // Remove the glitch class after a random short duration
+      const duration = 100 + (Math.random() * 100);
+      setTimeout(() => {
+        element.classList.remove('glitching');
+        element.style.transform = '';
+      }, duration);
+    };
+
     // Initial glitch effect when first visible
     if (!hasGlitched) {
       setTimeout(() => {
         createGlitch(title);
         setHasGlitched(true);
       }, 500);
-    }
-
-    // Function to create a single glitch
-    function createGlitch(element: HTMLDivElement) {
-      element.classList.add('glitching');
-
-      // Random horizontal offset - sometimes more extreme
-      const isExtremeGlitch = Math.random() > 0.7;
-      const xOffset = Math.random() * (isExtremeGlitch ? 20 : 10) - (isExtremeGlitch ? 10 : 5);
-      const yOffset = isExtremeGlitch ? (Math.random() * 8 - 4) : 0;
-
-      element.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
-
-      // Remove the glitch class after a random short duration
-      const duration = 100 + Math.random() * 100;
-      setTimeout(() => {
-        element.classList.remove('glitching');
-        element.style.transform = '';
-      }, duration);
     }
 
     // Create glitch effect at random intervals
@@ -81,7 +81,7 @@ export const VHSTitle: React.FC = () => {
           }, 200);
         }
       },
-      2000 + Math.random() * 4000, // Random interval between 2-6 seconds
+      2000 + (Math.random() * 4000), // Random interval between 2-6 seconds
     );
 
     return () => {

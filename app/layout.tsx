@@ -4,7 +4,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { ThemeProvider } from '@/components/ThemeProvider';
-import { AudioPlayerWrapper } from '@/components/AudioPlayerWrapper';
+import { AudioPlayerWrapper } from '@/components/audio-player-wrapper';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const vt323 = VT323({

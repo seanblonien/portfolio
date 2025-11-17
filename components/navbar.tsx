@@ -15,8 +15,9 @@ const socialLinks = [
   { name: 'LinkedIn', href: 'https://linkedin.com/in/seanblonien', icon: Linkedin },
 ];
 
+// eslint-disable-next-line max-lines-per-function -- TODO: split up
 export const Navbar: React.FC = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
 
@@ -46,19 +47,19 @@ export const Navbar: React.FC = () => {
 
   // Close mobile menu when clicking outside
   useEffect(() => {
-    if (!menuOpen) return;
+    if (!isMenuOpen) return;
 
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (!target.closest('nav')) {
-        setMenuOpen(false);
+        setIsMenuOpen(false);
       }
     };
 
     document.addEventListener('click', handleClickOutside);
 
     return () => document.removeEventListener('click', handleClickOutside);
-  }, [menuOpen]);
+  }, [isMenuOpen]);
 
   return (
     <nav
@@ -119,14 +120,14 @@ export const Navbar: React.FC = () => {
           {/* Mobile menu button */}
           <div className='md:hidden'>
             <button
-              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               className='text-white hover:text-neon-blue p-1'
               onClick={(e) => {
                 e.stopPropagation();
-                setMenuOpen(!menuOpen);
+                setIsMenuOpen(!isMenuOpen);
               }}
             >
-              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
@@ -135,7 +136,7 @@ export const Navbar: React.FC = () => {
       {/* Mobile menu with animation */}
       <div
         className={`md:hidden absolute w-full backdrop-blur-md shadow-lg transition-all duration-300 overflow-hidden ${
-          menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+          isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
         }`}
         style={{ backgroundColor: 'var(--dark-blue-95, rgba(10, 10, 32, 0.95))' }}
       >
@@ -149,7 +150,7 @@ export const Navbar: React.FC = () => {
                   : 'text-white hover:neon-text-blue'
               }`}
               href={item.href}
-              onClick={() => setMenuOpen(false)}
+              onClick={() => setIsMenuOpen(false)}
             >
               {item.name}
             </Link>

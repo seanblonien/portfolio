@@ -22,12 +22,12 @@ export const ExperiencePopoverContent: React.FC<ExperiencePopoverContentProps> =
       </section>
 
       {/* Impact */}
-      {experience.impact && experience.impact.length > 0 && (
+      {experience.impact.length > 0 && (
         <section aria-labelledby={`impact-heading-${index}`}>
           <h5 className='text-lg uppercase text-text-white-60 mb-1' id={`impact-heading-${index}`}>Key Impact</h5>
           <ul className='list-disc pl-4 text-text-white-80 text-base space-y-2'>
-            {experience.impact.map((item, i) => (
-              <li key={i} className='break-words'>{item}</li>
+            {experience.impact.map((item) => (
+              <li key={`impact-${item}`} className='break-words'>{item}</li>
             ))}
           </ul>
         </section>

@@ -11,7 +11,8 @@ type ExperiencePopoverHeaderDesktopProps = {
 export const ExperiencePopoverHeaderDesktop: React.FC<ExperiencePopoverHeaderDesktopProps> =
   ({ experience, index, onClose }) => {
     const isSmallScreen = useIsSmallScreen();
-    const experienceSubtitle = `${experience.company ? `${experience.role} at ${experience.company}` : experience.role} • ${experience.location}`;
+    const roleCompany = experience.company ? `${experience.role} at ${experience.company}` : experience.role;
+    const experienceSubtitle = `${roleCompany} • ${experience.location}`;
 
     return (
       <header className={`flex justify-between items-start ${isSmallScreen ? '' : 'mb-3'}`}>

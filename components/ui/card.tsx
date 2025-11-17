@@ -26,6 +26,7 @@ const CardHeader: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
 CardHeader.displayName = 'CardHeader';
 
 const CardTitle: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
+  children,
   className,
   ...props
 }) => (
@@ -35,8 +36,11 @@ const CardTitle: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
       className,
     )}
     {...props}
-  />
+  >
+    {children}
+  </h3>
 );
+
 CardTitle.displayName = 'CardTitle';
 
 const CardDescription: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({

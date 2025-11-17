@@ -81,19 +81,15 @@ export const AudioPlayer: React.FC = () => {
 
     // Update time display
     const timeUpdateHandler = () => {
-      if (audio) {
       setCurrentTime(audio.currentTime);
-      }
     };
 
     // Get duration when metadata is loaded
     const loadedMetadataHandler = () => {
-      if (audio) {
       setDuration(audio.duration);
       // Set initial position to START_TIME
       audio.currentTime = START_TIME;
       // We'll start playing after user interaction, not automatically
-      }
     };
 
     // Add event listeners
@@ -102,12 +98,10 @@ export const AudioPlayer: React.FC = () => {
 
     // Clean up on unmount
     return () => {
-      if (audio) {
       audio.removeEventListener('timeupdate', timeUpdateHandler);
       audio.removeEventListener('loadedmetadata', loadedMetadataHandler);
       audio.pause();
       audio.src = '';
-      }
     };
   }, []);
 
