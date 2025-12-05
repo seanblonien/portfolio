@@ -1,19 +1,8 @@
 import { defineConfig, globalIgnores } from 'eslint/config';
-import nextPlugin from '@next/eslint-plugin-next';
-import reactConfig from '@seanblonien/eslint-config-react';
+import { configWithNext } from '@seanblonien/eslint-config-react';
 
 const eslintConfig = defineConfig([
-  ...reactConfig,
-  // Next.js recommended rules
-  {
-    plugins: {
-      '@next/next': nextPlugin,
-    },
-    rules: {
-      ...nextPlugin.configs.recommended.rules,
-      ...nextPlugin.configs['core-web-vitals'].rules,
-    },
-  },
+  ...await configWithNext(),
   {
     rules: {
       'react/jsx-props-no-spreading': 'off',

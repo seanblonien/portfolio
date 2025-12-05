@@ -10,7 +10,7 @@ const nextConfig: NextConfig = withBundleAnalyzer({
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    unoptimized: true, // for static export
   },
   compiler: {
     reactRemoveProperties: true,
