@@ -1,4 +1,4 @@
-import {cn} from '@/lib/utils';
+import { cn } from '@/lib/utils';
 
 const Card: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   className,
@@ -26,6 +26,7 @@ const CardHeader: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
 CardHeader.displayName = 'CardHeader';
 
 const CardTitle: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
+  children,
   className,
   ...props
 }) => (
@@ -35,8 +36,11 @@ const CardTitle: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
       className,
     )}
     {...props}
-  />
+  >
+    {children}
+  </h3>
 );
+
 CardTitle.displayName = 'CardTitle';
 
 const CardDescription: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
@@ -69,4 +73,4 @@ const CardFooter: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
 );
 CardFooter.displayName = 'CardFooter';
 
-export {Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent};
+export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle };

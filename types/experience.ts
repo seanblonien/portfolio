@@ -2,9 +2,9 @@
  * Visual media type for experience entries
  */
 export type ExperienceVisual = {
+  caption: string;
   type: 'image' | 'diagram' | 'video';
   url: string;
-  caption: string;
 };
 
 /**
@@ -24,25 +24,25 @@ export type ExperienceType = 'work' | 'project';
  * Experience entry interface
  */
 export type Experience = {
-  projectName: string;
-  role: string;
-  company?: string;
-  client?: string;
-  period: string;
-  location: string;
-
+  // Call to action (e.g., link to LinkedIn, GitHub, etc.)
+  callToAction: ExperienceCallToAction;
   // Detailed content
   challenge: string;
-  solution: string;
+  client?: string;
+  company?: string;
   impact: string[];
   learnings: string;
 
-  // Visual content
-  visuals?: ExperienceVisual[];
+  location: string;
+  period: string;
+  projectName: string;
+  role: string;
 
-  // Call to action (e.g., link to LinkedIn, GitHub, etc.)
-  callToAction: ExperienceCallToAction;
+  solution: string;
 
   // Type of experience (work or project)
   type: ExperienceType;
+
+  // Visual content
+  visuals?: ExperienceVisual[];
 };

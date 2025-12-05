@@ -1,12 +1,12 @@
-import type {Metadata} from 'next';
-import {Inter, VT323} from 'next/font/google';
 import './globals.css';
-import {Analytics} from '@vercel/analytics/react';
-import {SpeedInsights} from '@vercel/speed-insights/next';
-import {ThemeProvider} from '@/components/ThemeProvider';
-import {AudioPlayerWrapper} from '@/components/audio-player-wrapper';
+import { Inter, VT323 } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import type { Metadata } from 'next';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import { AudioPlayerWrapper } from '@/components/audio-player-wrapper';
 
-const inter = Inter({subsets: ['latin'], variable: '--font-inter'});
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const vt323 = VT323({
   weight: '400',
   subsets: ['latin'],
@@ -27,20 +27,20 @@ export const metadata: Metadata = {
     'JavaScript',
     'Cloud Architecture',
   ],
-  authors: [{name: 'Sean Blonien'}],
+  authors: [{ name: 'Sean Blonien' }],
   creator: 'Sean Blonien',
   icons: {
     icon: [
-      {url: '/favicon.ico', sizes: 'any'},
-      {url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png'},
-      {url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png'},
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
     ],
     apple: [
-      {url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png'},
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
     other: [
-      {url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png'},
-      {url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png'},
+      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
     ],
   },
   manifest: '/site.webmanifest',
@@ -70,26 +70,24 @@ export const metadata: Metadata = {
     images: ['/android-chrome-512x512.png'], // Using the favicon as Twitter image for now
   },
   robots: {
+    // eslint-disable-next-line @typescript-eslint/naming-convention -- library API
     index: true,
+    // eslint-disable-next-line @typescript-eslint/naming-convention -- library API
     follow: true,
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${vt323.variable} font-sans`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          {children}
-          <AudioPlayerWrapper />
-          <Analytics />
-          <SpeedInsights />
-        </ThemeProvider>
-      </body>
-    </html>
-  );
-}
+const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => (
+  <html suppressHydrationWarning lang='en'>
+    <body className={`${inter.variable} ${vt323.variable} font-sans`}>
+      <ThemeProvider disableTransitionOnChange enableSystem attribute='class' defaultTheme='dark'>
+        {children}
+        <AudioPlayerWrapper />
+        <Analytics />
+        <SpeedInsights />
+      </ThemeProvider>
+    </body>
+  </html>
+);
+
+export default RootLayout;

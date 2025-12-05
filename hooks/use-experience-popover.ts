@@ -1,5 +1,8 @@
-import {useIsSmallScreen} from '@/hooks/use-mobile';
-import {useState, useEffect} from 'react';
+import { useEffect, useState } from 'react';
+import { useIsSmallScreen } from '@/hooks/use-mobile';
+
+const SWIPE_CLOSE_THRESHOLD_PX = 70;
+const POPOVER_POSITIONING_DELAY_MS = 50;
 
 export const useExperiencePopover = () => {
   const isSmallScreen = useIsSmallScreen();
@@ -14,7 +17,11 @@ export const useExperiencePopover = () => {
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    if (isSmallScreen && touchStartY && e.changedTouches[0].clientY - touchStartY > 70) {
+    if (
+      isSmallScreen &&
+      touchStartY &&
+      e.changedTouches[0].clientY - touchStartY > SWIPE_CLOSE_THRESHOLD_PX
+    ) {
       // Swipe down detected, close the popover
       setOpenPopoverIndex(null);
     }
@@ -60,7 +67,7 @@ export const useExperiencePopover = () => {
             (popoverContent as HTMLElement).style.height = '100vh';
           }
         }
-      }, 50); // Small delay to ensure DOM is updated
+      }, POPOVER_POSITIONING_DELAY_MS); // Small delay to ensure DOM is updated
     }
   }, [isSmallScreen, openPopoverIndex]);
 

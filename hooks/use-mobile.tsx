@@ -1,6 +1,6 @@
 'use client';
 
-import {useEffect, useState} from 'react';
+import { useSyncExternalStore } from 'react';
 
 // Default breakpoints matching Tailwind's common breakpoints
 export const BREAKPOINTS = {
@@ -16,42 +16,32 @@ export const BREAKPOINTS = {
  * @param breakpoint - The breakpoint in pixels (defaults to MD/768px)
  * @returns boolean indicating if screen is below the breakpoint
  */
-export function useBreakpoint(breakpoint = BREAKPOINTS.MD) {
-  const [isBelow, setIsBelow] = useState<boolean | undefined>(undefined);
-
-  useEffect(() => {
-    // Use matchMedia for better performance
+export const useBreakpoint = (breakpoint = BREAKPOINTS.MD) => {
+  const subscribe = (callback: () => void) => {
     const mql = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
 
-    const onChange = () => {
-      setIsBelow(window.innerWidth < breakpoint);
-    };
+    const onChange = () => callback();
 
-    // Add event listener
     mql.addEventListener('change', onChange);
 
-    // Set initial value
-    setIsBelow(window.innerWidth < breakpoint);
-
-    // Clean up
     return () => mql.removeEventListener('change', onChange);
-  }, [breakpoint]);
+  };
 
-  return !!isBelow;
-}
+  const getSnapshot = () => window.innerWidth < breakpoint;
+
+  const isBelow = useSyncExternalStore(subscribe, getSnapshot, () => false);
+
+  return isBelow;
+};
 
 /**
  * Hook to detect if the current screen is a mobile device (below MD breakpoint)
  * @returns boolean indicating if screen is a mobile device
  */
-export function useIsMobile() {
-  return useBreakpoint(BREAKPOINTS.MD);
-}
+export const useIsMobile = () => useBreakpoint(BREAKPOINTS.MD);
 
 /**
  * Hook to detect if the current screen is a small screen (below LG breakpoint)
  * @returns boolean indicating if screen is a small screen
  */
-export function useIsSmallScreen() {
-  return useBreakpoint(BREAKPOINTS.LG);
-}
+export const useIsSmallScreen = () => useBreakpoint(BREAKPOINTS.LG);

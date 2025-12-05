@@ -1,6 +1,15 @@
 'use client';
+import { type ReactNode, useEffect, useRef, useState } from 'react';
 
-import {useEffect, useRef, useState, type ReactNode} from 'react';
+// Helper function to check if element is in viewport
+const isElementInViewport = (el: HTMLElement) => {
+  const rect = el.getBoundingClientRect();
+
+  return (
+    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.bottom >= 0
+  );
+};
 
 /**
  * Component that animates its children when they enter the viewport
@@ -31,15 +40,6 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
 
     return () => clearTimeout(timer);
   }, []);
-
-  // Helper function to check if element is in viewport
-  function isElementInViewport(el: HTMLElement) {
-    const rect = el.getBoundingClientRect();
-    return (
-      rect.top <= (window.innerHeight || document.documentElement.clientHeight)
-      && rect.bottom >= 0
-    );
-  }
 
   // Set up intersection observer for scroll animations
   useEffect(() => {
@@ -82,7 +82,7 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       } ${className}`}
       style={{
-        transitionDuration: `700ms`,
+        transitionDuration: '700ms',
       }}
     >
       {children}

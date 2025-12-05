@@ -1,1 +1,1 @@
-export {ExperienceSection} from './experience';
+export { ExperienceSection } from './experience';

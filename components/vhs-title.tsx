@@ -1,6 +1,5 @@
 'use client';
-
-import {useEffect, useRef, useState} from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 /**
  * VHS-style title component with glitch effects
@@ -20,7 +19,7 @@ export const VHSTitle: React.FC = () => {
           if (titleRef.current) observer.unobserve(titleRef.current);
         }
       },
-      {threshold: 0.1},
+      { threshold: 0.1 },
     );
 
     const element = titleRef.current;
@@ -43,6 +42,25 @@ export const VHSTitle: React.FC = () => {
     const title = titleRef.current;
     let glitchTimeout: NodeJS.Timeout | null = null;
 
+    // Function to create a single glitch
+    const createGlitch = (element: HTMLDivElement) => {
+      element.classList.add('glitching');
+
+      // Random horizontal offset - sometimes more extreme
+      const isExtremeGlitch = Math.random() > 0.7;
+      const xOffset = (Math.random() * (isExtremeGlitch ? 20 : 10)) - (isExtremeGlitch ? 10 : 5);
+      const yOffset = isExtremeGlitch ? ((Math.random() * 8) - 4) : 0;
+
+      element.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+
+      // Remove the glitch class after a random short duration
+      const duration = 100 + (Math.random() * 100);
+      setTimeout(() => {
+        element.classList.remove('glitching');
+        element.style.transform = '';
+      }, duration);
+    };
+
     // Initial glitch effect when first visible
     if (!hasGlitched) {
       setTimeout(() => {
@@ -51,38 +69,19 @@ export const VHSTitle: React.FC = () => {
       }, 500);
     }
 
-    // Function to create a single glitch
-    function createGlitch(element: HTMLDivElement) {
-      element.classList.add('glitching');
-
-      // Random horizontal offset - sometimes more extreme
-      const isExtremeGlitch = Math.random() > 0.7;
-      const xOffset = Math.random() * (isExtremeGlitch ? 20 : 10) - (isExtremeGlitch ? 10 : 5);
-      const yOffset = isExtremeGlitch ? (Math.random() * 8 - 4) : 0;
-
-      element.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
-
-      // Remove the glitch class after a random short duration
-      const duration = 100 + Math.random() * 100;
-      setTimeout(() => {
-        element.classList.remove('glitching');
-        element.style.transform = '';
-      }, duration);
-    }
-
     // Create glitch effect at random intervals
     const glitchInterval = setInterval(
       () => {
-        const multiGlitch = Math.random() > 0.7;
+        const isMultiGlitch = Math.random() > 0.7;
         createGlitch(title);
 
-        if (multiGlitch) {
+        if (isMultiGlitch) {
           glitchTimeout = setTimeout(() => {
             createGlitch(title);
           }, 200);
         }
       },
-      2000 + Math.random() * 4000, // Random interval between 2-6 seconds
+      2000 + (Math.random() * 4000), // Random interval between 2-6 seconds
     );
 
     return () => {
@@ -92,10 +91,10 @@ export const VHSTitle: React.FC = () => {
   }, [isInView, hasGlitched]);
 
   return (
-    <div className="relative">
+    <div className='relative'>
       <div
         ref={titleRef}
-        className="vhs-title relative z-10"
+        className='vhs-title relative z-10'
         onMouseEnter={() => {
           if (Math.random() > 0.5 && titleRef.current) {
             titleRef.current.classList.add('glitching');
@@ -105,10 +104,10 @@ export const VHSTitle: React.FC = () => {
           }
         }}
       >
-        <h1 className="text-5xl md:text-7xl font-vt323 mb-4 tracking-wide">
-          <span className="neon-text-blue">SEAN</span>
+        <h1 className='text-5xl md:text-7xl font-vt323 mb-4 tracking-wide'>
+          <span className='neon-text-blue'>SEAN</span>
           {' '}
-          <span className="neon-text-pink">BLONIEN</span>
+          <span className='neon-text-pink'>BLONIEN</span>
         </h1>
       </div>
     </div>
