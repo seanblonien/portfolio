@@ -2,6 +2,28 @@ import { Experience } from '@/types/experience';
 
 export const experiences: Experience[] = [
   {
+    projectName: 'Patrick Blonien Website',
+    role: 'Full-Stack Developer',
+    period: 'October 2025',
+    location: 'Personal Project',
+    challenge:
+      "My brother Patrick is an Assistant Professor of Finance at Carnegie Mellon University's Tepper School of Business—one of the world's top programs in Quantitative and Computational Finance. His existing Google Sites page was visually dated, difficult to navigate, and failed to reflect his credentials of five published working papers. He needed a modern, professional academic website to serve as a hub for his research, CV, and professional identity.",
+    solution:
+      "I designed and built a bespoke academic website from scratch using Next.js, React, and Tailwind CSS. The site features a clean, professional design aligned with CMU's branding, a dynamic research papers section with expandable abstracts and co-author links, downloadable CV, responsive navigation, and data visualization graphics for each paper. I implemented comprehensive SEO with JSON-LD structured data (Person, WebSite, ScholarlyArticle schemas), Open Graph tags, and semantic HTML to maximize discoverability for academic search.",
+    impact: [
+      'Transformed his online presence from a basic Google Site to a polished, professional academic portfolio',
+      'Achieved 100% Google Lighthouse score across performance, accessibility, SEO, and best practices',
+      'Generated 450 page views in the first month with 50% engagement rate',
+    ],
+    learnings:
+      'Building a website for my brother brought a unique mix of personal investment and professional rigor. I learned how to translate academic conventions—paper citations, co-author attributions, abstract formatting, and CV structure—into intuitive web design. Collaborating with Patrick to understand his goals reinforced the importance of discovery and iteration even on smaller projects. The project also deepened my understanding of academic SEO and structured data for scholarly content.',
+    callToAction: {
+      text: "Visit Patrick Blonien's Website",
+      url: 'https://patrickblonien.com/',
+    },
+    type: 'project',
+  },
+  {
     projectName: 'Forever Fest Website',
     role: 'Full-Stack Developer',
     period: 'August 2025',
