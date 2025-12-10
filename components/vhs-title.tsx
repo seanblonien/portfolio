@@ -49,7 +49,7 @@ export const VHSTitle: React.FC = () => {
       // Random horizontal offset - sometimes more extreme
       const isExtremeGlitch = Math.random() > 0.7;
       const xOffset = (Math.random() * (isExtremeGlitch ? 20 : 10)) - (isExtremeGlitch ? 10 : 5);
-      const yOffset = isExtremeGlitch ? ((Math.random() * 8) - 4) : 0;
+      const yOffset = isExtremeGlitch ? (Math.random() * 8) - 4 : 0;
 
       element.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
 

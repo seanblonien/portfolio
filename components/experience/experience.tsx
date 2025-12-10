@@ -10,6 +10,7 @@ import { ExperienceTimelineNode } from '@/components/experience/experience-timel
 import { ExperiencePopoverHeaderMobile } from '@/components/experience/experience-popover-header-mobile';
 import { ExperiencePopoverHeaderDesktop } from '@/components/experience/experience-popover-header-desktop';
 import { ExperiencePopoverContent } from '@/components/experience/experience-popover-content';
+import { ExperienceSeoContent } from '@/components/experience/experience-seo-content';
 import { AnimatedSection } from '../animated-section';
 
 // eslint-disable-next-line max-lines-per-function -- large static component
@@ -43,6 +44,9 @@ export const ExperienceSection: React.FC = () => {
                 delay={0.2}
               >
                 <article className='experience-entry'>
+                  {/* SEO content - visually hidden but crawlable */}
+                  <ExperienceSeoContent experience={experience} />
+
                   {/* Timeline node */}
                   <ExperienceTimelineNode experience={experience} />
 
@@ -123,7 +127,7 @@ export const ExperienceSection: React.FC = () => {
                         sideOffset={isSmallScreen ? 0 : 20}
                         style={{
                           backgroundColor: 'rgba(10, 10, 32, 0.95)',
-                          ...(isSmallScreen
+                          ...isSmallScreen
                             ? {
                                 position: 'fixed',
                                 inset: 0,
@@ -134,7 +138,7 @@ export const ExperienceSection: React.FC = () => {
                                 overflow: 'hidden',
                                 transform: 'none !important',
                               }
-                            : {}),
+                            : {},
                         }}
                         onTouchEnd={handleTouchEnd}
                         onTouchStart={handleTouchStart}
