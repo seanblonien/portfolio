@@ -4,7 +4,7 @@ import { formatDate } from '@/lib/utils';
 const currentYear = new Date().getFullYear();
 
 export const Footer: React.FC = () => {
-  const lastUpdated = formatDate(new Date('2025-11-14T18:00:00Z'));
+  const lastUpdated = formatDate(new Date('2026-01-07T18:00:00Z'));
 
   return (
     <footer className='py-8 border-t border-neon-blue-20 relative z-10'>

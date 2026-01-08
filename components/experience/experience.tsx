@@ -17,7 +17,7 @@ import { AnimatedSection } from '../animated-section';
 export const ExperienceSection: React.FC = () => {
   const isSmallScreen = useIsSmallScreen();
   const {
-    handleTouchEnd, handleTouchStart, openPopoverIndex, setOpenPopoverIndex,
+    handleOpenPopover, handleTouchEnd, handleTouchStart, openPopoverIndex,
   } = useExperiencePopover();
 
   return (
@@ -55,7 +55,7 @@ export const ExperienceSection: React.FC = () => {
                     <Popover
                       open={openPopoverIndex === index}
                       onOpenChange={(isOpen) => {
-                        setOpenPopoverIndex(isOpen ? index : null);
+                        handleOpenPopover(isOpen ? index : null);
                       }}
                     >
                       <PopoverTrigger asChild>
@@ -71,11 +71,11 @@ export const ExperienceSection: React.FC = () => {
                           className={`w-full md:w-[calc(50%-2rem)] text-left ${index % 2 === 0 ? 'md:mr-[calc(50%+2rem)]' : 'md:ml-auto'} ml-auto`}
                           type='button'
                           onClick={() =>
-                            setOpenPopoverIndex(openPopoverIndex === index ? null : index)}
+                            handleOpenPopover(openPopoverIndex === index ? null : index)}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter' || e.key === ' ') {
                               e.preventDefault();
-                              setOpenPopoverIndex(openPopoverIndex === index ? null : index);
+                              handleOpenPopover(openPopoverIndex === index ? null : index);
                             }
                           }}
                         >
@@ -148,7 +148,7 @@ export const ExperienceSection: React.FC = () => {
                           <ExperiencePopoverHeaderMobile
                             experience={experience}
                             index={index}
-                            onClose={() => setOpenPopoverIndex(null)}
+                            onClose={() => handleOpenPopover(null)}
                           />
 
                           {/* Scrollable content area */}
@@ -158,7 +158,7 @@ export const ExperienceSection: React.FC = () => {
                                 <ExperiencePopoverHeaderDesktop
                                   experience={experience}
                                   index={index}
-                                  onClose={() => setOpenPopoverIndex(null)}
+                                  onClose={() => handleOpenPopover(null)}
                                 />
 
                                 <ExperiencePopoverContent

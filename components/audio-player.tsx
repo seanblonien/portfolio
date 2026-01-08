@@ -144,22 +144,22 @@ export const AudioPlayer: React.FC = () => {
   }, [isMuted, hasInteracted, volume]);
 
   // Skip forward 15 seconds
-  const skipForward = () => {
+  const skipForward = useCallback(() => {
     if (!audioRef.current) return;
 
     const newTime = Math.min(audioRef.current.currentTime + 15, audioRef.current.duration);
     audioRef.current.currentTime = newTime;
     setCurrentTime(newTime);
-  };
+  }, []);
 
   // Skip backward 15 seconds
-  const skipBackward = () => {
+  const skipBackward = useCallback(() => {
     if (!audioRef.current) return;
 
     const newTime = Math.max(audioRef.current.currentTime - 15, 0);
     audioRef.current.currentTime = newTime;
     setCurrentTime(newTime);
-  };
+  }, []);
 
   // Add keyboard shortcuts for when controls are open
   useEffect(() => {
@@ -188,32 +188,7 @@ export const AudioPlayer: React.FC = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen, toggleMute]);
-
-  // Update volume when it changes and save to localStorage
-  useEffect(() => {
-    if (audioRef.current && // Only update volume if not muted
-      !isMuted) {
-      // Store current playing state
-      const isPlaying = !audioRef.current.paused;
-
-      // Update volume
-      audioRef.current.volume = volume;
-      previousVolumeRef.current = volume;
-
-      // Resume playback if it was playing before
-      if (isPlaying && audioRef.current.paused) {
-        audioRef.current.play().catch((error) => {
-          console.error('Error resuming audio after volume change:', error);
-        });
-      }
-    }
-
-    // Save volume preference to localStorage
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('portfolio-music-volume', volume.toString());
-    }
-  }, [volume, isMuted]);
+  }, [isOpen, toggleMute, skipForward, skipBackward]);
 
   // hasInteracted state is declared above
   // Get the appropriate volume icon based on current volume
@@ -346,21 +321,20 @@ export const AudioPlayer: React.FC = () => {
             step={0.01}
             value={[volume]}
             onValueChange={([newVolume]) => {
-              // Update state
               setVolume(newVolume);
+              previousVolumeRef.current = newVolume;
 
-              // Directly update audio volume to prevent playback interruption
               if (audioRef.current && !isMuted) {
                 audioRef.current.volume = newVolume;
               }
             }}
             onValueCommit={([newVolume]) => {
-              // Ensure final value is set
               setVolume(newVolume);
+              previousVolumeRef.current = newVolume;
+
               if (audioRef.current && !isMuted) {
                 audioRef.current.volume = newVolume;
               }
-              // Save to localStorage
               if (typeof window !== 'undefined') {
                 localStorage.setItem('portfolio-music-volume', newVolume.toString());
               }

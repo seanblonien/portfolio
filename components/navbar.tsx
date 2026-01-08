@@ -15,13 +15,11 @@ const socialLinks = [
   { name: 'LinkedIn', href: 'https://linkedin.com/in/seanblonien', icon: Linkedin },
 ];
 
-// eslint-disable-next-line max-lines-per-function -- TODO: split up
-export const Navbar: React.FC = () => {
+const useNavbarScroll = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
 
-  // Handle scroll events to change navbar appearance
   useEffect(() => {
     const handleScroll = debounce(() => {
       setHasScrolled(window.scrollY > 20);
@@ -40,12 +38,10 @@ export const Navbar: React.FC = () => {
     }, 100);
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu when clicking outside
   useEffect(() => {
     if (!isMenuOpen) return;
 
@@ -60,6 +56,115 @@ export const Navbar: React.FC = () => {
 
     return () => document.removeEventListener('click', handleClickOutside);
   }, [isMenuOpen]);
+
+  return { hasScrolled, activeSection, isMenuOpen, setIsMenuOpen };
+};
+
+const DesktopNav: React.FC<{ activeSection: string }> = ({ activeSection }) => (
+  <div className='hidden md:flex items-center space-x-8'>
+    <div className='flex space-x-6'>
+      {navLinks.map((item) => (
+        <Link
+          key={item.name}
+          className={`font-vt323 text-lg transition-all duration-300 ${
+            activeSection === item.href.slice(1)
+              ? 'neon-text-blue'
+              : 'text-white hover:neon-text-blue'
+          }`}
+          href={item.href}
+        >
+          {item.name}
+        </Link>
+      ))}
+    </div>
+
+    <div className='flex space-x-4 border-l border-white/20 pl-6'>
+      {socialLinks.map((item) => {
+        const Icon = item.icon;
+
+        return (
+          <a
+            key={item.name}
+            aria-label={item.name}
+            className='text-white/70 hover:text-neon-pink transition-colors'
+            href={item.href}
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            <Icon size={20} />
+          </a>
+        );
+      })}
+    </div>
+  </div>
+);
+
+const MobileNav: React.FC<{
+  activeSection: string;
+  isMenuOpen: boolean;
+  setIsMenuOpen: (open: boolean) => void;
+}> = ({ activeSection, isMenuOpen, setIsMenuOpen }) => (
+  <>
+    <div className='md:hidden'>
+      <button
+        aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+        className='text-white hover:text-neon-blue p-1'
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsMenuOpen(!isMenuOpen);
+        }}
+      >
+        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+    </div>
+
+    <div
+      className={`md:hidden absolute w-full backdrop-blur-md shadow-lg transition-all duration-300 overflow-hidden ${
+        isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+      }`}
+      style={{ backgroundColor: 'var(--dark-blue-95, rgba(10, 10, 32, 0.95))' }}
+    >
+      <div className='px-4 py-2 space-y-3'>
+        {navLinks.map((item) => (
+          <Link
+            key={item.name}
+            className={`block py-2 font-vt323 text-lg ${
+              activeSection === item.href.slice(1)
+                ? 'neon-text-blue'
+                : 'text-white hover:neon-text-blue'
+            }`}
+            href={item.href}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            {item.name}
+          </Link>
+        ))}
+
+        <div className='flex space-x-6 pt-2 border-t border-white/20'>
+          {socialLinks.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <a
+                key={item.name}
+                aria-label={item.name}
+                className='text-white/70 hover:text-neon-pink transition-colors'
+                href={item.href}
+                rel='noopener noreferrer'
+                target='_blank'
+              >
+                <Icon size={20} />
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </>
+);
+
+export const Navbar: React.FC = () => {
+  const { activeSection, hasScrolled, isMenuOpen, setIsMenuOpen } = useNavbarScroll();
 
   return (
     <nav
@@ -79,101 +184,12 @@ export const Navbar: React.FC = () => {
             SEAN.BLONIEN
           </Link>
 
-          {/* Desktop menu */}
-          <div className='hidden md:flex items-center space-x-8'>
-            <div className='flex space-x-6'>
-              {navLinks.map((item) => (
-                <Link
-                  key={item.name}
-                  className={`font-vt323 text-lg transition-all duration-300 ${
-                    activeSection === item.href.slice(1)
-                      ? 'neon-text-blue'
-                      : 'text-white hover:neon-text-blue'
-                  }`}
-                  href={item.href}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-
-            <div className='flex space-x-4 border-l border-white/20 pl-6'>
-              {socialLinks.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <a
-                    key={item.name}
-                    aria-label={item.name}
-                    className='text-white/70 hover:text-neon-pink transition-colors'
-                    href={item.href}
-                    rel='noopener noreferrer'
-                    target='_blank'
-                  >
-                    <Icon size={20} />
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className='md:hidden'>
-            <button
-              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-              className='text-white hover:text-neon-blue p-1'
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsMenuOpen(!isMenuOpen);
-              }}
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile menu with animation */}
-      <div
-        className={`md:hidden absolute w-full backdrop-blur-md shadow-lg transition-all duration-300 overflow-hidden ${
-          isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
-        }`}
-        style={{ backgroundColor: 'var(--dark-blue-95, rgba(10, 10, 32, 0.95))' }}
-      >
-        <div className='px-4 py-2 space-y-3'>
-          {navLinks.map((item) => (
-            <Link
-              key={item.name}
-              className={`block py-2 font-vt323 text-lg ${
-                activeSection === item.href.slice(1)
-                  ? 'neon-text-blue'
-                  : 'text-white hover:neon-text-blue'
-              }`}
-              href={item.href}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item.name}
-            </Link>
-          ))}
-
-          <div className='flex space-x-6 pt-2 border-t border-white/20'>
-            {socialLinks.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <a
-                  key={item.name}
-                  aria-label={item.name}
-                  className='text-white/70 hover:text-neon-pink transition-colors'
-                  href={item.href}
-                  rel='noopener noreferrer'
-                  target='_blank'
-                >
-                  <Icon size={20} />
-                </a>
-              );
-            })}
-          </div>
+          <DesktopNav activeSection={activeSection} />
+          <MobileNav
+            activeSection={activeSection}
+            isMenuOpen={isMenuOpen}
+            setIsMenuOpen={setIsMenuOpen}
+          />
         </div>
       </div>
     </nav>

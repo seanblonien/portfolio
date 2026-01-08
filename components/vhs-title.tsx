@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 /**
  * VHS-style title component with glitch effects
@@ -7,32 +7,29 @@ import { useEffect, useRef, useState } from 'react';
  */
 export const VHSTitle: React.FC = () => {
   const titleRef = useRef<HTMLDivElement>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
   const [isInView, setIsInView] = useState(false);
   const [hasGlitched, setHasGlitched] = useState(false);
 
-  // Set up intersection observer to detect when title is in view
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          if (titleRef.current) observer.unobserve(titleRef.current);
-        }
-      },
-      { threshold: 0.1 },
-    );
-
-    const element = titleRef.current;
-    if (element) {
-      observer.observe(element);
+  const setRefs = useCallback((node: HTMLDivElement | null) => {
+    if (observerRef.current) {
+      observerRef.current.disconnect();
     }
 
-    // Store the ref value in a variable for the cleanup function
-    const currentElement = titleRef.current;
+    titleRef.current = node;
 
-    return () => {
-      if (currentElement) observer.unobserve(currentElement);
-    };
+    if (node) {
+      observerRef.current = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+            observerRef.current?.unobserve(node);
+          }
+        },
+        { threshold: 0.1 },
+      );
+      observerRef.current.observe(node);
+    }
   }, []);
 
   // Handle the glitch effect
@@ -93,7 +90,7 @@ export const VHSTitle: React.FC = () => {
   return (
     <div className='relative'>
       <div
-        ref={titleRef}
+        ref={setRefs}
         className='vhs-title relative z-10'
         onMouseEnter={() => {
           if (Math.random() > 0.5 && titleRef.current) {
