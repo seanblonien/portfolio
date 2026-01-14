@@ -1,6 +1,61 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-dark-blue: var(--dark-blue);
+  --color-darker-blue: var(--darker-blue);
+  --color-neon-pink: var(--neon-pink);
+  --color-neon-blue: var(--neon-blue);
+  --color-neon-orange: var(--neon-orange);
+  --color-neon-pink-10: var(--neon-pink-10);
+  --color-neon-pink-20: var(--neon-pink-20);
+  --color-neon-pink-30: var(--neon-pink-30);
+  --color-neon-pink-50: var(--neon-pink-50);
+  --color-neon-pink-70: var(--neon-pink-70);
+  --color-neon-pink-90: var(--neon-pink-90);
+  --color-neon-blue-10: var(--neon-blue-10);
+  --color-neon-blue-20: var(--neon-blue-20);
+  --color-neon-blue-30: var(--neon-blue-30);
+  --color-neon-blue-50: var(--neon-blue-50);
+  --color-neon-blue-70: var(--neon-blue-70);
+  --color-neon-orange-10: var(--neon-orange-10);
+  --color-neon-orange-20: var(--neon-orange-20);
+  --color-neon-orange-30: var(--neon-orange-30);
+  --color-neon-orange-50: var(--neon-orange-50);
+  --color-neon-orange-70: var(--neon-orange-70);
+  --color-dark-blue-80: var(--dark-blue-80);
+  --color-dark-blue-95: var(--dark-blue-95);
+  --color-text-white-40: var(--text-white-40);
+  --color-text-white-60: var(--text-white-60);
+  --color-text-white-70: var(--text-white-70);
+  --color-text-white-80: var(--text-white-80);
+  --color-text-white-90: var(--text-white-90);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --font-sans: var(--font-inter);
+  --font-vt323: var(--font-vt323);
+}
 
 :root {
   /* Base colors */
@@ -33,13 +88,11 @@
   --neon-orange-90: rgba(255, 158, 42, 0.9);
 
   /* Dark blue opacity variants */
-  --dark-blue-50: rgba(10, 10, 32, 0.5);
   --dark-blue-80: rgba(10, 10, 32, 0.8);
   --dark-blue-95: rgba(10, 10, 32, 0.95);
 
   /* Text opacity variants */
   --text-white-40: rgba(255, 255, 255, 0.4);
-  --text-white-50: rgba(255, 255, 255, 0.5);
   --text-white-60: rgba(255, 255, 255, 0.6);
   --text-white-70: rgba(255, 255, 255, 0.7);
   --text-white-80: rgba(255, 255, 255, 0.8);
@@ -446,26 +499,6 @@
       width: 100% !important;
       height: 100% !important;
       position: fixed !important;
-    }
-  }
-
-  /* Responsive text for SB initials in profile */
-  .text-responsive-sb {
-    font-size: clamp(3.5rem, 15vw, 6rem); /* Base size */
-    line-height: 1;
-    text-align: center;
-  }
-
-  /* Responsive sizes handled with a single media query */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .text-responsive-sb {
-      font-size: clamp(4rem, 18vw, 6rem);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .text-responsive-sb {
-      font-size: clamp(4.5rem, 22vw, 6rem);
     }
   }
 }
