@@ -6,50 +6,59 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { AnimatedSection } from './animated-section';
 
+const statsData = [
+  { label: 'CLASS', value: 'Senior Engineer', valueClass: 'neon-text-blue' },
+  { label: 'LEVEL', value: '5 years', valueClass: 'neon-text-orange' },
+  { label: 'SPECIALTY', value: 'Full Stack', valueClass: 'neon-text-pink' },
+];
+
+const traitsData = [
+  { icon: Cpu, label: 'Tech Architect', iconClass: 'text-neon-blue' },
+  { icon: Code, label: 'Problem Solver', iconClass: 'text-neon-pink' },
+  { icon: Zap, label: 'Continuous Learner', iconClass: 'text-neon-orange' },
+  { icon: Heart, label: 'Wellness Enthusiast', iconClass: 'text-neon-pink' },
+  { icon: Trophy, label: 'Marathon Runner', iconClass: 'text-neon-orange' },
+  { icon: Gamepad2, label: 'VR Explorer', iconClass: 'text-neon-blue' },
+];
+
+const skillsData = [
+  'TypeScript',
+  'JavaScript',
+  'React',
+  'React Native',
+  'Expo',
+  'CSS',
+  'Tailwind',
+  'Next.js',
+  'NodeJs',
+  'Java',
+  'Python',
+  'Firebase',
+  'NoSQL',
+  'GCP',
+  'AWS',
+  'DevOps',
+  'Cloud Architecture',
+];
+
 const ProfileStats: React.FC = () => (
   <div className='space-y-3 text-sm'>
-    <div className='flex justify-between items-center'>
-      <span className='text-text-white-70'>CLASS</span>
-      <span className='font-vt323 text-lg neon-text-blue'>Senior Engineer</span>
-    </div>
-
-    <div className='flex justify-between items-center'>
-      <span className='text-text-white-70'>LEVEL</span>
-      <span className='font-vt323 text-lg neon-text-orange'>5 years</span>
-    </div>
-
-    <div className='flex justify-between items-center'>
-      <span className='text-text-white-70'>SPECIALTY</span>
-      <span className='font-vt323 text-lg neon-text-pink'>Full Stack</span>
-    </div>
+    {statsData.map(({ label, value, valueClass }) => (
+      <div key={label} className='flex justify-between items-center'>
+        <span className='text-text-white-70'>{label}</span>
+        <span className={`font-vt323 text-lg ${valueClass}`}>{value}</span>
+      </div>
+    ))}
 
     <Separator className='my-2 bg-neon-blue-30' />
 
     <div className='space-y-2'>
-      <div className='flex items-center gap-2'>
-        <Cpu className='text-neon-blue' size={16} />
-        <span className='text-text-white-90'>Tech Architect</span>
-      </div>
-      <div className='flex items-center gap-2'>
-        <Code className='text-neon-pink' size={16} />
-        <span className='text-text-white-90'>Problem Solver</span>
-      </div>
-      <div className='flex items-center gap-2'>
-        <Zap className='text-neon-orange' size={16} />
-        <span className='text-text-white-90'>Continuous Learner</span>
-      </div>
-      <div className='flex items-center gap-2'>
-        <Heart className='text-neon-pink' size={16} />
-        <span className='text-text-white-90'>Wellness Enthusiast</span>
-      </div>
-      <div className='flex items-center gap-2'>
-        <Trophy className='text-neon-orange' size={16} />
-        <span className='text-text-white-90'>Marathon Runner</span>
-      </div>
-      <div className='flex items-center gap-2'>
-        <Gamepad2 className='text-neon-blue' size={16} />
-        <span className='text-text-white-90'>VR Explorer</span>
-      </div>
+      {traitsData.map(({ icon: Icon, iconClass, label }) => (
+        <div key={label} className='flex items-center gap-2'>
+          <Icon className={iconClass} size={16} />
+          <span className='text-text-white-90'>{label}</span>
+        </div>
+      ))}
     </div>
 
     <Separator className='my-4 bg-neon-blue-30' />
@@ -57,62 +66,11 @@ const ProfileStats: React.FC = () => (
     <div className='space-y-2'>
       <h3 className='text-text-white-70 text-sm mb-2'>SKILLS</h3>
       <div className='flex flex-wrap gap-2'>
-        {/* Frontend Skills */}
-        <Badge className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
-          TypeScript
-        </Badge>
-        <Badge className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
-          JavaScript
-        </Badge>
-        <Badge className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
-          React
-        </Badge>
-        <Badge className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
-          React Native
-        </Badge>
-        <Badge className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
-          Expo
-        </Badge>
-        <Badge className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
-          CSS
-        </Badge>
-        <Badge className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
-          Tailwind
-        </Badge>
-        <Badge className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
-          Next.js
-        </Badge>
-
-        {/* Backend Skills */}
-        <Badge className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
-          NodeJs
-        </Badge>
-        <Badge className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
-          Java
-        </Badge>
-        <Badge className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
-          Python
-        </Badge>
-        <Badge className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
-          Firebase
-        </Badge>
-        <Badge className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
-          NoSQL
-        </Badge>
-
-        {/* Cloud & DevOps Skills */}
-        <Badge className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
-          GCP
-        </Badge>
-        <Badge className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
-          AWS
-        </Badge>
-        <Badge className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
-          DevOps
-        </Badge>
-        <Badge className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
-          Cloud Architecture
-        </Badge>
+        {skillsData.map((skill) => (
+          <Badge key={skill} className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
+            {skill}
+          </Badge>
+        ))}
       </div>
     </div>
   </div>
@@ -144,6 +102,12 @@ const DigitalProfileCard: React.FC = () => (
   </Card>
 );
 
+const whoAmIBadges = [
+  { label: 'Passionate', className: 'bg-neon-pink-20 text-neon-pink rounded-xl' },
+  { label: 'Innovative', className: 'bg-neon-blue-20 text-neon-blue rounded-xl' },
+  { label: 'User-Focused', className: 'bg-neon-orange-20 text-neon-orange rounded-xl' },
+];
+
 const WhoAmI: React.FC = () => (
   <Card className='card border-neon-blue-30 rounded-xl overflow-hidden shadow-neon-blue-lg'>
     <CardHeader className='pb-2'>
@@ -154,13 +118,20 @@ const WhoAmI: React.FC = () => (
         {'Welcome to my stretch of the digital highway! As a Senior Software Engineer navigating the dynamic worlds of technology and AI, I\'ve dedicated my journey to intentional software design that prioritizes product innovation and a seamless user experience. I thrive on building robust, elegant solutions that solve real-world challenges and empower users. Whether I\'m diving deep into code or mentoring a team, I\'m passionate about crafting intuitive, responsive systems that drive meaningful impact.'}
       </p>
       <div className='mt-3 flex flex-wrap gap-2'>
-        <Badge className='bg-neon-pink-20 text-neon-pink rounded-xl'>Passionate</Badge>
-        <Badge className='bg-neon-blue-20 text-neon-blue rounded-xl'>Innovative</Badge>
-        <Badge className='bg-neon-orange-20 text-neon-orange rounded-xl'>User-Focused</Badge>
+        {whoAmIBadges.map(({ className, label }) => (
+          <Badge key={label} className={className}>
+            {label}
+          </Badge>
+        ))}
       </div>
     </CardContent>
   </Card>
 );
+
+const careerBadgeGroups = [
+  { id: 'roles', badges: ['Tech Lead', 'Mentor', 'Entrepreneur'], colors: ['neon-blue', 'neon-pink', 'neon-orange'] },
+  { id: 'technologies', badges: ['React Native', 'Node.js', 'AWS', 'GCP', 'TypeScript'], className: 'bg-darker-blue text-neon-blue border border-neon-blue-50 rounded-xl shadow-neon-blue' },
+];
 
 const CareerJourney: React.FC = () => (
   <Card className='card border-neon-blue-30 rounded-xl overflow-hidden shadow-neon-blue-lg'>
@@ -176,22 +147,23 @@ const CareerJourney: React.FC = () => (
         {'Shifting gears, I decided to pursue my side project, FlyFit, full time. FlyFit is a B2B mobile fitness app for schools and organizations, offering fitness tracking, social mileage challenges, and other health and wellness features. Over the past year, I\'ve devoted myself to building and scaling FlyFit into a production-grade, real-time full-stack app—ensuring every stat and leaderboard updates seamlessly. I truly enjoy the purpose-driven nature of my work at Fly Bodies, knowing that the software I create helps motivate people to live healthier, more connected lives.'}
       </p>
 
-      <div className='mt-3 flex flex-wrap gap-2'>
-        <Badge className='bg-neon-blue-20 text-neon-blue rounded-xl'>Tech Lead</Badge>
-        <Badge className='bg-neon-pink-20 text-neon-pink rounded-xl'>Mentor</Badge>
-        <Badge className='bg-neon-orange-20 text-neon-orange rounded-xl'>Entrepreneur</Badge>
-      </div>
-
-      <div className='mt-3 flex flex-wrap gap-2'>
-        <Badge className='bg-darker-blue text-neon-blue border border-neon-blue-50 rounded-xl shadow-neon-blue'>React Native</Badge>
-        <Badge className='bg-darker-blue text-neon-blue border border-neon-blue-50 rounded-xl shadow-neon-blue'>Node.js</Badge>
-        <Badge className='bg-darker-blue text-neon-blue border border-neon-blue-50 rounded-xl shadow-neon-blue'>AWS</Badge>
-        <Badge className='bg-darker-blue text-neon-blue border border-neon-blue-50 rounded-xl shadow-neon-blue'>GCP</Badge>
-        <Badge className='bg-darker-blue text-neon-blue border border-neon-blue-50 rounded-xl shadow-neon-blue'>TypeScript</Badge>
-      </div>
+      {careerBadgeGroups.map((group) => (
+        <div key={group.id} className='mt-3 flex flex-wrap gap-2'>
+          {group.badges.map((badge, index) => (
+            <Badge
+              key={badge}
+              className={group.colors ? `bg-${group.colors[index]}-20 text-${group.colors[index]} rounded-xl` : group.className}
+            >
+              {badge}
+            </Badge>
+          ))}
+        </div>
+      ))}
     </CardContent>
   </Card>
 );
+
+const beyondCodeActivities = ['Running', 'VR Gaming', 'EDM', 'Meditation', 'HIIT', 'Golf', 'Mentoring'];
 
 const BeyondCode: React.FC = () => (
   <Card className='card border-neon-blue-30 rounded-xl overflow-hidden shadow-neon-blue-lg'>
@@ -203,13 +175,11 @@ const BeyondCode: React.FC = () => (
         {'Off the grid, I like to keep the momentum going. Whether I\'m taking on a marathon, getting lost in a VR adventure, or soaking up the vibe at an EDM festival, I find these experiences remind me of the core values in my work—persistence, exploration, and always aiming to improve. When I\'m not at the keyboard, I mix it up with HIIT workouts, weight training, and even a round of golf, balanced by a little downtime for meditation. I also mentor an after-school coding club at a local school, where I enjoy sharing my passion for tech and helping the next generation explore both the digital and real world.'}
       </p>
       <div className='mt-3 flex flex-wrap gap-2'>
-        <Badge className='bg-neon-orange-20 text-neon-orange rounded-xl shadow-neon-orange'>Running</Badge>
-        <Badge className='bg-neon-orange-20 text-neon-orange rounded-xl shadow-neon-orange'>VR Gaming</Badge>
-        <Badge className='bg-neon-orange-20 text-neon-orange rounded-xl shadow-neon-orange'>EDM</Badge>
-        <Badge className='bg-neon-orange-20 text-neon-orange rounded-xl shadow-neon-orange'>Meditation</Badge>
-        <Badge className='bg-neon-orange-20 text-neon-orange rounded-xl shadow-neon-orange'>HIIT</Badge>
-        <Badge className='bg-neon-orange-20 text-neon-orange rounded-xl shadow-neon-orange'>Golf</Badge>
-        <Badge className='bg-neon-orange-20 text-neon-orange rounded-xl shadow-neon-orange'>Mentoring</Badge>
+        {beyondCodeActivities.map((activity) => (
+          <Badge key={activity} className='bg-neon-orange-20 text-neon-orange rounded-xl shadow-neon-orange'>
+            {activity}
+          </Badge>
+        ))}
       </div>
     </CardContent>
   </Card>
