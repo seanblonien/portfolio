@@ -24,10 +24,8 @@ export const debounce = <T extends (...args: Parameters<T>) => ReturnType<T>>(
 /**
  * Format date to a readable string
  */
-export const formatDate = (date: Date | string): string => {
-  if (typeof date === 'string') {
-    date = new Date(date);
-  }
+export const formatDate = (dateInput: Date | string): string => {
+  const date = typeof dateInput === 'string' ? new Date(dateInput) : dateInput;
 
   return date.toLocaleDateString('en-US', {
     year: 'numeric',

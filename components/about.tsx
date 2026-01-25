@@ -41,66 +41,72 @@ const skillsData = [
   'Cloud Architecture',
 ];
 
-const ProfileStats: React.FC = () => (
-  <div className='space-y-3 text-sm'>
-    {statsData.map(({ label, value, valueClass }) => (
-      <div key={label} className='flex justify-between items-center'>
-        <span className='text-text-white-70'>{label}</span>
-        <span className={`font-vt323 text-lg ${valueClass}`}>{value}</span>
-      </div>
-    ))}
-
-    <Separator className='my-2 bg-neon-blue-30' />
-
-    <div className='space-y-2'>
-      {traitsData.map(({ icon: Icon, iconClass, label }) => (
-        <div key={label} className='flex items-center gap-2'>
-          <Icon className={iconClass} size={16} />
-          <span className='text-text-white-90'>{label}</span>
+function ProfileStats() {
+  return (
+    <div className='space-y-3 text-sm'>
+      {statsData.map(({ label, value, valueClass }) => (
+        <div key={label} className='flex justify-between items-center'>
+          <span className='text-text-white-70'>{label}</span>
+          <span className={`font-vt323 text-lg ${valueClass}`}>{value}</span>
         </div>
       ))}
-    </div>
 
-    <Separator className='my-4 bg-neon-blue-30' />
+      <Separator className='my-2 bg-neon-blue-30' />
 
-    <div className='space-y-2'>
-      <h3 className='text-text-white-70 text-sm mb-2'>SKILLS</h3>
-      <div className='flex flex-wrap gap-2'>
-        {skillsData.map((skill) => (
-          <Badge key={skill} className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
-            {skill}
-          </Badge>
+      <div className='space-y-2'>
+        {traitsData.map(({ icon: Icon, iconClass, label }) => (
+          <div key={label} className='flex items-center gap-2'>
+            <Icon className={iconClass} size={16} />
+            <span className='text-text-white-90'>{label}</span>
+          </div>
         ))}
       </div>
+
+      <Separator className='my-4 bg-neon-blue-30' />
+
+      <div className='space-y-2'>
+        <h3 className='text-text-white-70 text-sm mb-2'>SKILLS</h3>
+        <div className='flex flex-wrap gap-2'>
+          {skillsData.map((skill) => (
+            <Badge key={skill} className='bg-dark-blue/70 border border-neon-blue-30 text-white hover:border-neon-pink-50 hover:bg-dark-blue/90 transition-all duration-300 rounded-xl shadow-neon-blue'>
+              {skill}
+            </Badge>
+          ))}
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
+}
 
-const ProfileAvatar: React.FC = () => (
-  <div className='w-full aspect-square mb-4 bg-darker-blue/70 border-2 border-neon-blue rounded-xl overflow-hidden flex items-center justify-center relative shadow-neon-blue-lg'>
-    <Image
-      fill
-      alt='Sean Blonien Profile Picture'
-      className='object-cover object-center'
-      src='/images/profile.webp'
-    />
-  </div>
-);
+function ProfileAvatar() {
+  return (
+    <div className='w-full aspect-square mb-4 bg-darker-blue/70 border-2 border-neon-blue rounded-xl overflow-hidden flex items-center justify-center relative shadow-neon-blue-lg'>
+      <Image
+        fill
+        alt='Sean Blonien Profile Picture'
+        className='object-cover object-center'
+        src='/images/profile.webp'
+      />
+    </div>
+  );
+}
 
-const DigitalProfileCard: React.FC = () => (
-  <Card className='card h-full border-neon-pink-50 flex flex-col rounded-xl overflow-hidden shadow-neon-pink-lg'>
-    <CardHeader className='pb-2'>
-      <CardTitle className='text-2xl font-vt323 neon-text-blue text-center'>DIGITAL PROFILE</CardTitle>
-    </CardHeader>
-    <CardContent className='flex-1 flex flex-col'>
-      {/* Profile Avatar */}
-      <ProfileAvatar />
+function DigitalProfileCard() {
+  return (
+    <Card className='card h-full border-neon-pink-50 flex flex-col rounded-xl overflow-hidden shadow-neon-pink-lg'>
+      <CardHeader className='pb-2'>
+        <CardTitle className='text-2xl font-vt323 neon-text-blue text-center'>DIGITAL PROFILE</CardTitle>
+      </CardHeader>
+      <CardContent className='flex-1 flex flex-col'>
+        {/* Profile Avatar */}
+        <ProfileAvatar />
 
-      {/* Profile Stats */}
-      <ProfileStats />
-    </CardContent>
-  </Card>
-);
+        {/* Profile Stats */}
+        <ProfileStats />
+      </CardContent>
+    </Card>
+  );
+}
 
 const whoAmIBadges = [
   { label: 'Passionate', className: 'bg-neon-pink-20 text-neon-pink rounded-xl' },
@@ -108,112 +114,120 @@ const whoAmIBadges = [
   { label: 'User-Focused', className: 'bg-neon-orange-20 text-neon-orange rounded-xl' },
 ];
 
-const WhoAmI: React.FC = () => (
-  <Card className='card border-neon-blue-30 rounded-xl overflow-hidden shadow-neon-blue-lg'>
-    <CardHeader className='pb-2'>
-      <CardTitle className='text-xl font-vt323 neon-text-pink'>WHO I AM</CardTitle>
-    </CardHeader>
-    <CardContent>
-      <p className='text-text-white-90'>
-        {'Welcome to my stretch of the digital highway! As a Senior Software Engineer navigating the dynamic worlds of technology and AI, I\'ve dedicated my journey to intentional software design that prioritizes product innovation and a seamless user experience. I thrive on building robust, elegant solutions that solve real-world challenges and empower users. Whether I\'m diving deep into code or mentoring a team, I\'m passionate about crafting intuitive, responsive systems that drive meaningful impact.'}
-      </p>
-      <div className='mt-3 flex flex-wrap gap-2'>
-        {whoAmIBadges.map(({ className, label }) => (
-          <Badge key={label} className={className}>
-            {label}
-          </Badge>
-        ))}
-      </div>
-    </CardContent>
-  </Card>
-);
+function WhoAmI() {
+  return (
+    <Card className='card border-neon-blue-30 rounded-xl overflow-hidden shadow-neon-blue-lg'>
+      <CardHeader className='pb-2'>
+        <CardTitle className='text-xl font-vt323 neon-text-pink'>WHO I AM</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className='text-text-white-90'>
+          {'Welcome to my stretch of the digital highway! As a Senior Software Engineer navigating the dynamic worlds of technology and AI, I\'ve dedicated my journey to intentional software design that prioritizes product innovation and a seamless user experience. I thrive on building robust, elegant solutions that solve real-world challenges and empower users. Whether I\'m diving deep into code or mentoring a team, I\'m passionate about crafting intuitive, responsive systems that drive meaningful impact.'}
+        </p>
+        <div className='mt-3 flex flex-wrap gap-2'>
+          {whoAmIBadges.map(({ className, label }) => (
+            <Badge key={label} className={className}>
+              {label}
+            </Badge>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
 
 const careerBadgeGroups = [
   { id: 'roles', badges: ['Tech Lead', 'Mentor', 'Entrepreneur'], colors: ['neon-blue', 'neon-pink', 'neon-orange'] },
   { id: 'technologies', badges: ['React Native', 'Node.js', 'AWS', 'GCP', 'TypeScript'], className: 'bg-darker-blue text-neon-blue border border-neon-blue-50 rounded-xl shadow-neon-blue' },
 ];
 
-const CareerJourney: React.FC = () => (
-  <Card className='card border-neon-blue-30 rounded-xl overflow-hidden shadow-neon-blue-lg'>
-    <CardHeader className='pb-2'>
-      <CardTitle className='text-xl font-vt323 neon-text-blue'>CAREER JOURNEY</CardTitle>
-    </CardHeader>
-    <CardContent>
-      <p className='text-text-white-90'>
-        {/* eslint-disable-next-line @stylistic/max-len -- for content */}
-        Cruising the digital highway at Pariveda gave me a chance to explore diverse tech landscapes early on. Fresh out of college, I led a full-stack migration from Angular to React—a challenge that sharpened my problem-solving skills and sparked my passion for building complete solutions. I also had the opportunity to mentor a team of interns on a process improvement project for the Girl Scouts using Power Automate, which showed me firsthand how rewarding it is to guide others through real-world challenges. My time at Southwest Airlines reinforced just how important scalable infrastructure and thoughtful design are for real-time, data-driven platforms.
-      </p>
-      <p className='mt-3 text-text-white-90'>
-        {'Shifting gears, I decided to pursue my side project, FlyFit, full time. FlyFit is a B2B mobile fitness app for schools and organizations, offering fitness tracking, social mileage challenges, and other health and wellness features. Over the past year, I\'ve devoted myself to building and scaling FlyFit into a production-grade, real-time full-stack app—ensuring every stat and leaderboard updates seamlessly. I truly enjoy the purpose-driven nature of my work at Fly Bodies, knowing that the software I create helps motivate people to live healthier, more connected lives.'}
-      </p>
+function CareerJourney() {
+  return (
+    <Card className='card border-neon-blue-30 rounded-xl overflow-hidden shadow-neon-blue-lg'>
+      <CardHeader className='pb-2'>
+        <CardTitle className='text-xl font-vt323 neon-text-blue'>CAREER JOURNEY</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className='text-text-white-90'>
+          {/* eslint-disable-next-line @stylistic/max-len -- for content */}
+          Cruising the digital highway at Pariveda gave me a chance to explore diverse tech landscapes early on. Fresh out of college, I led a full-stack migration from Angular to React—a challenge that sharpened my problem-solving skills and sparked my passion for building complete solutions. I also had the opportunity to mentor a team of interns on a process improvement project for the Girl Scouts using Power Automate, which showed me firsthand how rewarding it is to guide others through real-world challenges. My time at Southwest Airlines reinforced just how important scalable infrastructure and thoughtful design are for real-time, data-driven platforms.
+        </p>
+        <p className='mt-3 text-text-white-90'>
+          {'Shifting gears, I decided to pursue my side project, FlyFit, full time. FlyFit is a B2B mobile fitness app for schools and organizations, offering fitness tracking, social mileage challenges, and other health and wellness features. Over the past year, I\'ve devoted myself to building and scaling FlyFit into a production-grade, real-time full-stack app—ensuring every stat and leaderboard updates seamlessly. I truly enjoy the purpose-driven nature of my work at Fly Bodies, knowing that the software I create helps motivate people to live healthier, more connected lives.'}
+        </p>
 
-      {careerBadgeGroups.map((group) => (
-        <div key={group.id} className='mt-3 flex flex-wrap gap-2'>
-          {group.badges.map((badge, index) => (
-            <Badge
-              key={badge}
-              className={group.colors ? `bg-${group.colors[index]}-20 text-${group.colors[index]} rounded-xl` : group.className}
-            >
-              {badge}
-            </Badge>
-          ))}
-        </div>
-      ))}
-    </CardContent>
-  </Card>
-);
+        {careerBadgeGroups.map((group) => (
+          <div key={group.id} className='mt-3 flex flex-wrap gap-2'>
+            {group.badges.map((badge, index) => (
+              <Badge
+                key={badge}
+                className={group.colors ? `bg-${group.colors[index]}-20 text-${group.colors[index]} rounded-xl` : group.className}
+              >
+                {badge}
+              </Badge>
+            ))}
+          </div>
+        ))}
+      </CardContent>
+    </Card>
+  );
+}
 
 const beyondCodeActivities = ['Running', 'VR Gaming', 'EDM', 'Meditation', 'HIIT', 'Golf', 'Mentoring'];
 
-const BeyondCode: React.FC = () => (
-  <Card className='card border-neon-blue-30 rounded-xl overflow-hidden shadow-neon-blue-lg'>
-    <CardHeader className='pb-2'>
-      <CardTitle className='text-xl font-vt323 neon-text-orange'>BEYOND CODE</CardTitle>
-    </CardHeader>
-    <CardContent>
-      <p className='text-text-white-90'>
-        {'Off the grid, I like to keep the momentum going. Whether I\'m taking on a marathon, getting lost in a VR adventure, or soaking up the vibe at an EDM festival, I find these experiences remind me of the core values in my work—persistence, exploration, and always aiming to improve. When I\'m not at the keyboard, I mix it up with HIIT workouts, weight training, and even a round of golf, balanced by a little downtime for meditation. I also mentor an after-school coding club at a local school, where I enjoy sharing my passion for tech and helping the next generation explore both the digital and real world.'}
-      </p>
-      <div className='mt-3 flex flex-wrap gap-2'>
-        {beyondCodeActivities.map((activity) => (
-          <Badge key={activity} className='bg-neon-orange-20 text-neon-orange rounded-xl shadow-neon-orange'>
-            {activity}
-          </Badge>
-        ))}
-      </div>
-    </CardContent>
-  </Card>
-);
-
-export const About: React.FC = () => (
-  <section className='section-container' id='about'>
-    <AnimatedSection>
-      <h2 className='section-title'>ABOUT ME</h2>
-
-      <div className='grid grid-cols-1 md:grid-cols-[300px_1fr] gap-4 md:gap-6'>
-        {/* Digital Profile Card */}
-        <AnimatedSection delay={0.1}>
-          <DigitalProfileCard />
-        </AnimatedSection>
-
-        {/* Content Container */}
-        <div className='space-y-3 md:space-y-4'>
-          {/* Who I Am */}
-          <AnimatedSection delay={0.2}>
-            <WhoAmI />
-          </AnimatedSection>
-
-          {/* Career Journey */}
-          <AnimatedSection delay={0.3}>
-            <CareerJourney />
-          </AnimatedSection>
-
-          {/* Beyond Code */}
-          <AnimatedSection delay={0.4}>
-            <BeyondCode />
-          </AnimatedSection>
+function BeyondCode() {
+  return (
+    <Card className='card border-neon-blue-30 rounded-xl overflow-hidden shadow-neon-blue-lg'>
+      <CardHeader className='pb-2'>
+        <CardTitle className='text-xl font-vt323 neon-text-orange'>BEYOND CODE</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className='text-text-white-90'>
+          {'Off the grid, I like to keep the momentum going. Whether I\'m taking on a marathon, getting lost in a VR adventure, or soaking up the vibe at an EDM festival, I find these experiences remind me of the core values in my work—persistence, exploration, and always aiming to improve. When I\'m not at the keyboard, I mix it up with HIIT workouts, weight training, and even a round of golf, balanced by a little downtime for meditation. I also mentor an after-school coding club at a local school, where I enjoy sharing my passion for tech and helping the next generation explore both the digital and real world.'}
+        </p>
+        <div className='mt-3 flex flex-wrap gap-2'>
+          {beyondCodeActivities.map((activity) => (
+            <Badge key={activity} className='bg-neon-orange-20 text-neon-orange rounded-xl shadow-neon-orange'>
+              {activity}
+            </Badge>
+          ))}
         </div>
-      </div>
-    </AnimatedSection>
-  </section>
-);
+      </CardContent>
+    </Card>
+  );
+}
+
+export function About() {
+  return (
+    <section className='section-container' id='about'>
+      <AnimatedSection>
+        <h2 className='section-title'>ABOUT ME</h2>
+
+        <div className='grid grid-cols-1 md:grid-cols-[300px_1fr] gap-4 md:gap-6'>
+          {/* Digital Profile Card */}
+          <AnimatedSection delay={0.1}>
+            <DigitalProfileCard />
+          </AnimatedSection>
+
+          {/* Content Container */}
+          <div className='space-y-3 md:space-y-4'>
+            {/* Who I Am */}
+            <AnimatedSection delay={0.2}>
+              <WhoAmI />
+            </AnimatedSection>
+
+            {/* Career Journey */}
+            <AnimatedSection delay={0.3}>
+              <CareerJourney />
+            </AnimatedSection>
+
+            {/* Beyond Code */}
+            <AnimatedSection delay={0.4}>
+              <BeyondCode />
+            </AnimatedSection>
+          </div>
+        </div>
+      </AnimatedSection>
+    </section>
+  );
+}

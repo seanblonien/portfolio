@@ -3,7 +3,7 @@ import { Inter, VT323 } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
-import { ThemeProvider } from '@/components/ThemeProvider';
+import { ThemeProvider } from '@/components/theme-provider';
 import { AudioPlayerWrapper } from '@/components/audio-player-wrapper';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -77,17 +77,19 @@ export const metadata: Metadata = {
   },
 };
 
-const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => (
-  <html suppressHydrationWarning lang='en'>
-    <body className={`${inter.variable} ${vt323.variable} font-sans`}>
-      <ThemeProvider disableTransitionOnChange enableSystem attribute='class' defaultTheme='dark'>
-        {children}
-        <AudioPlayerWrapper />
-        <Analytics />
-        <SpeedInsights />
-      </ThemeProvider>
-    </body>
-  </html>
-);
+function RootLayout({ children }: React.PropsWithChildren) {
+  return (
+    <html suppressHydrationWarning lang='en'>
+      <body className={`${inter.variable} ${vt323.variable} font-sans`}>
+        <ThemeProvider disableTransitionOnChange enableSystem attribute='class' defaultTheme='dark'>
+          {children}
+          <AudioPlayerWrapper />
+          <Analytics />
+          <SpeedInsights />
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
 
 export default RootLayout;

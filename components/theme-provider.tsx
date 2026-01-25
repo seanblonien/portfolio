@@ -5,5 +5,6 @@ type Props = React.ComponentProps<typeof NextThemeProvider> & {
   children: React.ReactNode;
 };
 
-export const ThemeProvider: React.FC<Props> = ({ children, ...rest }) =>
-  <NextThemeProvider {...rest}>{children}</NextThemeProvider>;
+export function ThemeProvider({ children, ...rest }: Props) {
+  return <NextThemeProvider {...rest}>{children}</NextThemeProvider>;
+}

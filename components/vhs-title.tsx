@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
  * VHS-style title component with glitch effects
  * The CSS for this component is defined in globals.css
  */
-export const VHSTitle: React.FC = () => {
+export function VHSTitle() {
   const titleRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const [isInView, setIsInView] = useState(false);
@@ -109,4 +109,4 @@ export const VHSTitle: React.FC = () => {
       </div>
     </div>
   );
-};
+}

@@ -38,7 +38,7 @@ const formatTime = (timeInSeconds: number) => {
 const START_TIME = 70;
 
 // eslint-disable-next-line max-lines-per-function -- TODO: split up
-export const AudioPlayer: React.FC = () => {
+export function AudioPlayer() {
   const isMobile = useIsMobile();
   // Start muted to comply with browser autoplay policies
   const [isMuted, setIsMuted] = useState(true);
@@ -410,7 +410,7 @@ export const AudioPlayer: React.FC = () => {
       {isMobile && (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogContent
-            className='w-[90vw] max-w-[350px] p-4 bg-darker-blue border border-neon-blue shadow-neon-blue-lg rounded-xl overflow-hidden [&>button]:hidden'
+            className='w-[90vw] max-w-87.5 p-4 bg-darker-blue border border-neon-blue shadow-neon-blue-lg rounded-xl overflow-hidden [&>button]:hidden'
             data-audio-player-dialog='true'
             style={{ paddingRight: '1rem' }}
             onOpenAutoFocus={(e) => e.preventDefault()}
@@ -433,4 +433,4 @@ export const AudioPlayer: React.FC = () => {
       )}
     </div>
   );
-};
+}

@@ -14,7 +14,7 @@ import { ExperienceSeoContent } from '@/components/experience/experience-seo-con
 import { AnimatedSection } from '../animated-section';
 
 // eslint-disable-next-line max-lines-per-function -- large static component
-export const ExperienceSection: React.FC = () => {
+export function ExperienceSection() {
   const isSmallScreen = useIsSmallScreen();
   const {
     handleOpenPopover, handleTouchEnd, handleTouchStart, openPopoverIndex,
@@ -180,4 +180,4 @@ export const ExperienceSection: React.FC = () => {
       </AnimatedSection>
     </section>
   );
-};
+}

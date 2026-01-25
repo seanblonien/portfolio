@@ -6,19 +6,19 @@ type ExperiencePopoverContentProps = {
   index: number;
 };
 
-export const ExperiencePopoverContent: React.FC<ExperiencePopoverContentProps> =
-  ({ experience, index }) => (
+export function ExperiencePopoverContent({ experience, index }: ExperiencePopoverContentProps) {
+  return (
     <>
       {/* Challenge */}
       <section aria-labelledby={`challenge-heading-${index}`}>
         <h5 className='text-lg uppercase text-text-white-60 mb-1' id={`challenge-heading-${index}`}>Challenge</h5>
-        <p className='text-base text-text-white-90 break-words'>{experience.challenge}</p>
+        <p className='text-base text-text-white-90 wrap-break-word'>{experience.challenge}</p>
       </section>
 
       {/* Solution */}
       <section aria-labelledby={`solution-heading-${index}`}>
         <h5 className='text-lg uppercase text-text-white-60 mb-1' id={`solution-heading-${index}`}>Solution</h5>
-        <p className='text-base text-text-white-90 break-words'>{experience.solution}</p>
+        <p className='text-base text-text-white-90 wrap-break-word'>{experience.solution}</p>
       </section>
 
       {/* Impact */}
@@ -27,7 +27,7 @@ export const ExperiencePopoverContent: React.FC<ExperiencePopoverContentProps> =
           <h5 className='text-lg uppercase text-text-white-60 mb-1' id={`impact-heading-${index}`}>Key Impact</h5>
           <ul className='list-disc pl-4 text-text-white-80 text-base space-y-2'>
             {experience.impact.map((item) => (
-              <li key={`impact-${item}`} className='break-words'>{item}</li>
+              <li key={`impact-${item}`} className='wrap-break-word'>{item}</li>
             ))}
           </ul>
         </section>
@@ -36,7 +36,7 @@ export const ExperiencePopoverContent: React.FC<ExperiencePopoverContentProps> =
       {/* Learnings */}
       <section aria-labelledby={`learnings-heading-${index}`}>
         <h5 className='text-lg uppercase text-text-white-60 mb-1' id={`learnings-heading-${index}`}>Learnings</h5>
-        <p className='text-base text-text-white-90 break-words'>{experience.learnings}</p>
+        <p className='text-base text-text-white-90 wrap-break-word'>{experience.learnings}</p>
       </section>
 
       {/* Call to Action */}
@@ -56,3 +56,4 @@ export const ExperiencePopoverContent: React.FC<ExperiencePopoverContentProps> =
       </footer>
     </>
   );
+}

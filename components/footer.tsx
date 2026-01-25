@@ -1,9 +1,9 @@
-import { GithubIcon } from 'lucide-react';
+import { Github as GithubIcon } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 
 const currentYear = new Date().getFullYear();
 
-export const Footer: React.FC = () => {
+export function Footer() {
   const lastUpdated = formatDate(new Date('2026-01-07T18:00:00Z'));
 
   return (
@@ -48,4 +48,4 @@ export const Footer: React.FC = () => {
       </div>
     </footer>
   );
-};
+}

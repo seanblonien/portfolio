@@ -20,11 +20,9 @@ export const useBreakpoint = (breakpoint = BREAKPOINTS.MD) => {
   const subscribe = (callback: () => void) => {
     const mql = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
 
-    const onChange = () => callback();
+    mql.addEventListener('change', callback);
 
-    mql.addEventListener('change', onChange);
-
-    return () => mql.removeEventListener('change', onChange);
+    return () => mql.removeEventListener('change', callback);
   };
 
   const getSnapshot = () => window.innerWidth < breakpoint;

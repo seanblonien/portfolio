@@ -9,7 +9,7 @@ type AudioSliderProps = {
 } & React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>;
 
 const AudioSlider = forwardRef<
-  React.ElementRef<typeof SliderPrimitive.Root>,
+  React.ComponentRef<typeof SliderPrimitive.Root>,
   AudioSliderProps
 >(({ className, showValueLabel, valueLabel, ...props }, ref) => (
   <SliderPrimitive.Root
