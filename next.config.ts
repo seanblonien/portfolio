@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  output: 'export',
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -14,11 +15,18 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   poweredByHeader: false,
   reactStrictMode: true,
-  cacheComponents: true,
+  // cacheComponents: true,
   experimental: {
+    taint: true,
     turbopackFileSystemCacheForDev: true,
-    optimizeCss: true,
+    inlineCss: true,
     cssChunking: true,
+    optimizePackageImports: [
+      'lucide-react',
+      '@vercel/analytics',
+      '@vercel/speed-insights',
+      '@radix-ui',
+    ],
   },
 };
 
